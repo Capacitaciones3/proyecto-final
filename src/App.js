@@ -1,12 +1,4 @@
 import './App.css';
-<<<<<<< Updated upstream
-
-function App() {
-  return (
-    <div className="App">
-      
-    </div>
-=======
 import React from 'react'
 import  {BrowserRouter, Route, Routes} from "react-router-dom"
 import Login from './pages/Login/Login';
@@ -33,7 +25,6 @@ function App() {
       </Route>
     </Routes>
     </BrowserRouter>
->>>>>>> Stashed changes
   );
 }
 

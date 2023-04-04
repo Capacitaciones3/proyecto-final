@@ -1,5 +1,3 @@
-<<<<<<< Updated upstream
-=======
 import React, { useContext } from 'react'
 import { postLogin } from '../../services/loginServices'
 import { AutenticacionContext } from '../../contexts/Autenticacion'
@@ -61,4 +59,3 @@ const Login = () => {
 }
 
 export default Login
->>>>>>> Stashed changes
