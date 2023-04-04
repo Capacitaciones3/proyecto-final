@@ -21,7 +21,7 @@ const Login = () => {
     let logIn = await postLogin(user, setUsuario)
     if(logIn === true) {
       console.log("navigate")
-      return navigate("/grupos")
+      return navigate("/home")
     }
   }
 
@@ -41,7 +41,6 @@ const Login = () => {
           required
           id="usser"
           label="Usuario"
-          defaultValue="Ingrese su usuario"
           onChange={(e) => handleChange(e)}
         />
         <TextField
