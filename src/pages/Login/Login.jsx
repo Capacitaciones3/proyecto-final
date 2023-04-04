@@ -48,6 +48,7 @@ const Login = () => {
       <div className='btn'>
       <Boton
       mensaje="Iniciar" 
+      onSubmit={(e) => handleSubmit(e)}
       />
       </div>
       </div>
