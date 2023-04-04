@@ -1,4 +1,5 @@
 import React from 'react'
+import "./licencias.css"
 
 const Licencias = () => {
   return (
@@ -7,14 +8,12 @@ const Licencias = () => {
       <div className='usuarioLicencia'>
 
       </div>
-    <div className='descripcionLicencia'>
+      <section className='descripcionLicencia'>
 
-    </div>
-    <div>
+      </section>
+      <aside className='lista'>
       
-    </div>
-
-
+      </aside>
     </div>
   )
 }

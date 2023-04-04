@@ -1,34 +1,24 @@
 import React, { useContext } from 'react'
-import { postLogin } from '../../services/loginServices'
 import { AutenticacionContext } from '../../contexts/Autenticacion'
 import "./Login.css"
-import {  useNavigate } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
-import Boton from "../../components/Boton/Boton"
+import { Button } from '@mui/material';
 
 const Login = () => {
 
   let user = {email: "", password: ""}
-  const {setUsuario} = useContext(AutenticacionContext);
-  const navigate = useNavigate();
+
+  const {iniciarSesion} = useContext(AutenticacionContext);
 
   const handleChange = (e) => {
     user = {...user, [e.target.name]: e.target.value}
+    console.log(user)
   }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    let logIn = await postLogin(user, setUsuario)
-    if(logIn === true) {
-      console.log("navigate")
-      return navigate("/home")
-    }
-  }
 
   return (
     <div className='fondo'>
     <section className='login_section'>
-      <form onSubmit={(e) => handleSubmit(e)}>
       <div className='login_form'>
       <div className='contenedorLogin'>
         <TextField
@@ -45,14 +35,10 @@ const Login = () => {
           onChange={(e) => handleChange(e)}
         />
       </div>
-      <div className='btn'>
-      <Boton
-      mensaje="Iniciar" 
-      onSubmit={(e) => handleSubmit(e)}
-      />
+        <div className='btn'>
+        <Button variant='contained' onClick={() => iniciarSesion()}>Iniciar</Button>
       </div>
       </div>
-      </form>
     </section>
     </div>
   )

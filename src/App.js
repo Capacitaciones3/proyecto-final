@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import  {BrowserRouter, Route, Routes} from "react-router-dom"
 import Login from './pages/Login/Login';
 import Home from "./pages/Home/Home"
@@ -8,20 +8,32 @@ import Licencias from './pages/Licencias/Licencias';
 import AdminUsuarios from './pages/AdminUsuarios/AdminUsuarios'
 import Calendario from './pages/Calendario/Calendario'
 import PerfilUsuario from './pages/PerfilUsuario/PerfilUsuario'
+import { AutenticacionContext } from './contexts/Autenticacion';
+
 
 function App() {
+
+  const {usuario} = useContext(AutenticacionContext);
+
+
   return (
     <BrowserRouter>
     <Routes>
-      <Route index element={<Login />} />   
-      <Route path='/' element={<Layout />}>      
+    { usuario.isLogged?
+    <Route path='/' element={<Layout />}>      
         <Route path='home' element={<Home />} />
         <Route path='licencia' element={<Licencias />} />
+        { usuario.rol.administrador &&
         <Route path='usuarios' element={<AdminUsuarios />} />
+        }
         <Route path='calendario' element={<Calendario />} />
         <Route path='perfil' element={<PerfilUsuario />} />
       </Route>
-      <Route path='*' element={<NotFound />} />
+
+      :<Route index element={<Login />} />
+    }
+
+    <Route path='*' element={<NotFound />} />
     </Routes>
     </BrowserRouter>
   );
