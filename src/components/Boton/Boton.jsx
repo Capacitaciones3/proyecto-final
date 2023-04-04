@@ -4,7 +4,7 @@ import { Button
 
 const Boton = ({mensaje}) => {
   return (
-    <Button>{mensaje}</Button>
+    <Button variant='contained'>{mensaje}</Button>
   )
 }
 

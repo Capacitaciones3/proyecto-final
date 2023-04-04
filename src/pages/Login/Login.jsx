@@ -3,8 +3,8 @@ import { postLogin } from '../../services/loginServices'
 import { AutenticacionContext } from '../../contexts/Autenticacion'
 import "./Login.css"
 import {  useNavigate } from 'react-router-dom';
-import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
+import Boton from "../../components/Boton/Boton"
 
 const Login = () => {
 
@@ -26,17 +26,11 @@ const Login = () => {
   }
 
   return (
+    <div className='fondo'>
     <section className='login_section'>
-      <form onSubmit={(e) => handleSubmit(e)} className="login_form">
-      <Box
-      component="form"
-      sx={{
-        '& .MuiTextField-root': { m: 1, width: '25ch' },
-      }}
-      noValidate
-      autoComplete="off"
-    >
-      <div>
+      <form onSubmit={(e) => handleSubmit(e)}>
+      <div className='login_form'>
+      <div className='contenedorLogin'>
         <TextField
           required
           id="usser"
@@ -51,9 +45,15 @@ const Login = () => {
           onChange={(e) => handleChange(e)}
         />
       </div>
-      </Box>
+      <div className='btn'>
+      <Boton
+      mensaje="Iniciar" 
+      />
+      </div>
+      </div>
       </form>
     </section>
+    </div>
   )
 }
 
