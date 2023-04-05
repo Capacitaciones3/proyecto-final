@@ -1,13 +1,16 @@
-import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
+import { Typography, Link } from '@mui/material';
 
 const Footer = () => {
     return (
-    <Container fixed>
-        <Typography variant="h6" component="footer" sx={{ flexGrow: 1, color: '#797979', textAlign: 'center' }}>
-            Developed by Adviters
-        </Typography>
-    </Container>
+        <footer style={{ backgroundColor: '#fafafa', padding: '20px' }}>
+            <Typography variant="body2" color="textSecondary" align="center">
+                Developed by{' '}
+                <Link color="inherit" href="/">
+                    Adviters
+                </Link>{' '}
+                {new Date().getFullYear()}
+            </Typography>
+        </footer>
     );
 }
 
