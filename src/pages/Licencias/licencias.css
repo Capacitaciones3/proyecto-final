@@ -1,10 +1,18 @@
+.container{
+    display: flex;
+    margin: 0;
+    padding: 0;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+}
+
 .usuarioLicencia{
  background-color: blue;
 }
 
 .descripcionLicencia{
-
-background-color: red;
+    width: 70vw;
+    background-color: red;
 }
 
 .lista{
