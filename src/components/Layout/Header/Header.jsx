@@ -8,12 +8,37 @@ import MenuIcon from '@mui/icons-material/Menu';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import Badge from '@mui/material/Badge';
+import Badge, { BadgeProps } from '@mui/material/Badge';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Backdrop from '@mui/material/Backdrop';
+
+import Stack from '@mui/material/Stack';
+import { styled } from '@mui/material/styles';
+
+import './Header.css';
+
+const StyledBadgeAvatar = styled(Badge)(({ theme }) => ({
+  '& .MuiBadge-badge': {
+    backgroundColor: '#44b700',
+    color: '#44b700',
+    boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
+    transform: 'translateX(-3px)'
+  }
+}));
+
+const StyledBadgeNotifications = styled(Badge)(({ theme }) => ({
+  '& .MuiBadge-badge': {
+    right: -3,
+    top: 13,
+    transform: 'translate(-2px, -15px)',
+    fontSize: '10px',
+    with: '5px',
+    height: '16px'
+  },
+}));
 
 const Header = () => {
 
@@ -38,27 +63,33 @@ const Header = () => {
               Adviters-App
             </Typography>
             <IconButton color="#C8C7C7" aria-label="notifications">
-              <Badge badgeContent={4} color="primary">
-                <NotificationsIcon sx={{ transform: 'rotate(-25deg)' }}/>
-              </Badge>
+              <StyledBadgeNotifications badgeContent={2} color='error'>
+                <NotificationsIcon sx={{ transform: 'rotate(-25deg)' }} fontSize='large'/>
+              </StyledBadgeNotifications>
             </IconButton>
-            <Badge badgeContent={4} color="primary" variant='dot'>
-              <Button color='inherit'>
-                <Avatar variant="rounded">
-                  OP
-                </Avatar>
-              </Button>
-            </Badge>
+            <Stack direction="row" spacing={2}>
+              <StyledBadgeAvatar
+                overlap="circular"
+                anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+                variant="dot"
+              >
+                <Button color='inherit'>
+                  <Avatar variant="rounded">
+                    OP
+                  </Avatar>
+                </Button>
+              </StyledBadgeAvatar>
+            </Stack>
           </Toolbar>
         </AppBar>
         <Drawer
-          style={{ height: '200px', zIndex: '99' }}
+          style={{ height: '500px', zIndex: '99' }}
           variant="temporary"
-          anchor="bottom"
+          anchor="top"
           open={open}
           onClose={handleClose}
         >
-          <List>
+          <List className='sandwich'>
             <ListItem button>
               <ListItemText primary="Item 1" />
             </ListItem>
