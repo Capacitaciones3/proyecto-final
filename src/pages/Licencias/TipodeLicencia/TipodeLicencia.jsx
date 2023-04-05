@@ -1,3 +1,4 @@
+import { Autocomplete, TextField } from '@mui/material';
 import React, { useState }  from 'react'
 
 const TipodeLicencia =() => {
@@ -14,17 +15,18 @@ const TipodeLicencia =() => {
     setSelectDisabled(false);
   };
 
+  const options = ['Vacaciones', 'Enfermedad', 'Examen'];
+
   return (
     <div>
-      <form>
-        <select onChange={elselect} disabled={selectDisabled}>
-        <option selected value ="licencia">Licencia</option>
-        <option value="vacaciones">Vacaciones</option>
-        <option value="enfermedad">Enfermedad</option>
-        <option value="examen">Examen</option>
-        </select>
-      </form>
-      <button onClick={enableSelect}>activar</button>
+      <Autocomplete
+        controlled
+        id="combo-box-demo"
+        options={options}
+        sx={{ width: 300 }}
+        renderInput={(params) => <TextField {...params} label="Tipo de licencia" />}
+        onChange={elselect} disabled={selectDisabled}
+      />
     </div>
   );
 }

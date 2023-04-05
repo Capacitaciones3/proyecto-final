@@ -20,7 +20,7 @@ const SubirArchivo = () => {
   return (
     <div>
       <Button variant="contained" component="label">
-        Upload
+        Subir Archivo
         <input hidden accept="image/*" multiple type="file"/>
       </Button>
       <IconButton color="primary" aria-label="upload picture" component="label">
@@ -33,5 +33,5 @@ const SubirArchivo = () => {
 
 export default SubirArchivo
 
-/* onChange={elselect} disabled={selectDisabled}
-onClick={enableSelect}*/
+/* onChange={fileEvent} disabled={fileDisabled}
+onClick={enableFile}*/
