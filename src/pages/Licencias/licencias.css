@@ -8,10 +8,10 @@
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
+    box-sizing: border-box;
 }
 
 .usuarioLicencia{
-   padding: 40px;
    width: 70vw;
    border:1px solid grey 
 }
@@ -19,7 +19,7 @@
 .descripcionLicencia{
     display: flex;
     flex-wrap: wrap;
-    flex-direction: column;
+    justify-content: space-between;
     padding: 40px;
     width: 70vw;
     border:1px solid grey 
@@ -29,6 +29,4 @@
     width: 30vw;
     padding: 10px;
     width: 70vw;
-    border:1px solid grey 
-
 }
