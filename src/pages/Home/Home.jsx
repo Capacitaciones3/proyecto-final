@@ -1,8 +1,13 @@
 import React from 'react'
+import CardUser from '../../components/Cards/CardUser/CardUser'
 
 const Home = () => {
   return (
-    <div>Home</div>
+    <div>
+      
+      <CardUser></CardUser>
+    </div>
+   
   )
 }
 
