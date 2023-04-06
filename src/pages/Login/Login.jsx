@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { AutenticacionContext } from '../../contexts/Autenticacion'
 import "./Login.css"
 import TextField from '@mui/material/TextField';
-import { Button } from '@mui/material';
+import {Button} from '@mui/material';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 const Login = () => {
@@ -15,7 +15,6 @@ const Login = () => {
     user = {...user, [e.target.name]: e.target.value}
     console.log(user)
   }
-
 
   return (
     <div className='fondo'>
@@ -36,7 +35,8 @@ const Login = () => {
         />
       </div>
         <div className='btn'>
-        <Button variant='contained' onClick={() => iniciarSesion()} endIcon={<ArrowForwardIcon/>}>Iniciar</Button>
+        <Button variant='contained' onClick={() => iniciarSesion()}  endIcon={<ArrowForwardIcon/>}>Iniciar
+        </Button>
       </div>
       </div>
     </section>

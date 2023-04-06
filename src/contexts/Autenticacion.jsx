@@ -4,7 +4,7 @@ export const AutenticacionContext = React.createContext();
 
 export const AutenticacionProvider = ({children}) => {
   const [usuario, setUsuario] = useState({
-    isLogged: true,
+    isLogged: false,
     rol: {
       usuario: false,
       administrador: true
