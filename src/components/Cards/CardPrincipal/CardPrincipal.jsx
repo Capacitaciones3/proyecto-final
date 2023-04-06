@@ -9,16 +9,16 @@ const CardPrincipal = () => {
   <Box sx={{ p: 2, display: 'flex' }}>
     <Avatar variant="rounded" src="avatar1.jpg" />
     <Stack spacing={0.5}>
-      <Typography fontWeight={700}>Jennifer</Typography>
-      <Typography variant="body2" color="text.secondary">
-      <LocationOn sx={{color: grey[500]}} /> Scranton, PA
+      <Typography fontWeight={700} paddingLeft={'15px'}>Jennifer</Typography>
+      <Typography variant="body2" color="text.secondary" paddingLeft={'10px'} >
+      <LocationOn sx={{color: grey[500], paddingLeft:'5px'}} /> Scranton, PA
       </Typography>
     </Stack>
     <IconButton>
-      <Edit sx={{ fontSize: 14 }} />
+      <Edit sx={{ fontSize: 14 }}/>
     </IconButton>
   </Box>
-  <Divider />
+  <Divider light />
   <Stack
     direction="row"
     alignItems="center"

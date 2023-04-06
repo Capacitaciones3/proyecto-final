@@ -5,7 +5,7 @@
 }
 
 .fondo{
-  background-image: url(./Imagenes/Rectangle\ 11.png);
+  background-image: url(./Imagenes/Group\ 23.png);
   background-size:cover;
   height: 100%;
   width: 100%;
@@ -19,8 +19,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-image: url(./Imagenes/Rectangle\ 10.png);
-    background-size:cover;
   }
   
   .login_form {
