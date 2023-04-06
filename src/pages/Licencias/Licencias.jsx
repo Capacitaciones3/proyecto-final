@@ -4,6 +4,8 @@ import SubirArchivo from './SubirArchivo/SubirArchivo'
 import TipodeLicencia from './TipodeLicencia/TipodeLicencia'
 import Descripcion from './Descripcion/Descripcion'
 import CardPrincipal from '../../components/Cards/CardPrincipal/CardPrincipal'
+import {BottomNavigationAction } from '@mui/material'
+import PostAddIcon from '@mui/icons-material/PostAdd';
 
 const Licencias = () => {
   return (
@@ -16,12 +18,10 @@ const Licencias = () => {
               <SubirArchivo></SubirArchivo>
               <TipodeLicencia></TipodeLicencia>
               <Descripcion></Descripcion>
+              <BottomNavigationAction label="Solicitar aprobacion" icon={<PostAddIcon />}>Solicitar aprobacion</BottomNavigationAction>
           </section>
       </div>
       <aside className='lista'>
-        <CardPrincipal></CardPrincipal>
-        <CardPrincipal></CardPrincipal>
-        <CardPrincipal></CardPrincipal>
         <CardPrincipal></CardPrincipal>
       </aside>
     </div>
