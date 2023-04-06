@@ -10,7 +10,7 @@ const SubirArchivo = () => {
 
   return (
       <Box sx={{ width: '100%', display:'flex', flexDirection: 'column', alignItems:'center'}}>
-      <Typography variant="h6" gutterBottom>
+      <Typography variant="subtitle1">
         ARCHIVO ADJUNTO
       </Typography>
           <Container sx={{ width: '100%', display:'flex', alignSelf: 'center'}}>
@@ -26,3 +26,5 @@ const SubirArchivo = () => {
       </Box>
   )
 }
+
+export default SubirArchivo
