@@ -22,7 +22,7 @@ function App() {
     { usuario.isLogged?
     <Route path='/' element={<Layout />}>      
         <Route path='home' element={<Home />} />
-        <Route path='licencia' element={<Licencias />} />
+        <Route path='licencias' element={<Licencias />} />
         { usuario.rol.administrador &&
         <Route path='usuarios' element={<AdminUsuarios />} />
         }

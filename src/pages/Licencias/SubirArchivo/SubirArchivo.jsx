@@ -1,5 +1,6 @@
 import { PhotoCamera } from '@mui/icons-material'
 import { Box, Button, Container, IconButton, TextField, Typography } from '@mui/material'
+import { Box, Button, Container, IconButton, TextField, Typography } from '@mui/material'
 import React, { useState } from 'react'
 
 const SubirArchivo = () => {
@@ -8,11 +9,9 @@ const SubirArchivo = () => {
     const [message, setMessage] = useState(true);
 
 
-
-
   return (
       <Box sx={{ width: '100%', display:'flex', flexDirection: 'column', alignItems:'center'}}>
-      <Typography variant="h6" gutterBottom>
+      <Typography variant="subtitle1">
         ARCHIVO ADJUNTO
       </Typography>
           <Container sx={{ width: '100%', display:'flex', alignSelf: 'center'}}>

@@ -12,21 +12,49 @@
 }
 
 .usuarioLicencia{
-   width: 70vw;
-   border:1px solid grey 
+    display: flex;
+    padding: 10px;
+    width: 70vw;
+    border:1px solid grey;
+    margin: 40px 30px 0px;
+    border-radius: 10px 10px 0px 0px;
 }
 
 .descripcionLicencia{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    align-content: space-between;
     padding: 40px;
     width: 70vw;
-    border:1px solid grey 
+    border:1px solid grey;
+    margin: 0px 30px 0px;
+    border-top: hidden;
+}
+
+.autorizacionAdmin{
+    display: flex;
+    flex-wrap: wrap;
+    border:1px solid grey;
+    margin: 0px 30px 30px;
+    border-radius: 0px 0px 10px 10px;
+    border-top: hidden;
+    overflow: hidden;
 }
 
 .lista{
     width: 30vw;
-    padding: 10px;
     width: 70vw;
+    padding-top: 20px;
+    margin: 40px 15px 0px;
+    border-radius: 10px;
+    border: 1px solid grey;
+    overflow: hidden;
+}
+
+.listadecars{
+    align-items: center;
+}
+
+.detallesVacas {
+   margin: 10px;
 }

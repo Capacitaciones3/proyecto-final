@@ -1,8 +1,32 @@
-import React from 'react'
-import LoadingButton from '@mui/lab/LoadingButton';
-import Box from '@mui/material/Box';
+import React from 'react';
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
+import Button from '@mui/material/Button';
 
 const Loading = () => {
+  const [open, setOpen] = React.useState(false);
+
+  const handleToggle = () => {
+    setOpen(true);
+  };
+
+  return (
+    <div>
+      <Button onClick={handleToggle}></Button>
+      <Backdrop
+        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={open}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
+    </div>
+  );
+}
+
+
+export default Loading;
+
+/* const Loading = () => {
     const [loading, setLoading] = React.useState(true);
     function handleClick() {
       setLoading(true);
@@ -20,4 +44,4 @@ const Loading = () => {
     </Box>
 
 }
-export default Loading;
+export default Loading; */
