@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-
+import React,  { useState } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -8,24 +7,24 @@ import MenuIcon from '@mui/icons-material/Menu';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import Badge, { BadgeProps } from '@mui/material/Badge';
-import Drawer from '@mui/material/Drawer';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
-import Backdrop from '@mui/material/Backdrop';
-
+import Badge from '@mui/material/Badge';
 import Stack from '@mui/material/Stack';
 import { styled } from '@mui/material/styles';
-
-import './Header.css';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import DashboardOutlinedIcon from '@mui/icons-material/DashboardOutlined';
+import ListAltOutlinedIcon from '@mui/icons-material/ListAltOutlined';
+import SentimentVerySatisfiedOutlinedIcon from '@mui/icons-material/SentimentVerySatisfiedOutlined';
+import DraftsOutlinedIcon from '@mui/icons-material/DraftsOutlined';
+import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
+import SupervisorAccountOutlinedIcon from '@mui/icons-material/SupervisorAccountOutlined';
+import EditCalendarOutlinedIcon from '@mui/icons-material/EditCalendarOutlined';
 
 const StyledBadgeAvatar = styled(Badge)(({ theme }) => ({
   '& .MuiBadge-badge': {
-    backgroundColor: '#44b700',
-    color: '#44b700',
+    backgroundColor: '#2E7D32',
     boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
-    transform: 'translateX(-3px)'
+    transform: 'translate(6px, 5px)'
   }
 }));
 
@@ -35,36 +34,72 @@ const StyledBadgeNotifications = styled(Badge)(({ theme }) => ({
     top: 13,
     transform: 'translate(-2px, -15px)',
     fontSize: '10px',
-    with: '5px',
-    height: '16px'
+    minWidth: '12px',
+    height: '15px',
+    backgroundColor: '#FF0000'
   },
 }));
 
 const Header = () => {
 
-  const [open, setOpen] = useState(false);
+  const [actionsMenu, setActionsMenu] = useState({
+    anchorElement: null,
+    open: false
+  });
+  const [notificationsMenu, setNotificationsMenu] = useState({
+    anchorElement: null,
+    open: false
+  });
+  const [settingsMenu, setSettingsMenu] = useState({
+    anchorElement: null,
+    open: false
+  });
 
-  const handleOpen = () => {
-    setOpen(true);
+  const [admin, setAdmin] = useState(false)
+
+  const openMenu = (event, setState) => {
+    setState({
+      anchorElement: event.currentTarget,
+      open: true
+    });
   };
 
-  const handleClose = () => {
-    setOpen(false);
+  const closeMenu = (setState) => {
+    setState({
+      anchorElement: null,
+      open: false
+    });
   };
 
     return (
       <div style={{ display: 'flex' }}>
         <AppBar position='static' sx={{ backgroundColor: '#fafafa' }}>
           <Toolbar>
-            <IconButton edge='start' color='#C8C7C7' aria-label="menu" onClick={handleOpen}>
-              <MenuIcon fontSize='large' />
+            <IconButton edge='start' aria-label="menu" onClick={(ev) => openMenu(ev, setActionsMenu)}>
+              <MenuIcon fontSize='large' sx={{ 
+                color: '#C8C7C7',
+                '&:hover': {
+                  color: '#797979'
+                }
+              }} />
             </IconButton>
-            <Typography variant="h4" align='center' style={{ flexGrow: 1, color: '#797979' }}>
+            <Typography variant="h4" align='center' component="h1" style={{ flexGrow: 1, color: '#797979' }}>
               Adviters-App
             </Typography>
-            <IconButton color="#C8C7C7" aria-label="notifications">
+            <IconButton aria-label="notifications" sx={{
+                '&:hover svg': {
+                  fill: '#797979'
+                }
+              }}
+              onClick={(ev) => openMenu(ev, setNotificationsMenu)}
+            >
               <StyledBadgeNotifications badgeContent={2} color='error'>
-                <NotificationsIcon sx={{ transform: 'rotate(-25deg)' }} fontSize='large'/>
+                <NotificationsIcon sx={{ 
+                  transform: 'rotate(-20deg)', 
+                  color: '#C8C7C7'
+                  }} 
+                  fontSize='large'
+                />
               </StyledBadgeNotifications>
             </IconButton>
             <Stack direction="row" spacing={2}>
@@ -73,8 +108,20 @@ const Header = () => {
                 anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
                 variant="dot"
               >
-                <Button color='inherit'>
-                  <Avatar variant="rounded">
+                <Button color='inherit' size='small' style={{ 
+                  width: '40px', 
+                  height: '40px',  
+                  minWidth: '40px', 
+                  marginLeft: '10px'
+                  }}
+                  onClick={(ev) => openMenu(ev, setSettingsMenu)}
+                >
+                  <Avatar variant="rounded" sx={{
+                    '&:hover': {
+                        backgroundColor: '#797979'
+                      }
+                    }}
+                  >
                     OP
                   </Avatar>
                 </Button>
@@ -82,26 +129,109 @@ const Header = () => {
             </Stack>
           </Toolbar>
         </AppBar>
-        <Drawer
-          style={{ height: '500px', zIndex: '99' }}
-          variant="temporary"
-          anchor="top"
-          open={open}
-          onClose={handleClose}
+
+        <Menu
+          anchorEl={actionsMenu.anchorElement}
+          open={actionsMenu.open}
+          onClose={() => closeMenu(setActionsMenu)}
+          MenuListProps={{
+            'aria-labelledby': 'basic-button',
+          }}
         >
-          <List className='sandwich'>
-            <ListItem button>
-              <ListItemText primary="Item 1" />
-            </ListItem>
-            <ListItem button>
-              <ListItemText primary="Item 2" />
-            </ListItem>
-            <ListItem button>
-              <ListItemText primary="Item 3" />
-            </ListItem>
-          </List>
-        </Drawer>
-        {open && <Backdrop style={{ zIndex: '98', color: '#fff' }} open={open} onClick={handleClose} />}
+          <MenuItem onClick={() => closeMenu(setActionsMenu)} sx={{
+            width: '300px'
+          }}>
+            <DashboardOutlinedIcon />
+            <Typography sx={{ ml: '20px' }}>Dashboard</Typography>
+          </MenuItem>
+          <MenuItem onClick={() => closeMenu(setActionsMenu)}>
+            <ListAltOutlinedIcon />
+            <Typography sx={{ ml: '20px' }}>Cargar licencias</Typography>
+          </MenuItem>
+
+          {admin && 
+          <>
+            <MenuItem onClick={() => closeMenu(setActionsMenu)}>
+              <SupervisorAccountOutlinedIcon />
+              <Typography sx={{ ml: '20px' }}>Administrar usuarios</Typography>
+            </MenuItem>
+            <MenuItem onClick={() => closeMenu(setActionsMenu)}>
+              <EditCalendarOutlinedIcon />
+              <Typography sx={{ ml: '20px' }}>Mantenimiento de calendario</Typography>
+            </MenuItem>
+          </>}
+
+          {!admin && 
+            <MenuItem onClick={() => closeMenu(setActionsMenu)}>
+              <SentimentVerySatisfiedOutlinedIcon />
+              <Typography sx={{ ml: '20px' }}>Feriados</Typography>
+            </MenuItem>
+          }
+
+        </Menu>
+
+        <Menu
+          anchorEl={notificationsMenu.anchorElement}
+          open={notificationsMenu.open}
+          onClose={() => closeMenu(setNotificationsMenu)}
+          MenuListProps={{
+            'aria-labelledby': 'basic-button',
+          }}
+        >
+
+          {!admin ? 
+          <>
+            <MenuItem onClick={() => closeMenu(setNotificationsMenu)} sx={{
+              width: '300px',
+              backgroundColor: '#1976D214'
+            }}>
+              <EmailOutlinedIcon />
+              <Typography sx={{ ml: '20px' }}>Tu solicitud ha sido aprobada</Typography>
+            </MenuItem>
+            <MenuItem onClick={() => closeMenu(setNotificationsMenu)}>
+              <DraftsOutlinedIcon />
+              <Typography sx={{ ml: '20px' }}>Tu solicitud ha sido aprobada</Typography>
+            </MenuItem>
+            <MenuItem onClick={() => closeMenu(setNotificationsMenu)}>
+              <DraftsOutlinedIcon />
+              <Typography sx={{ ml: '20px' }}>Nuevo feriado</Typography>
+            </MenuItem>
+          </>
+          :
+          <>
+            <MenuItem onClick={() => closeMenu(setNotificationsMenu)} sx={{
+              width: '300px',
+              backgroundColor: '#1976D214'
+            }}>
+              <EmailOutlinedIcon />
+              <Typography sx={{ ml: '20px' }}>Nueva aprobación pendiente</Typography>
+            </MenuItem>
+            <MenuItem onClick={() => closeMenu(setNotificationsMenu)}>
+              <DraftsOutlinedIcon />
+              <Typography sx={{ ml: '20px' }}>Nuevo feriado agregado</Typography>
+            </MenuItem>
+          </>
+          }
+        </Menu>
+
+        <Menu
+          anchorEl={settingsMenu.anchorElement}
+          open={settingsMenu.open}
+          onClose={() => closeMenu(setSettingsMenu)}
+          MenuListProps={{
+            'aria-labelledby': 'basic-button',
+          }}
+        >
+          <MenuItem onClick={() => closeMenu(setSettingsMenu)} sx={{
+            width: '300px'
+          }}>
+            <Typography>Mi perfil</Typography>
+          </MenuItem>
+          <MenuItem onClick={() => closeMenu(setSettingsMenu)}>
+            <Typography>Cerrar sesión</Typography>
+          </MenuItem>
+        </Menu>
+
       </div>
     );
 }
