@@ -1,3 +1,4 @@
+import { Box, TextField } from '@mui/material';
 import React, { useState }  from 'react'
 
 const Descripcion =() => {
@@ -15,14 +16,26 @@ const Descripcion =() => {
   };
 
   return (
-    <div>
-      <form id='descrip'>
-        <textarea value={String} onChange={atextarea} disabled={textAreaDisabled} 
-        name="descripcionLicencia" form='descrip' placeholder='Ingrese una descripcion de la licencia' required>
-        </textarea>
-      </form>
-      <button onClick={enableTextArea}>enviar</button>
-    </div>
+    <Box
+      id="descripcion"
+      component="form"
+      sx={{
+        '& .MuiTextField-root': { m: 1, width: '25ch' },
+      }}
+      noValidate
+      autoComplete="off"
+    >
+      <TextField
+        id="descripcionLicencia"
+        label="Descripción"
+        rows={8}
+        size=''
+        defaultValue="Ingrese una descripcion de la licencia"
+        onChange={atextarea} disabled={textAreaDisabled} 
+        placeholder='Ingrese una descripcion de la licencia' 
+        />
+    </Box>
+
   );
 }
 
