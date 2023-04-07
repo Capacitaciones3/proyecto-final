@@ -144,29 +144,25 @@ const Header = () => {
             <DashboardOutlinedIcon />
             <Typography sx={{ ml: '20px' }}>Dashboard</Typography>
           </MenuItem>
+
           <MenuItem onClick={() => closeMenu(setActionsMenu)}>
             <ListAltOutlinedIcon />
             <Typography sx={{ ml: '20px' }}>Cargar licencias</Typography>
           </MenuItem>
 
-          {admin && 
-          <>
-            <MenuItem onClick={() => closeMenu(setActionsMenu)}>
-              <SupervisorAccountOutlinedIcon />
-              <Typography sx={{ ml: '20px' }}>Administrar usuarios</Typography>
-            </MenuItem>
-            <MenuItem onClick={() => closeMenu(setActionsMenu)}>
-              <EditCalendarOutlinedIcon />
-              <Typography sx={{ ml: '20px' }}>Mantenimiento de calendario</Typography>
-            </MenuItem>
-          </>}
+          <MenuItem onClick={() => closeMenu(setActionsMenu)} sx={{ display: admin ? "flex" : "none" }}>
+            <SupervisorAccountOutlinedIcon />
+            <Typography sx={{ ml: '20px' }}>Administrar usuarios</Typography>
+          </MenuItem>
+          <MenuItem onClick={() => closeMenu(setActionsMenu)} sx={{ display: admin ? "flex" : "none" }}>
+            <EditCalendarOutlinedIcon />
+            <Typography sx={{ ml: '20px' }}>Mantenimiento de calendario</Typography>
+          </MenuItem>
 
-          {!admin && 
-            <MenuItem onClick={() => closeMenu(setActionsMenu)}>
-              <SentimentVerySatisfiedOutlinedIcon />
-              <Typography sx={{ ml: '20px' }}>Feriados</Typography>
-            </MenuItem>
-          }
+          <MenuItem onClick={() => closeMenu(setActionsMenu)}  sx={{ display: admin ? "none" : "flex" }}>
+            <SentimentVerySatisfiedOutlinedIcon />
+            <Typography sx={{ ml: '20px' }}>Feriados</Typography>
+          </MenuItem>
 
         </Menu>
 
@@ -179,39 +175,36 @@ const Header = () => {
           }}
         >
 
-          {!admin ? 
-          <>
             <MenuItem onClick={() => closeMenu(setNotificationsMenu)} sx={{
               width: '300px',
-              backgroundColor: '#1976D214'
+              backgroundColor: '#1976D214',
+              display: admin ? "none" : "flex"
             }}>
               <EmailOutlinedIcon />
               <Typography sx={{ ml: '20px' }}>Tu solicitud ha sido aprobada</Typography>
             </MenuItem>
-            <MenuItem onClick={() => closeMenu(setNotificationsMenu)}>
+            <MenuItem onClick={() => closeMenu(setNotificationsMenu)} sx={{ display: admin ? "none" : "flex" }}>
               <DraftsOutlinedIcon />
               <Typography sx={{ ml: '20px' }}>Tu solicitud ha sido aprobada</Typography>
             </MenuItem>
-            <MenuItem onClick={() => closeMenu(setNotificationsMenu)}>
+            <MenuItem onClick={() => closeMenu(setNotificationsMenu)} sx={{ display: admin ? "none" : "flex" }}>
               <DraftsOutlinedIcon />
               <Typography sx={{ ml: '20px' }}>Nuevo feriado</Typography>
             </MenuItem>
-          </>
-          :
-          <>
+
             <MenuItem onClick={() => closeMenu(setNotificationsMenu)} sx={{
               width: '300px',
-              backgroundColor: '#1976D214'
+              backgroundColor: '#1976D214',
+              display: admin ? "flex" : "none"
             }}>
               <EmailOutlinedIcon />
               <Typography sx={{ ml: '20px' }}>Nueva aprobación pendiente</Typography>
             </MenuItem>
-            <MenuItem onClick={() => closeMenu(setNotificationsMenu)}>
+            <MenuItem onClick={() => closeMenu(setNotificationsMenu)}  sx={{ display: admin ? "flex" : "none" }}>
               <DraftsOutlinedIcon />
               <Typography sx={{ ml: '20px' }}>Nuevo feriado agregado</Typography>
             </MenuItem>
-          </>
-          }
+
         </Menu>
 
         <Menu
