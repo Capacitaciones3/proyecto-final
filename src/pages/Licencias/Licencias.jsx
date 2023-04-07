@@ -3,11 +3,12 @@ import "./licencias.css"
 import SubirArchivo from './SubirArchivo/SubirArchivo'
 import TipodeLicencia from './TipodeLicencia/TipodeLicencia'
 import Descripcion from './Descripcion/Descripcion'
-import CardPrincipal from '../../components/Cards/CardPrincipal/CardPrincipal'
+import ListLicences from '../../components/Cards/CardUser/ListLicences'
 import Usuario from '../../components/Usuario/Usuario'
-import {Chip, Divider, Fab, Typography} from '@mui/material'
+import {Chip, Fab, Typography} from '@mui/material'
 import PostAddIcon from '@mui/icons-material/PostAdd';
 import NavigationIcon from '@mui/icons-material/Navigation';
+import CardUser from '../../components/Cards/CardUser/CardUser'
 
 const Licencias = () => {
   return (
@@ -80,7 +81,8 @@ const Licencias = () => {
       <div> <Typography variant="subtitle1"> Detalle de la licencia: </Typography></div>
       <div>
         <ul>
-          <CardPrincipal/>
+          <ListLicences/>
+          <CardUser/>
         </ul>
       </div>
     </aside> 
