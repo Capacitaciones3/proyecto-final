@@ -9,7 +9,7 @@ export const postLogin = async (body, setUsuario) => {
       "Token",
       response?.accessToken?.stsTokenManager?.accessToken
     );
-    return window.location.replace("/grupos");
+    return window.location.replace("/dashboard");
     
   } catch (error) {
     alert(
@@ -17,6 +17,6 @@ export const postLogin = async (body, setUsuario) => {
         ? error?.response.data?.message
         : "Ha ocurrido un error inesperado"
     );
-    throw new Error("[getGrupos service error]: " + error);
+    throw new Error("[Loginservice error]: " + error);
   }
 };

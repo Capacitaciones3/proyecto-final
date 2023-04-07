@@ -16,18 +16,20 @@ const CardUser = ({
   return (
     <Stack
       sx={{
-        maxWidth: "368px",
+        maxWidth: "100%",
         height: "80px",
+        display: 'flex',
         flexDirection: "row",
+        justifyContent: 'space-between',
         backgroundColor: "#ffffff",
         border: "0.2px solid #F0F0F0",
         alignItems: "center",
-        justifyContent: "flex-start",
         padding: 2,
         flexGrow: 1,
         cursor: "pointer",
       }}
     >
+      <Stack sx={{  display: 'flex', flexDirection: "row", justifyContent: 'space-between'}}>
       <Avatar alt="User" src={avatar} sx={{ marginRight: "1rem" }} />
       <Stack sx={{ marginRight: "5rem" }}>
         <Typografy fontWeight="700" component="span">
@@ -51,12 +53,15 @@ const CardUser = ({
           </Typografy>
         </Typografy>
       </Stack>
+      </Stack>
       <Stack
         sx={{
           display: "flex",
           flexDirection: "row",
+          justifyContent: 'flex-end'
         }}
       >
+        <div style={{alignSelf:'self-end'}}>
         <button style={{ border: 0, backgroundColor: "#ffffff" }}>
           <CheckIcon
             sx={{
@@ -77,6 +82,7 @@ const CardUser = ({
             }}
           ></ClearIcon>
         </button>
+        </div>
       </Stack>
     </Stack>
   );
