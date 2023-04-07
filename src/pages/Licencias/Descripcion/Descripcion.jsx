@@ -19,19 +19,16 @@ const Descripcion =() => {
     <Box
       id="descripcion"
       component="form"
-      sx={{
-        '& .MuiTextField-root': { m: 1, width: '25ch' },
-      }}
       noValidate
       autoComplete="off"
     >
       <TextField
+        sx={{ width:'90%'}}
         id="descripcionLicencia"
-        label="Descripción"
-        rows={8}
-        size=''
+        multiline
+        rows={9}
+        size='8'
         defaultValue="Ingrese una descripcion de la licencia"
-        onChange={atextarea} disabled={textAreaDisabled} 
         placeholder='Ingrese una descripcion de la licencia' 
         />
     </Box>

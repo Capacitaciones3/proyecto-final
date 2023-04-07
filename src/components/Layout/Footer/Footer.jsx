@@ -1,6 +1,7 @@
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import "./Footer.css"
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
     return (

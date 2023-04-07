@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import  {BrowserRouter, Route, Routes} from "react-router-dom"
 import Login from './pages/Login/Login';
-import Home from "./pages/Home/Home"
+import Home from "./pages/Dashboard/Dashboard"
 import NotFound from "./pages/NotFound/NotFound"
 import Layout from './components/Layout/Layout'
 import Licencias from './pages/Licencias/Licencias';
@@ -9,6 +9,7 @@ import AdminUsuarios from './pages/AdminUsuarios/AdminUsuarios'
 import Calendario from './pages/Calendario/Calendario'
 import PerfilUsuario from './pages/PerfilUsuario/PerfilUsuario'
 import { AutenticacionContext } from './contexts/Autenticacion';
+import { Dashboard } from '@mui/icons-material';
 
 
 function App() {
@@ -21,7 +22,9 @@ function App() {
     <Routes>
     { usuario.isLogged?
     <Route path='/' element={<Layout />}>      
-        <Route path='home' element={<Home />} />
+        <Route path='dashboard' element={<Dashboard />}>
+            <Route path=':idLicencia' element={<ComponenteLicencia />}/>
+        </Route>
         <Route path='licencias' element={<Licencias />} />
         { usuario.rol.administrador &&
         <Route path='usuarios' element={<AdminUsuarios />} />
