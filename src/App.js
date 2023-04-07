@@ -9,7 +9,8 @@ import AdminUsuarios from './pages/AdminUsuarios/AdminUsuarios'
 import Calendario from './pages/Calendario/Calendario'
 import PerfilUsuario from './pages/PerfilUsuario/PerfilUsuario'
 import { AutenticacionContext } from './contexts/Autenticacion';
-import { Dashboard } from '@mui/icons-material';
+import Dashboard from './pages/Dashboard/Dashboard';
+import LicenciaCard from './components/LicenciaCard/LicenciaCard';
 
 
 function App() {
@@ -23,7 +24,7 @@ function App() {
     { usuario.isLogged?
     <Route path='/' element={<Layout />}>      
         <Route path='dashboard' element={<Dashboard />}>
-            <Route path=':idLicencia' element={<ComponenteLicencia />}/>
+            <Route path=':idLicencia' element={<LicenciaCard/>}/>
         </Route>
         <Route path='licencias' element={<Licencias />} />
         { usuario.rol.administrador &&
