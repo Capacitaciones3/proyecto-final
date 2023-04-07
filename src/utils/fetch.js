@@ -4,6 +4,7 @@ import camelcaseKeys from "camelcase-keys";
 const httpClient = axios.create({
   baseURL: "https://642db4a9bf8cbecdb40d0cf1.mockapi.io",
 });
+
 export const Method = {
   GET: "GET",
   PUT: "PUT",
@@ -11,12 +12,15 @@ export const Method = {
   POST: "POST",
   DELETE: "DELETE",
 };
+
+
 export const fetchContent = async (url, config = {}) => {
   try {
     const { headers: headersOptions } = config;
     const token = localStorage.getItem("Token");
-    const headers = token
-      ? {
+
+    const headers = 
+    token? {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
           ...headersOptions,
@@ -27,7 +31,9 @@ export const fetchContent = async (url, config = {}) => {
         };
 
     const { body, ...options } = config;
+
     const source = axios.CancelToken.source();
+
     const request = {
       cancelToken: source.token,
       method: Method.GET,
@@ -35,9 +41,11 @@ export const fetchContent = async (url, config = {}) => {
       ...options,
       url,
     };
+
     if (body) {
       request.data = body;
     }
+    
     const promise = httpClient.request(request);
     promise.cancel = () => source.cancel("cancelled");
     const { data } = await promise;

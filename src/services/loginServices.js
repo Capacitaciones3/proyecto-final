@@ -1,6 +1,7 @@
 import { fetchContent } from "../utils/fetch";
 
-export const postLogin = async (body, setUsuario) => {
+const postLogin = async (body, setUsuario) => {
+  
   try {
     const response = await fetchContent("/login", { body, method: "POST" });
     setUsuario(`${response?.nombre} ${response?.apellido}`);
@@ -20,3 +21,5 @@ export const postLogin = async (body, setUsuario) => {
     throw new Error("[getGrupos service error]: " + error);
   }
 };
+
+export default postLogin;
