@@ -1,0 +1,51 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.cardLicenciasPorAprobar{
+    width: 50%;
+    display:flex; 
+    flex-direction:column;
+    border:1px solid grey;
+    border-radius: 5px;
+}
+
+.titulo{
+    border-bottom: 1px solid grey;
+    padding: 10px;
+}
+
+.cardLicenciasProximas{
+    width: 50%;
+    display:flex; 
+    flex-direction:column;
+    border:1px solid grey;
+    border-radius: 5px;
+}
+
+.contenidoSecundario{
+    width: 35%;
+    display:flex; 
+    flex-direction:column;
+    justify-content: center;
+    align-content: center;
+    gap: 60px;
+}
+
+
+.contenedorAPIsExternas{
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction:column;
+    border-left:1px solid grey;
+    padding: 40px 10px 40px 10px;
+    gap: 60px;
+}
+
+.APIexterna{
+
+}
