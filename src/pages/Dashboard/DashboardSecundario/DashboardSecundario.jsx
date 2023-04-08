@@ -2,9 +2,7 @@ import React from 'react'
 import { Outlet } from 'react-router-dom';
 import CardUser from '../../components/Cards/CardUser/CardUser'
 import CardApi from '../Dashboard/CardApi.jsx/CardApi'
-import PostAddIcon from '@mui/icons-material/PostAdd';
-import NavigationIcon from '@mui/icons-material/Navigation';
-import { Fab, Typography } from '@mui/material';
+import {Typography } from '@mui/material';
 import Busqueda from '../Busqueda/Busqueda'
 
 import './dashboardSecundario.css'
