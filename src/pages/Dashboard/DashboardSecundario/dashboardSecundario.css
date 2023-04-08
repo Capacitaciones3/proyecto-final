@@ -1,0 +1,45 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.contenedorAPIs{
+    width: 50%;
+    display:flex; 
+    flex-direction:column;
+    border:1px solid grey;
+    border-radius: 5px;
+}
+
+.cardLicenciasPorAprobar2{
+    width: 50%;
+    display:flex; 
+    flex-direction:column;
+    border:1px solid grey;
+    border-radius: 5px;
+}
+
+.titulo2{
+    border-bottom: 1px solid grey;
+    padding: 10px;
+}
+
+.cardLicenciasProximas2{
+    width: 50%;
+    display:flex; 
+    flex-direction:column;
+    border:1px solid grey;
+    border-radius: 5px;
+}
+
+.contenedorAPIsExternas{
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction:column;
+    border-left:1px solid grey;
+    padding: 40px 10px 40px 10px;
+    gap: 60px;
+}

@@ -19,12 +19,14 @@ import DraftsOutlinedIcon from '@mui/icons-material/DraftsOutlined';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import SupervisorAccountOutlinedIcon from '@mui/icons-material/SupervisorAccountOutlined';
 import EditCalendarOutlinedIcon from '@mui/icons-material/EditCalendarOutlined';
+import Backdrop from '@mui/material/Backdrop';
 
 const StyledBadgeAvatar = styled(Badge)(({ theme }) => ({
   '& .MuiBadge-badge': {
     backgroundColor: '#2E7D32',
     boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
-    transform: 'translate(6px, 5px)'
+    transform: 'translate(6px, 5px)',
+    zIndex: '0'
   }
 }));
 
@@ -36,7 +38,9 @@ const StyledBadgeNotifications = styled(Badge)(({ theme }) => ({
     fontSize: '10px',
     minWidth: '12px',
     height: '15px',
-    backgroundColor: '#FF0000'
+    backgroundColor: '#FF0000',
+    color: 'white',
+    zIndex: '0'
   },
 }));
 
@@ -56,6 +60,8 @@ const Header = () => {
   });
 
   const [admin, setAdmin] = useState(false)
+  
+  let menuOpened = actionsMenu.open || notificationsMenu.open || settingsMenu.open;
 
   const openMenu = (event, setState) => {
     setState({
@@ -73,8 +79,9 @@ const Header = () => {
 
     return (
       <div style={{ display: 'flex' }}>
-        <AppBar position='static' sx={{ backgroundColor: '#fafafa' }}>
-          <Toolbar>
+      
+        <AppBar position='static' sx={{ backgroundColor: '#FFFFFF' }}>
+          <Toolbar sx={{ boxShadow: '0px 2px 16px 0px #a1a1a186' }}>
             <IconButton edge='start' aria-label="menu" onClick={(ev) => openMenu(ev, setActionsMenu)}>
               <MenuIcon fontSize='large' sx={{ 
                 color: '#C8C7C7',
@@ -93,7 +100,7 @@ const Header = () => {
               }}
               onClick={(ev) => openMenu(ev, setNotificationsMenu)}
             >
-              <StyledBadgeNotifications badgeContent={2} color='error'>
+              <StyledBadgeNotifications badgeContent={2}>
                 <NotificationsIcon sx={{ 
                   transform: 'rotate(-20deg)', 
                   color: '#C8C7C7'
@@ -130,6 +137,12 @@ const Header = () => {
           </Toolbar>
         </AppBar>
 
+        <Backdrop open={menuOpened} onClick={() => {
+          if (actionsMenu.open) closeMenu(actionsMenu);
+          if (notificationsMenu.open) closeMenu(notificationsMenu);
+          if (settingsMenu.open) closeMenu(settingsMenu); 
+        }} />
+
         <Menu
           anchorEl={actionsMenu.anchorElement}
           open={actionsMenu.open}
@@ -144,29 +157,25 @@ const Header = () => {
             <DashboardOutlinedIcon />
             <Typography sx={{ ml: '20px' }}>Dashboard</Typography>
           </MenuItem>
+
           <MenuItem onClick={() => closeMenu(setActionsMenu)}>
             <ListAltOutlinedIcon />
             <Typography sx={{ ml: '20px' }}>Cargar licencias</Typography>
           </MenuItem>
 
-          {admin && 
-          <>
-            <MenuItem onClick={() => closeMenu(setActionsMenu)}>
-              <SupervisorAccountOutlinedIcon />
-              <Typography sx={{ ml: '20px' }}>Administrar usuarios</Typography>
-            </MenuItem>
-            <MenuItem onClick={() => closeMenu(setActionsMenu)}>
-              <EditCalendarOutlinedIcon />
-              <Typography sx={{ ml: '20px' }}>Mantenimiento de calendario</Typography>
-            </MenuItem>
-          </>}
+          <MenuItem onClick={() => closeMenu(setActionsMenu)} sx={{ display: admin ? "flex" : "none" }}>
+            <SupervisorAccountOutlinedIcon />
+            <Typography sx={{ ml: '20px' }}>Administrar usuarios</Typography>
+          </MenuItem>
+          <MenuItem onClick={() => closeMenu(setActionsMenu)} sx={{ display: admin ? "flex" : "none" }}>
+            <EditCalendarOutlinedIcon />
+            <Typography sx={{ ml: '20px' }}>Mantenimiento de calendario</Typography>
+          </MenuItem>
 
-          {!admin && 
-            <MenuItem onClick={() => closeMenu(setActionsMenu)}>
-              <SentimentVerySatisfiedOutlinedIcon />
-              <Typography sx={{ ml: '20px' }}>Feriados</Typography>
-            </MenuItem>
-          }
+          <MenuItem onClick={() => closeMenu(setActionsMenu)}  sx={{ display: admin ? "none" : "flex" }}>
+            <SentimentVerySatisfiedOutlinedIcon />
+            <Typography sx={{ ml: '20px' }}>Feriados</Typography>
+          </MenuItem>
 
         </Menu>
 
@@ -179,39 +188,36 @@ const Header = () => {
           }}
         >
 
-          {!admin ? 
-          <>
             <MenuItem onClick={() => closeMenu(setNotificationsMenu)} sx={{
               width: '300px',
-              backgroundColor: '#1976D214'
+              backgroundColor: '#1976D214',
+              display: admin ? "none" : "flex"
             }}>
               <EmailOutlinedIcon />
               <Typography sx={{ ml: '20px' }}>Tu solicitud ha sido aprobada</Typography>
             </MenuItem>
-            <MenuItem onClick={() => closeMenu(setNotificationsMenu)}>
+            <MenuItem onClick={() => closeMenu(setNotificationsMenu)} sx={{ display: admin ? "none" : "flex" }}>
               <DraftsOutlinedIcon />
               <Typography sx={{ ml: '20px' }}>Tu solicitud ha sido aprobada</Typography>
             </MenuItem>
-            <MenuItem onClick={() => closeMenu(setNotificationsMenu)}>
+            <MenuItem onClick={() => closeMenu(setNotificationsMenu)} sx={{ display: admin ? "none" : "flex" }}>
               <DraftsOutlinedIcon />
               <Typography sx={{ ml: '20px' }}>Nuevo feriado</Typography>
             </MenuItem>
-          </>
-          :
-          <>
+
             <MenuItem onClick={() => closeMenu(setNotificationsMenu)} sx={{
               width: '300px',
-              backgroundColor: '#1976D214'
+              backgroundColor: '#1976D214',
+              display: admin ? "flex" : "none"
             }}>
               <EmailOutlinedIcon />
               <Typography sx={{ ml: '20px' }}>Nueva aprobación pendiente</Typography>
             </MenuItem>
-            <MenuItem onClick={() => closeMenu(setNotificationsMenu)}>
+            <MenuItem onClick={() => closeMenu(setNotificationsMenu)}  sx={{ display: admin ? "flex" : "none" }}>
               <DraftsOutlinedIcon />
               <Typography sx={{ ml: '20px' }}>Nuevo feriado agregado</Typography>
             </MenuItem>
-          </>
-          }
+
         </Menu>
 
         <Menu

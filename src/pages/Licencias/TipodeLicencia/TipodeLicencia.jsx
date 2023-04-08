@@ -24,7 +24,7 @@ const TipodeLicencia =() => {
         id="combo-box-demo"
         options={options}
         sx={{ width: 300 }}
-        renderInput={(params) => <TextField {...params} label="Tipo de licencia" />}
+        renderInput={(params) => <TextField {...params} label="Licencia" />}
         onChange={elselect} disabled={selectDisabled}
       />
     </div>

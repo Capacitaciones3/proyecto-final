@@ -3,102 +3,90 @@ import "./licencias.css"
 import SubirArchivo from './SubirArchivo/SubirArchivo'
 import TipodeLicencia from './TipodeLicencia/TipodeLicencia'
 import Descripcion from './Descripcion/Descripcion'
-import CardPrincipal from '../../components/Cards/CardPrincipal/CardPrincipal'
 import Usuario from '../../components/Usuario/Usuario'
-import {Chip, Divider, Fab, Typography} from '@mui/material'
+import {Chip, Fab, Typography} from '@mui/material'
 import PostAddIcon from '@mui/icons-material/PostAdd';
 import NavigationIcon from '@mui/icons-material/Navigation';
+import CardUser from '../../components/Cards/CardUser/CardUser'
 
 const Licencias = () => {
   return (
     <>
-    <article>
+    <main style={{width:'100vw', maxWidth:'100%', minHeight: '100vh', display:'flex', gap:'30px', justifyContent:'center', padding:'50px 0'}}>
+
+    <article style={{width:'60%', display:'flex', flexDirection:'column'}}>
 
       <section className='contenedorUsuario'>
-        <div>
-          <div><img src="" alt="" /><span>Usuario</span></div>
-          <div><span>Balnace actual</span></div>
+        <div className='usuarioBalance'>
+          <div>
+            <Usuario/>
+          </div>
+          <div><Typography variant="subtitle1">BALANCE ACTUAL:</Typography></div>
         </div>
-        <div>
-          <span>Estado</span>
-          <button>Aun no enviado</button>
+        <div className='estadoLicencia'>
+          <Typography variant="subtitle1">ESTADO</Typography>
+          <Chip label='Aun no enviado'></Chip>
         </div>
       </section>
 
       <section className='contenedorDescripcion'>
 
-        <div>
-          <div> <span>Licencia</span><select name="" id="">opciones</select></div>
-          <div><input type="file" /> <span>Subir Archivo</span></div>
+        <div className='contenedorUno'>
+          <div className='licencia'> 
+            <Typography variant="subtitle1">TIPO DE LICENCIA</Typography>
+            <TipodeLicencia/>
+          </div>
+          <div className='archivo'>
+            <Typography variant="subtitle1">ARCHIVO ADJUNTO</Typography>
+            <SubirArchivo/>
+          </div>
         </div>
 
-        <div>
-
+        <div className='contenedorDos'>
+          <div className='contenedorCalendario'>
+            <div className='fotoCalendario'></div>
+            <div className='fecha'></div>
+          </div>
         </div>
 
-        <div></div>
-        <div></div>
-        <div></div>
+        <div className='contenedorTres'>
+          <Typography variant="subtitle1">DESCRIPCION</Typography>
+          <Descripcion/>
+        </div>
+        </section>
 
+        <section className='contenedorAprobacion'>
+
+        <div className='contenedorCuatro'>
+          <div className='administrador'>
+            <Typography variant="subtitle1"> APROBACION A CARGO DE: </Typography>
+            <div>
+              <Usuario/>
+            </div>
+          </div>
+        </div>
+
+        <div className='contenedorCinco'>
+          <div className='botondeAprobacion'>
+            <Fab variant="extended" size="medium" color="primary" aria-label="add">
+              <NavigationIcon sx={{ mr: 1 }} icon={<PostAddIcon />} />Solicitar aprobacion
+            </Fab>
+          </div>
+        </div>
       </section>
-
     </article>
 
-
-
-    <aside>
-
-    </aside>
+    <aside className='contenedorLista'>
+      <div> <Typography variant="h6" color={'grey'}> Detalle de la licencia: </Typography></div>
+      <div>
+        <ul>
+          <CardUser/>
+        </ul>
+      </div>
+    </aside> 
+    </main>
     </>
-
   )
-   
 }
 
 export default Licencias
-
-/* <div className='container'>
-      <div className='containercolumna'>
-          <div className='usuarioLicencia'>
-              <Usuario></Usuario>
-              <div>
-              <Typography variant="subtitle1">
-                ESTADO
-              </Typography>
-              <Chip label='Aun no enviado'></Chip>
-              </div>
-          </div>
-      ------------------------
-          <section className='descripcionLicencia'>
-            <div>
-              <TipodeLicencia></TipodeLicencia>
-              <Descripcion></Descripcion>
-            </div>
-            <div>
-              <SubirArchivo></SubirArchivo>
-            </div>
-          </section>
-        ------------------------
-          <div className='autorizacionAdmin'>
-              <CardPrincipal/>
-              <div>
-              <Fab variant="extended" size="medium" color="primary" aria-label="add">
-                <NavigationIcon sx={{ mr: 1 }} icon={<PostAddIcon />} />
-                Solicitar aprobacion
-              </Fab>
-            </div>
-          </div>
-      </div>
-      ------------------------
-      <aside className='lista'>
-        <CardPrincipal></CardPrincipal>
-        <Divider light />
-        <CardPrincipal></CardPrincipal>
-        <Divider light />
-        <CardPrincipal></CardPrincipal>
-        <Divider light />
-        <CardPrincipal></CardPrincipal>
-        <Divider light />
-      </aside>
-    </div>
-  )*/

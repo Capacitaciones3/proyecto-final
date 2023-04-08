@@ -1,60 +1,136 @@
-.container{
-    display: flex;
+*{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-.containercolumna{
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    box-sizing: border-box;
-}
 
-.usuarioLicencia{
-    display: flex;
+.contenedorUsuario{
+    width: 100%;
+    display:flex; 
+    justify-content:space-between;
+    align-items:center;
     padding: 10px;
-    width: 70vw;
     border:1px solid grey;
-    margin: 40px 30px 0px;
     border-radius: 10px 10px 0px 0px;
 }
 
-.descripcionLicencia{
-    display: flex;
-    flex-wrap: wrap;
-    align-content: space-between;
+.usuarioBalance{
+    width:50%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center 
+}
+
+.estadoLicencia{
+    width:30%;
+    display:flex;
+    justify-content:space-between;
+    flex-direction:column;
+    align-items:center
+}
+
+.contenedorDescripcion{
+    width: 100%;
+    height: 100%;
+    flex-direction:column;
+    border:1px solid grey;
+    border-top: hidden;
     padding: 40px;
-    width: 70vw;
-    border:1px solid grey;
-    margin: 0px 30px 0px;
-    border-top: hidden;
 }
 
-.autorizacionAdmin{
-    display: flex;
+.contenedorUno{
+    width:100%;
+    display:flex;
     flex-wrap: wrap;
+    justify-content: space-around;
+    align-items:center;
+}
+
+.licencia{
+    width:40%;
+    display:flex;
+    flex-direction:column;
+    align-items: flex-start;
+    align-content: space-between;
+}
+
+.archivo{
+    width:50%;
+    display:flex;
+    align-items:center;
+    flex-direction:column;
+    justify-content:flex-end;
+}
+
+.contenedorDos{
+    width:100%;
+    display:flex;
+    justify-content:flex-start;
+    align-items:center;
+    padding: 30px;
+}
+
+.contenedorCalendario{
+    width:50%;
+    display:flex;
+    align-items:center;
+    flex-direction:column;
+    justify-content:space-between;
+}
+
+.contenedorTres{
+    width:100%;
+    display:flex;
+    justify-content:flex-start;
+    flex-direction:column;
+    padding: 30px;
+}
+
+.contenedorAprobacion{
+    width: 100%;
+    height: 100%;
+    flex-direction:column;
     border:1px solid grey;
-    margin: 0px 30px 30px;
-    border-radius: 0px 0px 10px 10px;
     border-top: hidden;
-    overflow: hidden;
+    border-radius: 0px 0px 10px 10px;
+    padding: 40px;
 }
 
-.lista{
-    width: 30vw;
-    width: 70vw;
-    padding-top: 20px;
-    margin: 40px 15px 0px;
-    border-radius: 10px;
-    border: 1px solid grey;
-    overflow: hidden;
+.contenedorCuatro{
+    width:100%;
+    display:flex;
+    justify-content:flex-start;
+    flex-direction:column;
+    padding: 30px;
 }
 
-.listadecars{
+.administrador{
+    width:50%;
+    display:flex;
+    justify-content: flex-start;
+    flex-direction:column;
+}
+
+.contenedorCinco{
+    width:100%;
+    display:flex;
+    justify-content: flex-end;
+    padding: 30px;
+}
+
+.botondeAprobacion{
+    width:50%;
+    display:flex;
+    align-items:center;
+    justify-content: flex-end;
+}
+
+.contenedorLista{
+    width: 30%;
+    display: flex;
     align-items: center;
-}
-
-.detallesVacas {
-   margin: 10px;
+    flex-direction:column;
+    border:1px solid grey;
+    border-radius: 10px;
+    padding: 40px;
 }

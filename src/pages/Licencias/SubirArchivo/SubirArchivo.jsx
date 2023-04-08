@@ -1,6 +1,5 @@
 import { PhotoCamera } from '@mui/icons-material'
-import { Box, Button, Container, IconButton, TextField, Typography } from '@mui/material'
-import { Box, Button, Container, IconButton, TextField, Typography } from '@mui/material'
+import { Box, Button, Container, IconButton} from '@mui/material'
 import React, { useState } from 'react'
 
 const SubirArchivo = () => {
@@ -10,11 +9,8 @@ const SubirArchivo = () => {
 
 
   return (
-      <Box sx={{ width: '100%', display:'flex', flexDirection: 'column', alignItems:'center'}}>
-      <Typography variant="subtitle1">
-        ARCHIVO ADJUNTO
-      </Typography>
-          <Container sx={{ width: '100%', display:'flex', alignSelf: 'center'}}>
+      <Box>
+          <Container>
               <Button variant="contained" component="label" >
                 Subir Archivo
                 <input hidden accept="image/jpg, image/png" type="file"  />
