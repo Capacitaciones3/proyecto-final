@@ -4,7 +4,8 @@ import CardUser from '../../components/Cards/CardUser/CardUser'
 import CardApi from '../Dashboard/CardApi.jsx/CardApi'
 import PostAddIcon from '@mui/icons-material/PostAdd';
 import NavigationIcon from '@mui/icons-material/Navigation';
-import { Fab, TextField, Typography } from '@mui/material';
+import { Fab, Typography } from '@mui/material';
+import Busqueda from '../Busqueda/Busqueda'
 import './dashboard.css'
 
 const Dashboard = () => {
