@@ -12,7 +12,7 @@ import './dashboardSecundario.css'
 const Dashboard = () => {
   return (
     <>
-    <main style={{width:'100vw', maxWidth:'100%', minHeight: '100vh', display:'flex', flexDirection: 'column', justifyContent:'space-between', padding:'0px'}}>
+    <div style={{width:'100vw', maxWidth:'100%', minHeight: '100vh', display:'flex', flexDirection: 'column', justifyContent:'space-between', padding:'0px'}}>
 
       <article style={{width:'100vw', display:'flex', padding:'40px', justifyContent:'flex-start'}}>
         <div className='opciondeBusqueda'>
@@ -46,7 +46,7 @@ const Dashboard = () => {
           </div>
         </section>
       </article>
-    </main>
+    </div>
     <Outlet/>
   </>
   )

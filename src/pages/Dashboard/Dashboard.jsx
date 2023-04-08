@@ -5,13 +5,13 @@ import CardApi from '../Dashboard/CardApi.jsx/CardApi'
 import PostAddIcon from '@mui/icons-material/PostAdd';
 import NavigationIcon from '@mui/icons-material/Navigation';
 import { Fab, Typography } from '@mui/material';
-import Busqueda from '../Busqueda/Busqueda'
 import './dashboard.css'
+//import Busqueda from '../Busqueda/Busqueda'
 
 const Dashboard = () => {
   return (
     <>
-    <main style={{width:'100vw', maxWidth:'100%', minHeight: '100vh', display:'flex', justifyContent:'space-between', padding:'0px'}}>
+    <div style={{width:'100vw', maxWidth:'100%', minHeight: '100vh', display:'flex', justifyContent:'space-between', padding:'0px'}}>
 
       <article style={{width:'80%', display:'flex', gap: '25px', padding:'40px', justifyContent:'space-between'}}>
 
@@ -67,7 +67,7 @@ const Dashboard = () => {
           <CardApi/>
         </div>
       </aside>
-    </main>
+    </div>
     <Outlet/>
   </>
   )
