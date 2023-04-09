@@ -42,24 +42,17 @@
     width:100%;
     display:flex;
     flex-wrap: wrap;
+    gap: 20px;
     justify-content: space-around;
-    align-items:center;
 }
 
 .licencia{
     width:40%;
     display:flex;
     flex-direction:column;
+    gap: 30px;
     align-items: flex-start;
     align-content: space-between;
-}
-
-.archivo{
-    width:50%;
-    display:flex;
-    align-items:center;
-    flex-direction:column;
-    justify-content:flex-end;
 }
 
 .contenedorDos{
@@ -75,8 +68,59 @@
     display:flex;
     align-items:center;
     flex-direction:column;
-    justify-content:space-between;
+    gap:20px;
 }
+
+.imagenesCalendario{
+    width: 80%;
+    height: 100px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.imagenCalendario{
+    width: 35%;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+}
+
+.imgRoja{
+    width: 100%;
+    height: 40px;
+    background-color: rgb(231, 60, 60);
+    border-radius: 10px 10px 0 0;
+    border: 1px solid grey;
+    border-bottom: 0;
+}
+
+.imgBlanca{
+    width: 100%;
+    height: 60px;
+    border: 1px solid grey;
+    border-radius: 0 0 10px 10px;
+}
+
+.fecha{
+    width: 100%;
+    height: 30px;
+    display: flex;
+}
+
+.diasLaborales{
+    width: 100%;
+    display: flex;
+    border: 1px solid grey;
+    border-radius: 10px 0 0 10px;
+}
+
+.diasDispo{
+    width: 100%;
+    display: flex;
+    border: 1px solid grey;
+    border-radius: 0px 10px 10px 0px;
+}
+
 
 .contenedorTres{
     width:100%;
@@ -84,6 +128,7 @@
     justify-content:flex-start;
     flex-direction:column;
     padding: 30px;
+    gap: 30px;
 }
 
 .contenedorAprobacion{
@@ -126,11 +171,14 @@
 }
 
 .contenedorLista{
-    width: 30%;
-    display: flex;
-    align-items: center;
+    width: 25%;
+    display:flex; 
     flex-direction:column;
     border:1px solid grey;
-    border-radius: 10px;
-    padding: 40px;
+    border-radius: 5px;
+}
+
+.titulo3{
+    border-bottom: 1px solid grey;
+    padding: 10px;
 }

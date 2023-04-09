@@ -8,7 +8,8 @@ import AdminUsuarios from './pages/AdminUsuarios/AdminUsuarios'
 import Calendario from './pages/Calendario/Calendario'
 import PerfilUsuario from './pages/PerfilUsuario/PerfilUsuario'
 import { AutenticacionContext } from './contexts/Autenticacion';
-import Dashboard from './pages/Dashboard/Dashboard';
+import DashboardSecundario from './pages/Dashboard/DashboardSecundario/DashboardSecundario'
+// import Dashboard from './pages/Dashboard/Dashboard';
 import LicenciaCard from './components/LicenciaCard/LicenciaCard';
 
 
@@ -22,7 +23,7 @@ function App() {
     <Routes>
     { usuario.isLogged?
     <Route path='/' element={<Layout />}>      
-        <Route path='dashboard' element={<Dashboard />}>
+        <Route path='dashboard' element={<DashboardSecundario />}>
             <Route path=':idLicencia' element={<LicenciaCard/>}/>
         </Route>
         <Route path='licencias' element={<Licencias />} />

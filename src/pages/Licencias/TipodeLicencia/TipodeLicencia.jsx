@@ -1,33 +1,29 @@
-import { Autocomplete, TextField } from '@mui/material';
-import React, { useState }  from 'react'
+import {MenuItem, Select, Typography} from '@mui/material';
+import React, { useState } from 'react'
 
-const TipodeLicencia =() => {
+const TipodeLicencia =({handleData}) => {
 
-  const [select, setSelect] = useState();
-  const [selectDisabled, setSelectDisabled] = useState(false);
+  const [value, setValue] = useState('vacaciones')
 
-  const elselect = (e) => {
-    setSelect(e.target.value);
-    setSelectDisabled(true);
-  };
-
-  const enableSelect = () => {
-    setSelectDisabled(false);
-  };
-
-  const options = ['Vacaciones', 'Enfermedad', 'Examen'];
+  const handleValue = (e) =>{
+    setValue(e.target.value)
+  }
 
   return (
-    <div>
-      <Autocomplete
-        controlled
-        id="combo-box-demo"
-        options={options}
-        sx={{ width: 300 }}
-        renderInput={(params) => <TextField {...params} label="Licencia" />}
-        onChange={elselect} disabled={selectDisabled}
-      />
-    </div>
+    <>
+      <Typography variant="subtitle1">TIPO DE LICENCIA</Typography>
+      <Select
+        labelId="tipodeLicencia"
+        id="tipodeLicencia"
+        value={value}
+        name='tipodeLicencia'
+        onChange={(e)=>{handleData(e); handleValue(e)}} 
+      >
+        <MenuItem value={'vacaciones'}>Vacaciones</MenuItem>
+        <MenuItem value={'enfermedad'}>Enfermedad</MenuItem>
+        <MenuItem value={'examen'}>Examen</MenuItem>
+      </Select>
+      </>
   );
 }
 

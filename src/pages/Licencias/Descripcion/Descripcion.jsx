@@ -1,21 +1,19 @@
-import { Box, TextField } from '@mui/material';
+import { Box, TextField, Typography } from '@mui/material';
 import React, { useState }  from 'react'
 
-const Descripcion =() => {
+const Descripcion =({handleData}) => {
 
-  const [textArea, setTextArea] = useState();
-  const [textAreaDisabled, setTextAreaDisabled] = useState(false);
+  const [text, setText] = useState(null);
 
-  const atextarea = (e) => {
-    setTextArea(e.target.value);
-    setTextAreaDisabled(true);
+  const handleText = (e) => {
+    e.preventDefault();
+    setText(e.target.value);
   };
 
-  const enableTextArea = () => {
-    setTextAreaDisabled(false);
-  };
 
   return (
+    <>
+    <Typography variant="subtitle1">DESCRIPCION</Typography>
     <Box
       id="descripcion"
       component="form"
@@ -28,11 +26,12 @@ const Descripcion =() => {
         multiline
         rows={9}
         size='8'
-        defaultValue="Ingrese una descripcion de la licencia"
-        placeholder='Ingrese una descripcion de la licencia' 
+        placeholder='Ingrese una descripcion de la licencia'
+        name='descripcionLicencia'
+        onChange={(e)=>{handleData(e); handleText(e)}} 
         />
     </Box>
-
+    </>
   );
 }
 

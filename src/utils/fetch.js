@@ -1,8 +1,8 @@
 import axios from "axios";
-import camelcaseKeys from "camelcase-keys";
+// import camelcaseKeys from "camelcase-keys";
 
 const httpClient = axios.create({
-  baseURL: "https://bootcamp-adviters.herokuapp.com",
+  baseURL: "https://642db4a9bf8cbecdb40d0cf1.mockapi.io/",
 });
 export const Method = {
   GET: "GET",
@@ -12,9 +12,11 @@ export const Method = {
   DELETE: "DELETE",
 };
 export const fetchContent = async (url, config = {}) => {
+
   try {
     const { headers: headersOptions } = config;
-    const token = localStorage.getItem("Token");
+    // const token = localStorage.getItem("Token");
+    const token = false;
     const headers = token
       ? {
           Authorization: `Bearer ${token}`,
@@ -44,7 +46,8 @@ export const fetchContent = async (url, config = {}) => {
     if (data?.error) {
       throw new Error(data.error);
     }
-    return camelcaseKeys(data, { deep: true });
+    return data
+    // camelcaseKeys(data, { deep: true });
   } catch (error) {
     console.info(error);
     throw error;

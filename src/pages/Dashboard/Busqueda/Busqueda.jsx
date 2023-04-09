@@ -1,11 +1,11 @@
 import { TextField } from '@mui/material'
 import React from 'react'
+// import SearchIcon from '@mui/icons-material/Search';
 
-const Busqueda = () => {
+const Busqueda = ({handleData}) => {
+
   return (
-    <>
-        <TextField id="outlined-search" label="Search field" type="search" endIcon={</>} />
-    </>
+        <TextField id="outlined-search" label="Busqueda" type="search"  handleData={handleData}/>
   )
 }
 

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import "./licencias.css"
 import SubirArchivo from './SubirArchivo/SubirArchivo'
 import TipodeLicencia from './TipodeLicencia/TipodeLicencia'
@@ -8,18 +8,53 @@ import {Chip, Fab, Typography} from '@mui/material'
 import PostAddIcon from '@mui/icons-material/PostAdd';
 import NavigationIcon from '@mui/icons-material/Navigation';
 import CardUser from '../../components/Cards/CardUser/CardUser'
+import {getLicencias } from '../../services/licenciaServices'
+import CalendarioLicencia from './Calendario/CalendarioLicencia'
 
-const Licencias = () => {
+const Licencias = (rol) => {
+
+  // Crear el estado de el componente licencias
+
+  const [data, setData] = useState({});
+
+  // Crear una funcion para cambiar el estado
+
+  const handleData = (e) => {
+    setData((old)=>{
+      return ({
+        ...old, [e.target.name]:e.target.value  // para acceder a uno objeto dentro de un objeto []
+      })
+    })
+  }
+  useEffect(() => {
+    console.log(data)
+  }, [data])
+  
+  // Crear logica dentro de la funcion para guardar el nombre y valor de los campos del componente
+
+
+
+  // Crear la funcion onSubmit para enviar la info del formulario
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(data)
+  }
+
+  useEffect(() => {
+    getLicencias()
+  }, [])
+
   return (
     <>
-    <main style={{width:'100vw', maxWidth:'100%', minHeight: '100vh', display:'flex', gap:'30px', justifyContent:'center', padding:'50px 0'}}>
+    <div style={{width:'100vw', maxWidth:'100%', minHeight: '100vh', display:'flex', gap:'30px', justifyContent:'center', padding:'50px 0'}}>
 
-    <article style={{width:'60%', display:'flex', flexDirection:'column'}}>
+    <form style={{width:'60%', display:'flex', flexDirection:'column'}} onSubmit={handleSubmit}>
 
       <section className='contenedorUsuario'>
         <div className='usuarioBalance'>
           <div>
-            <Usuario/>
+            <Usuario handleData={handleData}/>
           </div>
           <div><Typography variant="subtitle1">BALANCE ACTUAL:</Typography></div>
         </div>
@@ -33,27 +68,21 @@ const Licencias = () => {
 
         <div className='contenedorUno'>
           <div className='licencia'> 
-            <Typography variant="subtitle1">TIPO DE LICENCIA</Typography>
-            <TipodeLicencia/>
+            <TipodeLicencia handleData={handleData}/>
           </div>
-          <div className='archivo'>
-            <Typography variant="subtitle1">ARCHIVO ADJUNTO</Typography>
-            <SubirArchivo/>
+          <div className='archivo' style={{width:'50%'}}>
+            <SubirArchivo handleData={handleData}/>
           </div>
         </div>
 
         <div className='contenedorDos'>
-          <div className='contenedorCalendario'>
-            <div className='fotoCalendario'></div>
-            <div className='fecha'></div>
-          </div>
+          <CalendarioLicencia handleData={handleData}/>
         </div>
 
         <div className='contenedorTres'>
-          <Typography variant="subtitle1">DESCRIPCION</Typography>
-          <Descripcion/>
+          <Descripcion handleData={handleData}/>
         </div>
-        </section>
+      </section>
 
         <section className='contenedorAprobacion'>
 
@@ -61,7 +90,7 @@ const Licencias = () => {
           <div className='administrador'>
             <Typography variant="subtitle1"> APROBACION A CARGO DE: </Typography>
             <div>
-              <Usuario/>
+              <Usuario handleData={handleData} rol={true}/>
             </div>
           </div>
         </div>
@@ -69,24 +98,24 @@ const Licencias = () => {
         <div className='contenedorCinco'>
           <div className='botondeAprobacion'>
             <Fab variant="extended" size="medium" color="primary" aria-label="add">
-              <NavigationIcon sx={{ mr: 1 }} icon={<PostAddIcon />} />Solicitar aprobacion
+              <NavigationIcon sx={{ mr: 1 }} icon={<PostAddIcon />} handleData={handleData} /> Solicitar aprobacion
             </Fab>
           </div>
         </div>
       </section>
-    </article>
+    </form>
 
     <aside className='contenedorLista'>
-      <div> <Typography variant="h6" color={'grey'}> Detalle de la licencia: </Typography></div>
-      <div>
-        <ul>
+      <div className='titulo3'> <Typography variant="h6" color={'grey'}> Detalle de vacaciones: </Typography></div>
+      <div >
+        <ul className='listadeLicencias'>
           <CardUser/>
         </ul>
       </div>
     </aside> 
-    </main>
+    </div>
     </>
   )
 }
 
-export default Licencias
+export default Licencias;

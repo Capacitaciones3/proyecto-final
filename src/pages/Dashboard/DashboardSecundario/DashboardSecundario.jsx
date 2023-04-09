@@ -1,24 +1,46 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Outlet } from 'react-router-dom';
-import CardUser from '../../components/Cards/CardUser/CardUser'
-import CardApi from '../Dashboard/CardApi.jsx/CardApi'
+import CardUser from '../../../components/Cards/CardUser/CardUser'
+import CardApi from '../CardApi.jsx/CardApi'
 import {Typography } from '@mui/material';
 import Busqueda from '../Busqueda/Busqueda'
 
 import './dashboardSecundario.css'
 
 const Dashboard = () => {
+
+  const [data, setData] = useState({});
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(data)
+  }
+
+
+  const handleData = (e) => {
+    setData((old)=>{
+      return ({
+        ...old, [e.target.name]:e.target.value  // para acceder a uno objeto dentro de un objeto []
+      })
+    })
+  }
+
+  useEffect(() => {
+    console.log(data)
+  }, [data])
+
+ 
   return (
     <>
     <div style={{width:'100vw', maxWidth:'100%', minHeight: '100vh', display:'flex', flexDirection: 'column', justifyContent:'space-between', padding:'0px'}}>
 
-      <article style={{width:'100vw', display:'flex', padding:'40px', justifyContent:'flex-start'}}>
+    <form style={{width:'100%', display:'flex', padding:'40px 40px 15px 40px', justifyContent:'flex-start'}} onSubmit={handleSubmit}>
         <div className='opciondeBusqueda'>
           <Busqueda/>
         </div>
-      </article>
+    </form>
 
-      <article style={{width:'100vw', display:'flex', gap: '25px', padding:'40px', justifyContent:'space-between'}}>
+      <article style={{width:'100%', display:'flex', gap: '25px', padding:'15px 40px 40px 40px', justifyContent:'space-between'}}>
         <section className='contenedorAPIs'>
           <div>
             <CardApi/>
