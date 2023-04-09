@@ -3,7 +3,9 @@ import {
   Button,
   Container,
   Divider,
+  FormControlLabel,
   MenuItem,
+  Switch,
   TextField,
   Typography,
 } from "@mui/material";
@@ -12,9 +14,27 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import React from "react";
+import React, { useState } from "react";
 
-const PerfilUsuario = () => {
+const CrearUsuario = () => {
+  const [image, setImage] = useState(null);
+  const [checked, setChecked] = React.useState(true);
+
+  const handleChange = (e) => {
+    setChecked(e.target.checked);
+  };
+  const handleImageChange = (e) => {
+    e.preventDefault();
+    let file = e.target.files[0];
+    let reader = new FileReader();
+
+    reader.onloadend = () => {
+      setImage(reader.result);
+    };
+
+    reader.readAsDataURL(file);
+  };
+
   return (
     <Container
       sx={{
@@ -26,7 +46,7 @@ const PerfilUsuario = () => {
       <Box component="form">
         <Box p={3}>
           <Typography color="error.light" variant="h4">
-            Mi perfil
+            Nuevo Usuario
           </Typography>
           <Divider></Divider>
         </Box>
@@ -39,11 +59,26 @@ const PerfilUsuario = () => {
             justifyContent: "space-between",
           }}
         >
-          <img
-            width={200}
-            src="https://indiehoy.com/wp-content/uploads/2020/06/Keanu-Reeves.jpg"
-            alt=""
+          <input
+            hidden
+            accept="image/*"
+            id="contained-button-file"
+            multiple={false}
+            type="file"
+            onChange={handleImageChange}
           />
+          <label htmlFor="contained-button-file">
+            <Button
+              sx={{ margin: "5px" }}
+              variant="contained"
+              color="primary"
+              component="span"
+            >
+              Subir Imagen
+            </Button>
+          </label>
+          {image && <img src={image} alt="Usuario" width={150} />}
+
           <Box sx={{ ml: 5 }}>
             <TextField
               sx={{ m: 2 }}
@@ -219,6 +254,17 @@ const PerfilUsuario = () => {
                 label="Dias Vacaciones"
                 variant="outlined"
               />
+              <FormControlLabel
+                sx={{ margin: "20px" }}
+                control={
+                  <Switch
+                    checked={checked}
+                    onChange={handleChange}
+                    inputProps={{ "aria-label": "controlled" }}
+                  />
+                }
+                label="Administrador"
+              ></FormControlLabel>
             </Box>
           </AccordionDetails>
         </Accordion>
@@ -231,7 +277,7 @@ const PerfilUsuario = () => {
           }}
         >
           <Button variant="contained" color="primary">
-            Guardar
+            Crear
             <ArrowForwardIcon></ArrowForwardIcon>
           </Button>
         </Box>
@@ -240,4 +286,4 @@ const PerfilUsuario = () => {
   );
 };
 
-export default PerfilUsuario;
+export default CrearUsuario;
