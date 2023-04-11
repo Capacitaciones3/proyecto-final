@@ -1,10 +1,9 @@
 import { Box, Typography, Avatar, Select, MenuItem } from '@mui/material'
-import React, { useState } from 'react'
+import React, {useState} from 'react'
+
+  // prop que diferencia/ filtrar si es usuario (false) o es usuario admin (true) (rol)
 
 const Usuario = ({handleData, rol}) => {
-
-  // prop que diferencia/ filtrar si es usuario (false) o es usuario para aprobar (admin) (true) (rol)
-
 
   const [value, setValue] = useState('jennifer')
 

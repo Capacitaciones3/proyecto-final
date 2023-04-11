@@ -5,10 +5,9 @@
 }
 
 .fondo{
-  background-image: url(./Imagenes/Group\ 23.png);
-  background-size:cover;
-  height: 100%;
   width: 100%;
+  background-image: url(./Imagenes/Group\ 22.png);
+  
 }
 
   .login_section {

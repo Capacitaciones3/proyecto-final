@@ -10,7 +10,6 @@ import PerfilUsuario from "./pages/PerfilUsuario/PerfilUsuario";
 import { AutenticacionContext } from "./contexts/Autenticacion";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import LicenciaCard from "./components/LicenciaCard/LicenciaCard";
-import CrearUsuario from "./pages/PerfilUsuario/CrearUsuario";
 
 function App() {
   const { usuario } = useContext(AutenticacionContext);
@@ -19,7 +18,7 @@ function App() {
     <BrowserRouter>
     <Routes>
     { usuario.isLogged?
-    <Route path='/' element={<Layout />}>      
+    ( <Route path='/' element={<Layout />}>      
         <Route path='dashboard' element={<Dashboard />}>
             <Route path=':idLicencia' element={<LicenciaCard/>}/>
         </Route>
@@ -29,8 +28,8 @@ function App() {
         }
         <Route path='calendario' element={<Calendario />} />
         <Route path='perfil' element={<PerfilUsuario />} />
-      </Route>
-}
+      </Route> )
+    : (<Route path="login" element={<Login/>} />)}
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

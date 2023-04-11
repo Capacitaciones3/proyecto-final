@@ -8,7 +8,7 @@ import { AutenticacionContext } from '../../../contexts/Autenticacion';
 
 const CardUser = ({
   id,
-  name,
+  nombre,
   avatar,
   tipoLicencia,
   fechaFinal,
@@ -38,7 +38,7 @@ const CardUser = ({
         <Avatar alt="User" src={avatar} sx={{ marginRight: "1rem" }} />
         <Stack sx={{ marginRight: "5rem" }}>
           <Typografy fontWeight="700" component="span">
-            {name}
+            {nombre}
           </Typografy>
           <Typografy component="span" sx={{ color: "rgba(0,0,0,0.6)" }}>
             {fechaInicio} - {fechaFinal}
@@ -69,6 +69,7 @@ const CardUser = ({
         }}
       >
         <div style={{alignSelf:'self-end'}}>
+          
         <button style={{ border: 0, backgroundColor: "#ffffff" }}>
           <CheckIcon
             sx={{

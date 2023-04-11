@@ -1,15 +1,18 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, {useEffect, useState } from 'react'
 import "./licencias.css"
 import SubirArchivo from './SubirArchivo/SubirArchivo'
 import TipodeLicencia from './TipodeLicencia/TipodeLicencia'
 import Descripcion from './Descripcion/Descripcion'
 import Usuario from '../../components/Usuario/Usuario'
-import {Chip, Fab, Typography} from '@mui/material'
+import {Fab, Typography} from '@mui/material'
 import PostAddIcon from '@mui/icons-material/PostAdd';
 import NavigationIcon from '@mui/icons-material/Navigation';
 import CardUser from '../../components/Cards/CardUser/CardUser'
 import {getLicencias } from '../../services/licenciaServices'
 import CalendarioLicencia from './Calendario/CalendarioLicencia'
+import Estado from './Estado/Estado'
+import { Link } from "react-router-dom";
+
 
 const Licencias = (rol) => {
 
@@ -26,6 +29,7 @@ const Licencias = (rol) => {
       })
     })
   }
+
   useEffect(() => {
     console.log(data)
   }, [data])
@@ -59,8 +63,7 @@ const Licencias = (rol) => {
           <div><Typography variant="subtitle1">BALANCE ACTUAL:</Typography></div>
         </div>
         <div className='estadoLicencia'>
-          <Typography variant="subtitle1">ESTADO</Typography>
-          <Chip label='Aun no enviado'></Chip>
+          <Estado/>
         </div>
       </section>
 
@@ -97,9 +100,11 @@ const Licencias = (rol) => {
 
         <div className='contenedorCinco'>
           <div className='botondeAprobacion'>
+          <Link to="/dashboard">
             <Fab variant="extended" size="medium" color="primary" aria-label="add">
               <NavigationIcon sx={{ mr: 1 }} icon={<PostAddIcon />} handleData={handleData} /> Solicitar aprobacion
             </Fab>
+            </Link>
           </div>
         </div>
       </section>
