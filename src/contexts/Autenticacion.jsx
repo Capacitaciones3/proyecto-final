@@ -4,19 +4,14 @@ export const AutenticacionContext = React.createContext();
 
 export const AutenticacionProvider = ({children}) => {
   
-  const [usuario, setUsuario] = useState({
-    isLogged: true,
-    rol: {
-      usuario: false,
-      administrador: true
-    }
-  });
+  const [usuario, setUsuario] = useState(null);
 
-  const iniciarSesion = () => {
+  const iniciarSesion = (id, token, rol) => {
     setUsuario({...usuario,
       isLogged: true
     });
   };
+
   const cerrarSesion = () => {
     setUsuario({...usuario,
       isLogged: false

@@ -4,6 +4,7 @@ import axios from "axios";
 const httpClient = axios.create({
   baseURL: "https://642db4a9bf8cbecdb40d0cf1.mockapi.io/",
 });
+
 export const Method = {
   GET: "GET",
   PUT: "PUT",
@@ -11,6 +12,7 @@ export const Method = {
   POST: "POST",
   DELETE: "DELETE",
 };
+
 export const fetchContent = async (url, config = {}) => {
 
   try {

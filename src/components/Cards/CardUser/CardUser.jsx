@@ -8,7 +8,7 @@ import { AutenticacionContext } from '../../../contexts/Autenticacion';
 
 const CardUser = ({
   id,
-  nombre,
+  name,
   avatar,
   tipoLicencia,
   fechaFinal,
@@ -23,7 +23,6 @@ const CardUser = ({
     <Stack
       sx={{
         maxWidth: "100%",
-        height: "100%",
         display: 'flex',
         flexDirection: "row",
         justifyContent: 'space-between',
@@ -38,7 +37,7 @@ const CardUser = ({
         <Avatar alt="User" src={avatar} sx={{ marginRight: "1rem" }} />
         <Stack sx={{ marginRight: "5rem" }}>
           <Typografy fontWeight="700" component="span">
-            {nombre}
+            {name}
           </Typografy>
           <Typografy component="span" sx={{ color: "rgba(0,0,0,0.6)" }}>
             {fechaInicio} - {fechaFinal}
