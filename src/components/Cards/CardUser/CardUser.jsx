@@ -13,6 +13,7 @@ const CardUser = ({
   tipoLicencia,
   fechaFinal,
   fechaInicio,
+  rol
 }) => {
 
   const {usuario} = useContext(AutenticacionContext);
@@ -59,7 +60,7 @@ const CardUser = ({
         </Stack>
       </Stack>
 
-      {usuario.rol.administrador && 
+      
       <Stack
         sx={{
           display: "flex",
@@ -91,7 +92,7 @@ const CardUser = ({
         </button>
         </div>
       </Stack>
-      }
+      
     </Stack>
   );
 };
