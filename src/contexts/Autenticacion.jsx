@@ -1,4 +1,4 @@
-import { FlashlightOnOutlined } from "@mui/icons-material";
+
 import React, {useState } from "react";
 
 export const AutenticacionContext = React.createContext();
