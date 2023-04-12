@@ -12,9 +12,8 @@ export const AutenticacionProvider = ({children}) => {
       usuario: false
     }
   });
-  
-  
 
+  
   const iniciarSesion = (id, token, rol) => {
     setUsuario({...usuario,
       isLogged: true

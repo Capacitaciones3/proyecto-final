@@ -24,7 +24,7 @@ const Descripcion =({handleData}) => {
         sx={{ width:'90%'}}
         id="descripcionLicencia"
         multiline
-        rows={9}
+        rows={5}
         size='8'
         placeholder='Ingrese una descripcion de la licencia'
         name='descripcionLicencia'

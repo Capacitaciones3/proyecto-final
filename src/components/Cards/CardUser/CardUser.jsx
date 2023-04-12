@@ -10,7 +10,7 @@ const CardUser = ({
   id,
   name,
   avatar,
-  tipoLicencia,
+  tipodeLicencia,
   fechaFinal,
   fechaInicio,
   rol
@@ -23,7 +23,6 @@ const CardUser = ({
   return (
     <Stack
       sx={{
-        maxWidth: "100%",
         display: 'flex',
         flexDirection: "row",
         justifyContent: 'space-between',
@@ -34,33 +33,29 @@ const CardUser = ({
         flexGrow: 1,
         cursor: "pointer",
       }}>
-      <Stack sx={{  display: 'flex', flexDirection: "row", justifyContent: 'space-between'}}>
-        <Avatar alt="User" src={avatar} sx={{ marginRight: "1rem" }} />
-        <Stack sx={{ marginRight: "5rem" }}>
-          <Typografy fontWeight="700" component="span">
+      <Stack sx={{  display: 'flex', flexDirection: "row", justifyContent: 'space-between', gap:'15px'}}>
+        <Avatar alt="User" src={avatar} />
+        <Stack>
+          <Typografy fontWeight="500" component="span">
             {name}
           </Typografy>
           <Typografy component="span" sx={{ color: "rgba(0,0,0,0.6)" }}>
             {fechaInicio} - {fechaFinal}
           </Typografy>
           <Typografy display="flex" alignItems="center">
-            <Typografy
-              component="span"
+          <Typografy component="span"
               sx={{
                 width: "10px",
                 height: "10px",
                 backgroundColor: "#5BFF62",
                 borderRadius: "5px",
-              }}
-            ></Typografy>
-            <Typografy component="p" marginLeft={0.7}>
-              {tipoLicencia}
-            </Typografy>
+              }}/>
+          <Typografy component="p" marginLeft={0.7}>{tipodeLicencia}</Typografy>
           </Typografy>
         </Stack>
       </Stack>
 
-      
+      { usuario.rol.administrador &&
       <Stack
         sx={{
           display: "flex",
@@ -92,7 +87,7 @@ const CardUser = ({
         </button>
         </div>
       </Stack>
-      
+      }
     </Stack>
   );
 };

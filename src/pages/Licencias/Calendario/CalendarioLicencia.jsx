@@ -1,6 +1,8 @@
 import { Typography } from '@mui/material'
 import React from 'react'
 import '../licencias.css'
+import { useState } from 'react'
+import MiniCalendario from './MiniCalendario'
 
 const CalendarioLicencia = ({
   dia,
@@ -13,39 +15,12 @@ const CalendarioLicencia = ({
   return (
     <div className='contenedorCalendario'>
 
-            <div className='imagenesCalendario'>
-              <div className='imagenCalendario'>
-              <div className='imgRoja' style={{display:'flex', justifyContent:'center',alignItems:'center'}}>
-                <Typography variant="subtitle2" sx={{color: 'white'}}>{mes}</Typography>
-                </div>
-                <div className='imgBlanca' style={{display:'flex', justifyContent:'center', flexDirection:'column', alignItems:'center'}}>
-                <Typography variant="subtitle2">{num}</Typography>
-                <Typography variant="subtitle2">{dia}</Typography>
-                </div>
-              </div>      
+        <MiniCalendario/>  
 
-              <div className='imagenCalendario'>
-                <div className='imgRoja' style={{display:'flex', justifyContent:'center',alignItems:'center'}}>
-                <Typography variant="subtitle2" sx={{color: 'white'}}>{mes}</Typography>
-                </div>
-                <div className='imgBlanca' style={{display:'flex', justifyContent:'center', flexDirection:'column', alignItems:'center'}}>
-                <Typography variant="subtitle2">{num}</Typography>
-                <Typography variant="subtitle2">{dia}</Typography>
-                </div>
-              </div>
-            </div>
-
-            <div className='fecha'>
-              <div className='diasLaborales' style={{display:'flex', justifyContent:'center',alignItems:'center'}}>
-              <Typography variant="subtitle3" sx={{color:'green'}}>{diasLaborales}</Typography>
-              </div>
-              <div className='diasDispo' style={{display:'flex', justifyContent:'center',alignItems:'center'}}>
-              <Typography variant="subtitle3">{diasDispo}</Typography>
-              </div>
-            </div>
-
-          </div>
+    </div>
   )
 }
 
 export default CalendarioLicencia
+
+// IMPORTAR COMPONENTE DE MATERIAL UI: DIALOG, PARA ABRIR EL CALENDARIO

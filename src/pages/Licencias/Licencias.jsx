@@ -4,7 +4,8 @@ import SubirArchivo from './SubirArchivo/SubirArchivo'
 import TipodeLicencia from './TipodeLicencia/TipodeLicencia'
 import Descripcion from './Descripcion/Descripcion'
 import Usuario from '../../components/Usuario/Usuario'
-import {Box, Fab, Typography} from '@mui/material'
+import UsuarioAdmin from "../../components/Usuario/Usuario Admin/UsuarioAdmin"
+import {Fab, Typography} from '@mui/material'
 import PostAddIcon from '@mui/icons-material/PostAdd';
 import NavigationIcon from '@mui/icons-material/Navigation';
 import CardUser from '../../components/Cards/CardUser/CardUser'
@@ -17,22 +18,18 @@ import { Link } from "react-router-dom";
 const Licencias = (rol) => {
  
   const [licencias, setLicencias] = useState([]);
-
   useEffect(() => {
   getLicencias().then((data) => {console.log(data); setLicencias(data)})
   }, [])
-  
 
-  // Crear el estado de el componente licencias
+  const datos = licencias.map((licencia) => <UsuarioAdmin avatar={licencia.avatar} name={licencia.name}/> )
+
 
   const [data, setData] = useState({});
-
-  // Crear una funcion para cambiar el estado
-
   const handleData = (e) => {
     setData((old)=>{
       return ({
-        ...old, [e.target.name]:e.target.value  // para acceder a uno objeto dentro de un objeto []
+        ...old, [e.target.name]:e.target.value
       })
     })
   }
@@ -50,15 +47,13 @@ const Licencias = (rol) => {
 
   return (
     <>
-    <div style={{width:'100vw', maxWidth:'100%', minHeight: '100vh', display:'flex', gap:'30px', justifyContent:'center', padding:'50px 0', flexWrap:'wrap'}}>
+    <div style={{width:'100vw', maxWidth:'100%', minHeight: '100vh', display:'flex', gap:'25px', justifyContent:'center', padding:'50px 0', flexWrap:'wrap'}}>
 
-    <form style={{width:'60%', display:'flex', flexDirection:'column'}} onSubmit={handleSubmit}>
+    <form style={{width:'70%', display:'flex', flexDirection:'column'}} onSubmit={handleSubmit}>
 
       <section className='contenedorUsuario'>
         <div className='usuarioBalance'>
-          <div>
-            <Usuario handleData={handleData}/>
-          </div>
+          <div><Usuario handleData={handleData} /></div>
           <div><Typography variant="subtitle1">BALANCE ACTUAL:</Typography></div>
         </div>
         <div className='estadoLicencia'>
@@ -92,7 +87,7 @@ const Licencias = (rol) => {
           <div className='administrador'>
             <Typography variant="subtitle1"> APROBACION A CARGO DE: </Typography>
             <div>
-              <Usuario handleData={handleData} rol={true}/>
+             {datos[1]}
             </div>
           </div>
         </div>
@@ -108,18 +103,18 @@ const Licencias = (rol) => {
         </div>
       </section>
     </form>
-
-    <aside className='contenedorLista'>
-      <div className='titulo3'> <Typography variant="h6" color={'grey'}> Detalle de vacaciones: </Typography></div>
-      <div className='listadeLicencias'>
-        {
-          (licencias.lenght!==0)?licencias.map((licencia) => <CardUser name={licencia.name} avatar={licencia.avatar} fechaInicio={licencia.fechaInicio} fechaFinal={licencia.fechaFinal}  />):<p>No hay licencias</p>
-        }
-      </div>
-    </aside> 
     </div>
     </>
   )
 }
 
 export default Licencias;
+
+/*<aside className='contenedorLista'>
+    <div className='titulo3'> <Typography variant="h6" color={'grey'}> Detalle de vacaciones: </Typography></div>
+    <div className='listadeLicencias'>
+    {
+      (licencias.lenght!==0)?licencias.map((licencia) => <CardUser name={licencia.name} avatar={licencia.avatar} fechaInicio={licencia.fechaInicio} fechaFinal={licencia.fechaFinal} tipodeLicencia={licencia.tipodeLicencia}  />):<p>No hay licencias</p>
+    }
+    </div>
+  </aside>*/

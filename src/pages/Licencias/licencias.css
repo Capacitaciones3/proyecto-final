@@ -11,11 +11,12 @@
     align-items:center;
     padding: 10px;
     border:1px solid grey;
-    border-radius: 10px 10px 0px 0px;
+    border-radius: 5px 5px 0px 0px;
 }
 
 .usuarioBalance{
     width:50%;
+    gap: 20px;
     display:flex;
     justify-content:space-between;
     align-items:center 
@@ -121,7 +122,6 @@
     border-radius: 0px 10px 10px 0px;
 }
 
-
 .contenedorTres{
     width:100%;
     display:flex;
@@ -137,7 +137,7 @@
     flex-direction:column;
     border:1px solid grey;
     border-top: hidden;
-    border-radius: 0px 0px 10px 10px;
+    border-radius: 0px 0px 5px 5px;
     padding: 40px;
 }
 
@@ -171,7 +171,8 @@
 }
 
 .contenedorLista{
-    width: 300px;
+    width: 25%;
+    max-height: 100%;
     display:flex; 
     flex-direction:column;
     border:1px solid grey;

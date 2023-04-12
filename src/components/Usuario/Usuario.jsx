@@ -1,42 +1,53 @@
 import { Box, Typography, Avatar, Select, MenuItem } from '@mui/material'
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
+import { getLicencias } from '../../services/licenciaServices';
 
   // prop que diferencia/ filtrar si es usuario (false) o es usuario admin (true) (rol)
 
-const Usuario = ({handleData, rol}) => {
+const Usuario = ({
+  handleData,
+  avatar,
+  name,
+  id,
+  rol
+}) => {
 
-  const [value, setValue] = useState('jennifer')
+  const [licencias, setLicencias] = useState([]);
+
+  useEffect(() => {
+    getLicencias().then((data) => {console.log(data); setLicencias(data)})
+    }, [])
+
+  const [value, setValue] = useState('defecto')
 
   const handleValue = (e) =>{
     setValue(e.target.value)
   }
 
+  const datos = licencias.map((licencia) => 
+  <MenuItem value={licencia.id} sx={{display:'flex', flexDirection:'row'}}>
+    <Box sx={{display:'flex', flexDirection:'row'}}>
+    <Avatar alt="User"  sx={{ width: 56, height: 56}} src={licencia.avatar} />
+    <Typography sx={{m:2}} component="span">{licencia.name}</Typography>
+    </Box>
+  </MenuItem>)
+
   return (
     <Select
-    sx={{display:'flex', flexDirection:'row', p:0}}
+    sx={{display:'flex', flexDirection:'row', maxWidth: '300px'}}
     id="usuario"
     value={value}
     name='usuario'
     onChange={(e)=>{handleData(e); handleValue(e)}} 
   >
-    <MenuItem value={'jennifer'} sx={{display:'flex', flexDirection:'row'}}>
+
+    <MenuItem value={'defecto'} sx={{display:'flex', flexDirection:'row'}} disabled>
       <Box sx={{display:'flex', flexDirection:'row'}}>
-      <Avatar alt="User"  sx={{ width: 56, height: 56}} src="/static/images/avatar/1.jpg" />
-      <Typography sx={{m:2}} component="span">{rol ? 'JenniferAdmin': 'JenniferUsser'}</Typography>
+      <Typography sx={{m:2}} component="span">Seleccionar usuario</Typography>
       </Box>
     </MenuItem>
-    <MenuItem value={'jennifer1'} sx={{display:'flex'}}>
-      <Box sx={{display:'flex', flexDirection:'row'}}>
-      <Avatar alt="User"  sx={{ width: 56, height: 56}} src="/static/images/avatar/1.jpg" />
-      <Typography sx={{m:2}} component="span">{rol ? 'JenniferAdmin': 'JenniferUsser'}</Typography>
-      </Box>
-    </MenuItem>
-    <MenuItem value={'jennifer2'} sx={{display:'flex'}}>
-      <Box sx={{display:'flex', flexDirection:'row'}}>
-      <Avatar alt="User"  sx={{ width: 56, height: 56}} src="/static/images/avatar/1.jpg" />
-      <Typography sx={{m:2}} component="span">{rol ? 'JenniferAdmin': 'JenniferUsser'}</Typography>
-      </Box>
-    </MenuItem>
+    {datos}
+    
   </Select>
   )
 }
