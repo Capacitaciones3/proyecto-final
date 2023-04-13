@@ -1,0 +1,32 @@
+.usuarioBalance .avatar-contenedor {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.avatar-contenedor div {
+    display: flex;
+    flex-direction: column;
+}
+
+.punto {
+    width: 10px;
+    border-radius: 50%;
+    height: 10px;
+}
+
+.color-verde {
+    background-color: green;
+
+}
+
+.color-amarillo {
+    background-color: green;
+
+}
+
+.color-azul {
+    background-color: green;
+
+}

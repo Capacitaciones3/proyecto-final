@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import HolidayCalendar from "../../components/HolidayCalendar/HolidayCalendar";
 import Typography from "@mui/material/Typography";
 import HolidayList from "../../components/HolidayList/HolidayList";
-
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import "./Calendario.css";
 import { Button, TextField } from "@mui/material";
 import BasicModal from "../../components/BasicModal/BasicModal";
 import Loading from "../../components/Loading/Loading";
+import { AutenticacionContext } from "../../contexts/Autenticacion";
 
 const holidayFakeApi = [
     {
@@ -76,6 +76,8 @@ const holidayFakeApi = [
 const Calendario = () => {
     const [holidays, setHolidays] = useState(null);
 
+    const { usuario } = useContext(AutenticacionContext);
+
     useEffect(() => {
         setHolidays(holidayFakeApi);
     }, []);
@@ -97,40 +99,42 @@ const Calendario = () => {
                             <Typography variant="h3" sx={{ color: "#FF7B7B" }}>
                                 Feriados
                             </Typography>
-
-                            <BasicModal
-                                titulo="Crear nuevo Feriado"
-                                nombreBtn="Nuevo Feriado"
-                            >
-                                <>
-                                    <div className="modal-input-container" >
-                                        <TextField
-                                            id="date"
-                                            label="Fecha"
-                                            defaultValue="2023-02-18"
-                                            type="date"
-                                        // value={}
-                                        // onChange={}
-                                        />
-                                        <TextField
-                                            id="motivo"
-                                            defaultValue="motivo"
-                                            label="Motivo"
-                                            type="text"
-                                        // value={}
-                                        // onChange={}
-                                        />
-                                    </div>
-                                    <div className="calendar-modal-btn-container">
-                                        <Button variant="contained" color="error">
-                                            Cancelar
-                                        </Button>
-                                        <Button variant="contained" color="success">
-                                            Confirmar
-                                        </Button>
-                                    </div>
-                                </>
-                            </BasicModal>
+                            {
+                                usuario.rol.administrador &&
+                                <BasicModal
+                                    titulo="Crear nuevo Feriado"
+                                    nombreBtn="Nuevo Feriado"
+                                >
+                                    <>
+                                        <div className="modal-input-container" >
+                                            <TextField
+                                                id="date"
+                                                label="Fecha"
+                                                defaultValue="2023-02-18"
+                                                type="date"
+                                            // value={}
+                                            // onChange={}
+                                            />
+                                            <TextField
+                                                id="motivo"
+                                                defaultValue="motivo"
+                                                label="Motivo"
+                                                type="text"
+                                            // value={}
+                                            // onChange={}
+                                            />
+                                        </div>
+                                        <div className="calendar-modal-btn-container">
+                                            <Button variant="contained" color="error">
+                                                Cancelar
+                                            </Button>
+                                            <Button variant="contained" color="success">
+                                                Confirmar
+                                            </Button>
+                                        </div>
+                                    </>
+                                </BasicModal>
+                            }
                         </div>
                         <HolidayList>
                             {holidays.map((holiday, index) => (

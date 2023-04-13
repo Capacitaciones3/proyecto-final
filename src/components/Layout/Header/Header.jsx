@@ -12,6 +12,7 @@ import { Avatar } from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { useNavigate } from "react-router-dom";
 import { AutenticacionContext } from "../../../contexts/Autenticacion";
+import LogoutIcon from '@mui/icons-material/Logout';
 // css
 import "./Header.css";
 
@@ -23,7 +24,7 @@ const Header = () => {
   );
 
   const navigate = useNavigate();
-  const { cerrarSesion } = useContext(AutenticacionContext);
+  const { cerrarSesion, usuario } = useContext(AutenticacionContext);
 
   const getTitle = () => {
     const query = new URLSearchParams(window.location.search);
@@ -41,15 +42,15 @@ const Header = () => {
       text: "Cargar Licencias",
       path: "/licencias",
     },
-    {
+    usuario.rol.administrador && {
       icono: <GroupsRoundedIcon color="error" />,
       text: "Administrar Usuarios",
       path: "/usuarios",
     },
     {
       icono: <CalendarTodayRoundedIcon />,
-      text: "Mantenimiento de Calendario",
-      path: "/calendar",
+      text: usuario.rol.administrador ? "Mantenimiento de Calendario" : "Feriados",
+      path: "/calendario",
     },
   ];
   const notificationList = [
@@ -107,7 +108,7 @@ const Header = () => {
                   gap: "20px",
                 }}
               >
-                cerrar sesión
+                <LogoutIcon /> cerrar sesión
               </MenuItem>
             </DropDownMenu>
           </nav>

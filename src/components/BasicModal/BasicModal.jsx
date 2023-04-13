@@ -28,7 +28,7 @@ export default function BasicModal({ titulo, nombreBtn, children }) {
 
   return (
     <div>
-      <Button variant="contained" onClick={handleOpen}>
+      <Button variant="contained" onClick={handleOpen} color="success">
         {nombreBtn}
       </Button>
       <Modal

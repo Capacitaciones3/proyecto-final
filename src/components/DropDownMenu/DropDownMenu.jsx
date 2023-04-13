@@ -42,7 +42,7 @@ const DropDownMenu = ({ name, botonIcono, listItems, children }) => {
           "aria-labelledby": "basic-button",
         }}
       >
-        {listItems.map((el, index) => (
+        {listItems && listItems.map((el, index) => (
           <MenuItem
             key={`${name}-${index}`}
             onClick={() => redirect(el.path, el.text)}
