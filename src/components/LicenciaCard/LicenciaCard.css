@@ -1,3 +1,14 @@
+.contenedor-usuario {
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    gap: 50px;
+    border: 1px solid rgb(206, 206, 206);
+    padding: 20px;
+
+
+}
+
 .usuarioBalance .avatar-contenedor {
     display: flex;
     gap: 10px;
@@ -8,6 +19,28 @@
 .avatar-contenedor div {
     display: flex;
     flex-direction: column;
+}
+
+
+.estado-licencia {
+    width: 100%;
+
+    display: flex;
+    gap: 20px;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.fecha-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+}
+
+.fechasBox-container {
+    display: flex;
+    gap: 30px;
 }
 
 .punto {
