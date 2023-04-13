@@ -21,8 +21,8 @@ function App() {
     <Routes>
     { usuario.isLogged?
     ( <Route path='/' element={<Layout />}>      
-        <Route index element={<DashboardSecundario/>}/>
-        <Route path="dashboard" element={<DashboardSecundario/>}>
+        <Route index element={<DashboardSecundario />}/>
+        <Route path="dashboard" element={<DashboardSecundario />}>
           <Route path=':idLicencia' element={<LicenciaCard/>}/>
         </Route>
         <Route path='licencias' element={<Licencias />} />

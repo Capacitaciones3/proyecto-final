@@ -1,4 +1,4 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -6,30 +6,37 @@
 
 
 
-.contenedorAPIs{
+.contenedorAPIs {
     width: 50%;
-    display:flex; 
-    flex-direction:column;
+    display: flex;
+    flex-direction: column;
     gap: 40px;
 }
 
-.cardLicenciasPorAprobar2{
+.cardLicenciasPorAprobar2 {
     width: 50%;
-    display:flex; 
-    flex-direction:column;
-    border:1px solid grey;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid grey;
     border-radius: 5px;
 }
 
-.titulo2{
+.titulo2 {
     border-bottom: 1px solid grey;
     padding: 10px;
 }
 
-.cardLicenciasProximas2{
+.cardLicenciasProximas2 {
     width: 50%;
-    display:flex; 
-    flex-direction:column;
-    border:1px solid grey;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid grey;
     border-radius: 5px;
+}
+
+.licencia-card-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }

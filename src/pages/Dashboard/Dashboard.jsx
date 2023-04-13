@@ -7,7 +7,6 @@ import NavigationIcon from '@mui/icons-material/Navigation';
 import { Fab, Typography } from '@mui/material';
 import './dashboard.css'
 import { AutenticacionContext } from '../../contexts/Autenticacion';
-import LicenciaCard from '../../components/LicenciaCard/LicenciaCard';
 //import Busqueda from '../Busqueda/Busqueda'
 
 const Dashboard = () => {
@@ -84,7 +83,7 @@ const Dashboard = () => {
         </aside>
       </div>
       <Outlet />
-      <LicenciaCard />
+
     </>
   )
 
