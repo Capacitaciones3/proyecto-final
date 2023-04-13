@@ -57,37 +57,35 @@
 }
 
 .contenedorDos{
-    width:100%;
+    width:50%;
     display:flex;
-    justify-content:flex-start;
-    align-items:center;
+    flex-direction: column;
+    align-content: center;
     padding: 30px;
 }
 
 .contenedorCalendario{
-    width:50%;
+    width:100%;
     display:flex;
-    align-items:center;
-    flex-direction:column;
-    gap:20px;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
 }
 
 .imagenesCalendario{
-    width: 80%;
-    height: 100px;
-    display: flex;
-    justify-content: space-around;
+    width:50%;
+    display:flex;
+    justify-content: center;
+    gap:120px;
+    padding-right: 60px;
 }
 
 .imagenCalendario{
-    width: 35%;
+    width: 300%;
     height: 100px;
-    display: flex;
-    flex-direction: column;
 }
 
 .imgRoja{
-    width: 100%;
     height: 40px;
     background-color: rgb(231, 60, 60);
     border-radius: 10px 10px 0 0;
@@ -96,7 +94,6 @@
 }
 
 .imgBlanca{
-    width: 100%;
     height: 60px;
     border: 1px solid grey;
     border-radius: 0 0 10px 10px;

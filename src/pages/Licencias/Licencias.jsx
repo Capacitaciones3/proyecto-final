@@ -95,8 +95,8 @@ const Licencias = (rol) => {
         <div className='contenedorCinco'>
           <div className='botondeAprobacion'>
           <Link to="/dashboard">
-            <Fab variant="extended" size="medium" color="primary" aria-label="add">
-              <NavigationIcon sx={{ mr: 1 }} icon={<PostAddIcon />} handleData={handleData} /> Solicitar aprobacion
+            <Fab variant="extended" size="medium" color='success' aria-label="add">
+              <NavigationIcon sx={{ mr: 1 }} icon={<PostAddIcon />} handleData={handleData}/> Solicitar aprobacion
             </Fab>
             </Link>
           </div>

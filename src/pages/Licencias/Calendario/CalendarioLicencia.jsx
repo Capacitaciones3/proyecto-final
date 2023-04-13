@@ -1,7 +1,5 @@
-import { Typography } from '@mui/material'
 import React from 'react'
 import '../licencias.css'
-import { useState } from 'react'
 import MiniCalendario from './MiniCalendario'
 
 const CalendarioLicencia = ({
@@ -13,11 +11,18 @@ const CalendarioLicencia = ({
 }) => {
 
   return (
+    <>
     <div className='contenedorCalendario'>
-
-        <MiniCalendario/>  
-
+    <div className='imagenesCalendario'>
+      <div><MiniCalendario/></div>
+      <div><MiniCalendario/></div>
     </div>
+    <div className='fecha'>
+      <div className='diasLaborales'></div>
+      <div className='diasDispo'></div>
+    </div>
+    </div>
+    </>
   )
 }
 

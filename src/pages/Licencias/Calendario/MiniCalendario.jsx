@@ -1,14 +1,15 @@
-import * as React from 'react';
-import Button from '@mui/material/Button';
+import { TextField, Typography } from '@mui/material';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
-import DialogActions from '@mui/material/DialogActions';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
-import Typography from '@mui/material/Typography';
-import { StaticDateTimePicker } from '@mui/x-date-pickers';
+import { LocalizationProvider, StaticDatePicker } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import dayjs from 'dayjs';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -19,13 +20,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   },
 }));
 
-export interface DialogTitleProps {
-  id: string;
-  children?: React.ReactNode;
-  onClose: () => void;
-}
-
-function BootstrapDialogTitle(props: DialogTitleProps) {
+const BootstrapDialogTitle = (props) => {
   const { children, onClose, ...other } = props;
 
   return (
@@ -49,7 +44,13 @@ function BootstrapDialogTitle(props: DialogTitleProps) {
   );
 }
 
-export default function MiniCalendario() {
+BootstrapDialogTitle.propTypes = {
+  children: PropTypes.node,
+  onClose: PropTypes.func.isRequired,
+};
+
+const MiniCalendario = () => {
+  const [value, setValue] = useState();
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -59,35 +60,47 @@ export default function MiniCalendario() {
     setOpen(false);
   };
 
+  const handleDate = (newValue) => {
+    console.log(newValue)
+    const day = newValue.$d.split("")[0];
+  }
+
+
   return (
     <div>
-        <div className='imagenCalendario' onClick={handleClickOpen}>
-        <div className='imgRoja' style={{display:'flex', justifyContent:'center',alignItems:'center'}}>
-            <Typography variant="subtitle2" sx={{color: 'white'}}>mes</Typography>
-        </div>
-        <div className='imgBlanca' style={{display:'flex', justifyContent:'center', flexDirection:'column', alignItems:'center'}}>
-            <Typography variant="subtitle2">num</Typography>
-            <Typography variant="subtitle2">12</Typography>
-        </div>
-        </div> 
-
+      <div className='imagenCalendario' onClick={handleClickOpen}>
+      <div className='imgRoja' style={{display:'flex', justifyContent:'center',alignItems:'center'}}>
+        <Typography variant="subtitle2" sx={{color: 'white'}}>mes</Typography>
+      </div>
+      <div className='imgBlanca' style={{display:'flex', justifyContent:'center', flexDirection:'column', alignItems:'center'}}>
+        <Typography variant="subtitle2">num</Typography>
+        <Typography variant="subtitle2">dia</Typography>
+      </div>
+      </div>
+      <div>
       <BootstrapDialog
-        onClose={handleClose}
         aria-labelledby="customized-dialog-title"
         open={open}
       >
         <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
-          Modal title
+          Calendario
         </BootstrapDialogTitle>
-        <DialogContent dividers> 
-            <h1>Hola mundo</h1>
+        <DialogContent dividers>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <StaticDatePicker 
+            value={value}
+            minDate={dayjs('today')}
+            onChange={(newValue) => handleDate(newValue)}
+            renderInput={(params) => <TextField {...params} />}
+            onClose={handleClose}
+            />
+          </LocalizationProvider>
         </DialogContent>
-        <DialogActions>
-          <Button autoFocus onClick={handleClose}>
-            Save changes
-          </Button>
-        </DialogActions>
       </BootstrapDialog>
     </div>
+    </div>
+  
   );
 }
+
+export default MiniCalendario;

@@ -20,11 +20,11 @@ const SubirArchivo = ({handleData}) => {
           <Typography variant="subtitle1">ARCHIVO ADJUNTO</Typography>
           <Typography variant="subtitle2" onChange={(e)=>{handleMessage(e)}}>No hay archivos adjuntos todavia</Typography>
           <div>
-          <Button variant="contained" component="label" sx={{width:'40%'}}>
+          <Button component="label" sx={{width:'40%'}} color='success' variant='contained'>
             Subir Archivo
             <input hidden accept="image/jpg, image/png" type="file" name='archivo' onChange={(e)=>{handleData(e); handleFile(e)}} />
           </Button>
-          <IconButton color="primary" aria-label="upload picture" component="label">
+          <IconButton aria-label="upload picture" component="label" color='success' variant='contained'>
             <input hidden accept="image/*" type="file" name='archivo' onChange={(e)=>{handleData(e); handleFile(e)}} />
             <PhotoCamera />
           </IconButton>
