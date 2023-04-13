@@ -10,6 +10,7 @@ import PerfilUsuario from "./pages/PerfilUsuario/PerfilUsuario";
 import { AutenticacionContext } from "./contexts/Autenticacion";
 import LicenciaCard from "./components/LicenciaCard/LicenciaCard";
 import DashboardSecundario from "./pages/Dashboard/DashboardSecundario/DashboardSecundario"
+import Dashboard from "./pages/Dashboard/DashboardSecundario/DashboardSecundario";
 
 
 function App() {
@@ -20,8 +21,8 @@ function App() {
     <Routes>
     { usuario.isLogged?
     ( <Route path='/' element={<Layout />}>      
-        <Route index element={<DashboardSecundario />}/>
-        <Route path="dashboard" element={<DashboardSecundario />}>
+        <Route index element={<DashboardSecundario/>}/>
+        <Route path="dashboard" element={<DashboardSecundario/>}>
           <Route path=':idLicencia' element={<LicenciaCard/>}/>
         </Route>
         <Route path='licencias' element={<Licencias />} />

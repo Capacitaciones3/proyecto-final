@@ -50,7 +50,13 @@ BootstrapDialogTitle.propTypes = {
 };
 
 const MiniCalendario = () => {
-  const [value, setValue] = useState();
+
+  const initData = {
+    dia: 'Día',
+    mes: "Mes",
+    numDia: ""
+  }
+  const [value, setValue] = useState(initData);
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -60,21 +66,29 @@ const MiniCalendario = () => {
     setOpen(false);
   };
 
-  const handleDate = (newValue) => {
-    console.log(newValue)
-    const day = newValue.$d.split("")[0];
+  const isoString = (newValue) =>{
+    let onlyDate = newValue.$d.toISOString();
   }
 
+  const handleDate = (newValue) => {
+    console.log(newValue)
+    const dia = newValue.$d.toString().split(" ")[0];
+    const mes = newValue.$d.toString().split(" ")[1];
+    const diaNum = newValue.$D;
+    setValue({dia: dia, mes: mes, diaNum: diaNum});
+  }
+
+  const today = new Date();
 
   return (
     <div>
       <div className='imagenCalendario' onClick={handleClickOpen}>
       <div className='imgRoja' style={{display:'flex', justifyContent:'center',alignItems:'center'}}>
-        <Typography variant="subtitle2" sx={{color: 'white'}}>mes</Typography>
+        <Typography variant="subtitle2" sx={{color: 'white'}}>{value.mes}</Typography>
       </div>
       <div className='imgBlanca' style={{display:'flex', justifyContent:'center', flexDirection:'column', alignItems:'center'}}>
-        <Typography variant="subtitle2">num</Typography>
-        <Typography variant="subtitle2">dia</Typography>
+        <Typography variant="subtitle2">{value.diaNum}</Typography>
+        <Typography variant="subtitle2">{value.dia}</Typography>
       </div>
       </div>
       <div>
@@ -89,8 +103,8 @@ const MiniCalendario = () => {
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <StaticDatePicker 
             value={value}
-            minDate={dayjs('today')}
-            onChange={(newValue) => handleDate(newValue)}
+            minDate={today.getTime()}
+            onChange={handleDate}
             renderInput={(params) => <TextField {...params} />}
             onClose={handleClose}
             />

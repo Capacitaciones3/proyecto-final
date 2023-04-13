@@ -9,7 +9,7 @@ const Layout = () => {
             minHeight: '100vh'
         }}>
             <Header />
-            <main style={{flex: 1, backgroundColor: '#FBFBFB'}}>
+            <main style={{flex: 1, backgroundColor: '#FBFBFB', paddingTop:'64px'}}>
                 <Outlet />
             </main>
             <Footer />

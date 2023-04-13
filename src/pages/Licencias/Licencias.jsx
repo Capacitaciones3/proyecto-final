@@ -8,7 +8,6 @@ import UsuarioAdmin from "../../components/Usuario/Usuario Admin/UsuarioAdmin"
 import {Fab, Typography} from '@mui/material'
 import PostAddIcon from '@mui/icons-material/PostAdd';
 import NavigationIcon from '@mui/icons-material/Navigation';
-import CardUser from '../../components/Cards/CardUser/CardUser'
 import {getLicencias } from '../../services/licenciaServices'
 import CalendarioLicencia from './Calendario/CalendarioLicencia'
 import Estado from './Estado/Estado'
@@ -49,7 +48,7 @@ const Licencias = (rol) => {
     <>
     <div style={{width:'100vw', maxWidth:'100%', minHeight: '100vh', display:'flex', gap:'25px', justifyContent:'center', padding:'50px 0', flexWrap:'wrap'}}>
 
-    <form style={{width:'70%', display:'flex', flexDirection:'column'}} onSubmit={handleSubmit}>
+    <form style={{width:'70%', display:'flex', flexDirection:'column'}} onSubmit={handleSubmit} required>
 
       <section className='contenedorUsuario'>
         <div className='usuarioBalance'>

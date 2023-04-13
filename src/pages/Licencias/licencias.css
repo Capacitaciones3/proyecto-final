@@ -108,6 +108,8 @@
 .diasLaborales{
     width: 100%;
     display: flex;
+    padding: 5px;
+    justify-content: center;
     border: 1px solid grey;
     border-radius: 10px 0 0 10px;
 }
@@ -115,8 +117,10 @@
 .diasDispo{
     width: 100%;
     display: flex;
+    padding: 5px;
     border: 1px solid grey;
     border-radius: 0px 10px 10px 0px;
+    justify-content: center;
 }
 
 .contenedorTres{

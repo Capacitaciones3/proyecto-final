@@ -6,6 +6,7 @@ import {AutenticacionProvider} from './contexts/Autenticacion';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import 'dayjs/locale/es';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -20,7 +21,7 @@ const queryClient = new QueryClient({
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <QueryClientProvider client={queryClient}>
-      <LocalizationProvider dateAdapter={AdapterDayjs} language='es'>
+      <LocalizationProvider dateAdapter={AdapterDayjs} locale={'es'}>
       <AutenticacionProvider>
         <App />
       </AutenticacionProvider>
