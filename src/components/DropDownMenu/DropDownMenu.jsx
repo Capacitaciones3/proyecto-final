@@ -3,12 +3,12 @@ import Menu from "@mui/material/Menu";
 import IconButton from "@mui/material/IconButton";
 import MenuItem from "@mui/material/MenuItem";
 
-const DropDownMenu = ({ name, botonIcono, listItems }) => {
+const DropDownMenu = ({ name, botonIcono, listItems, children }) => {
   const [anchorEl, setAnchorEl] = useState(null);
 
   const redirect = (path, title) => {
-    window.location.href = `${path}?title=${title.toUpperCase()}`
-  }
+    window.location.href = `${path}?title=${title.toUpperCase()}`;
+  };
 
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -49,11 +49,13 @@ const DropDownMenu = ({ name, botonIcono, listItems }) => {
             sx={{
               display: "flex",
               gap: "20px",
+              minWidth: "200px",
             }}
           >
             {el.icono} {el.text}
           </MenuItem>
         ))}
+        {children}
       </Menu>
     </>
   );

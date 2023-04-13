@@ -1,16 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import BarChartIcon from "@mui/icons-material/BarChart";
 import CalendarTodayRoundedIcon from "@mui/icons-material/CalendarTodayRounded";
 import GroupsRoundedIcon from "@mui/icons-material/GroupsRounded";
-import DropDownMenu from "../../DropDownMenu/DropDownMenu"
+import DropDownMenu from "../../DropDownMenu/DropDownMenu";
 import MenuItem from "@mui/material/MenuItem";
 import MenuIcon from "@mui/icons-material/Menu";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import { Avatar } from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-
+import { useNavigate } from "react-router-dom";
+import { AutenticacionContext } from "../../../contexts/Autenticacion";
 // css
 import "./Header.css";
 
@@ -21,32 +22,34 @@ const Header = () => {
     </Avatar>
   );
 
-  const getTitle = () => {
-    const query = new URLSearchParams(window.location.search)
-    return query.get("title");
+  const navigate = useNavigate();
+  const { cerrarSesion } = useContext(AutenticacionContext);
 
-  }
+  const getTitle = () => {
+    const query = new URLSearchParams(window.location.search);
+    return query.get("title");
+  };
 
   const itemListHam = [
     {
       icono: <BarChartIcon color="primary" />,
       text: "Dashboard",
-      path: '/dashboard'
+      path: "/dashboard",
     },
     {
       icono: <CalendarTodayRoundedIcon />,
       text: "Cargar Licencias",
-      path: '/licencias'
+      path: "/licencias",
     },
     {
       icono: <GroupsRoundedIcon color="error" />,
       text: "Administrar Usuarios",
-      path: '/usuarios'
+      path: "/usuarios",
     },
     {
       icono: <CalendarTodayRoundedIcon />,
       text: "Mantenimiento de Calendario",
-      path: '/calendar'
+      path: "/calendar",
     },
   ];
   const notificationList = [
@@ -64,43 +67,49 @@ const Header = () => {
     },
   ];
 
+  // El perfil tendria que traer la data de mi perfil
+  // Hay que tener por params el id o algo asi
   const userList = [
     {
-      icono: <BarChartIcon />,
-      text: "Dashboard",
-    },
-    {
-      icono: <CalendarTodayRoundedIcon />,
-      text: "Cargar licencias",
-    },
-    {
-      icono: <CalendarTodayRoundedIcon />,
-      text: "Administrar usuarios",
+      icono: <AccountCircleIcon />,
+      text: "Perfil",
+      path: "/perfil",
     },
   ];
+
+  const handleSession = () => {
+    cerrarSesion();
+    navigate("/login");
+  };
 
   return (
     <>
       <AppBar position="fixed" color="transparent">
-
         <Toolbar sx={{ backgroundColor: "white" }}>
           <DropDownMenu
             name="ham"
             botonIcono={<MenuIcon />}
             listItems={itemListHam}
           />
-          <h2 style={{ width: '100%', textAlign: 'center' }}>{getTitle()}</h2>
+          <h2 style={{ width: "100%", textAlign: "center" }}>{getTitle()}</h2>
           <nav className="nav-header">
             <DropDownMenu
               name="notification"
               botonIcono={<NotificationsIcon />}
               listItems={notificationList}
             />
-            <DropDownMenu
-              name="user"
-              botonIcono={avatar}
-              listItems={userList}
-            />
+            {/* aca tenemos que poner un item personalizado para cerrar sesion ya que se comporta distinto al resto de items que solo redirije */}
+            <DropDownMenu name="user" botonIcono={avatar} listItems={userList}>
+              <MenuItem
+                onClick={() => handleSession()}
+                sx={{
+                  display: "flex",
+                  gap: "20px",
+                }}
+              >
+                cerrar sesión
+              </MenuItem>
+            </DropDownMenu>
           </nav>
         </Toolbar>
       </AppBar>
@@ -109,8 +118,6 @@ const Header = () => {
 };
 
 export default Header;
-
-
 
 // import React, { useState } from "react";
 // import AppBar from "@mui/material/AppBar";
