@@ -32,6 +32,7 @@ const Licencias = (rol) => {
       })
     })
   }
+  console.log(data)
 
   // Crear logica dentro de la funcion para guardar el nombre y valor de los campos del componente
 
@@ -72,7 +73,7 @@ const Licencias = (rol) => {
         </div>
 
         <div className='contenedorDos'>
-          <CalendarioLicencia handleData={handleData}/>
+          <CalendarioLicencia setData={setData} data={data}/>
         </div>
 
         <div className='contenedorTres'>

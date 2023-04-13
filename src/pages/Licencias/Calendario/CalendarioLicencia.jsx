@@ -3,31 +3,26 @@ import '../licencias.css'
 import MiniCalendario from './MiniCalendario'
 import { Typography } from '@mui/material'
 
-const CalendarioLicencia = ({
-  dia,
-  num,
-  mes,
-  diasLaborales,
-  diasDispo
-}) => {
+const initData = {
+  diasLabo: 'Días laborales',
+  diasDispo: "Días disponibles",
+}
 
-   const initData = {
-    diasLabo: 'Días laborales',
-    diasDispo: "Días disponibles",
-  }
+const CalendarioLicencia = ({
+ setData, data
+}) => {
 
   const [dias, setDias] = useState(initData);
 
-  const handleDias = (value) => {
-    console.log(value)
+  const handleFecha = (date, name) => {
+    setData({...data, [name]: date})
   }
-
   return (
     <>
     <div className='contenedorCalendario'>
     <div className='imagenesCalendario'>
-      <div><MiniCalendario /></div>
-      <div><MiniCalendario/></div>
+      <div><MiniCalendario handleFecha={handleFecha} name="startDate"/></div>
+      <div><MiniCalendario handleFecha={handleFecha} name="endDate"/></div>
     </div>
     <div className='fecha'>
       <div className='diasLaborales'>

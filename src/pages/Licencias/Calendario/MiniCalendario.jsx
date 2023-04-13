@@ -1,4 +1,4 @@
-import { TextField, Typography } from '@mui/material';
+import { Box, TextField, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
@@ -49,7 +49,7 @@ BootstrapDialogTitle.propTypes = {
   onClose: PropTypes.func.isRequired,
 };
 
-const MiniCalendario = () => {
+const MiniCalendario = ({handleFecha, name}) => {
 
   const initData = {
     dia: 'Día',
@@ -66,19 +66,15 @@ const MiniCalendario = () => {
     setOpen(false);
   };
 
-  const isoString = (newValue) =>{
-    let onlyDate = newValue.$d.toISOString();
-  }
-
-  const handleDate = (newValue) => {
+  const handleDate = (newValue, name) => {
     console.log(newValue)
     const dia = newValue.$d.toString().split(" ")[0];
     const mes = newValue.$d.toString().split(" ")[1];
     const diaNum = newValue.$D;
     setValue({dia: dia, mes: mes, diaNum: diaNum});
+    console.log(dia, mes, diaNum)
+    handleFecha({dia: dia, mes: mes, diaNum: diaNum}, name)
   }
-
-  const today = new Date();
 
   return (
     <div>
@@ -103,8 +99,8 @@ const MiniCalendario = () => {
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <StaticDatePicker 
             value={value}
-            minDate={today.getTime()}
-            onChange={handleDate}
+            disablePast
+            onChange={(date) => handleDate(date, name)}
             renderInput={(params) => <TextField {...params} />}
             onClose={handleClose}
             />
