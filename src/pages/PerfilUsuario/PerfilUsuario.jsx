@@ -12,9 +12,60 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import "./PerfilUsuario.css";
 
 const PerfilUsuario = () => {
+  // El objeto va a estar vacio, ahora esta lleno porque es de prueba pero es para que tenga las keys
+  const initData = {
+    name: "joa",
+    lastname: "par",
+    dni: "39054656",
+    date: "1996-02-18",
+    ciul: "339999999",
+    password: "password",
+    admissionDate: "1996-02-18",
+    email: "joa@par",
+    telephone: "1132328090",
+    street: "calle joa",
+    streetNumber: "123",
+    postalCode: "1223",
+    tower: "1",
+    floor: "3",
+    apartment: "12",
+    location: "Capital",
+    province: "Buenos aires",
+    country: "Argentina",
+    holiday: 12,
+    idAdmin: false,
+    supervisorId: 3,
+  };
+  const [isNew, setIsNew] = useState(true);
+  const [userInfo, setUserInfo] = useState({});
+  const [rePassword, setRePassword] = useState(userInfo.password);
+
+  useEffect(() => {
+    // si es true traemos los datos del usuario desde llamando a una funcion en service
+    isNew && setUserInfo({ ...initData });
+  }, []);
+
+  const handleChange = (e, inputName) => {
+    const info = userInfo;
+    info[inputName] = e.value;
+    setUserInfo({ ...info });
+  };
+
+  const handleSubmit = () => {
+    // si es nuevo llamamos a metodo saveUser en service POST()
+    if (isNew) {
+      // saveUser(userInfo);
+    }
+    // Si no es nuevo tenemos que hacer un update (PUT)
+    else {
+      // updateUser();
+    }
+  };
+
   return (
     <Container
       sx={{
@@ -23,7 +74,7 @@ const PerfilUsuario = () => {
         border: "0.9px solid #D8D8D8",
       }}
     >
-      <Box component="form">
+      <Box component="form" width={"100%"}>
         <Box p={3}>
           <Typography color="error.light" variant="h4">
             Mi perfil
@@ -32,25 +83,37 @@ const PerfilUsuario = () => {
         </Box>
         <Box
           sx={{
-            width: "800px",
+            width: "100%",
+            maxWidth: "800px",
             display: "flex",
             flexWrap: "nowrap",
-            alignItems: "center",
+            // alignItems: "center",
             justifyContent: "space-between",
           }}
         >
           <img
             width={200}
+            height={200}
             src="https://indiehoy.com/wp-content/uploads/2020/06/Keanu-Reeves.jpg"
             alt=""
           />
-          <Box sx={{ ml: 5 }}>
+          <Box
+            sx={{
+              ml: 5,
+              display: "flex",
+              flexWrap: "wrap",
+              width: "100%",
+              flexDirection: "row",
+            }}
+          >
             <TextField
               sx={{ m: 2 }}
               id="nombre"
               label="Nombre"
               type="text"
               variant="outlined"
+              value={userInfo.name}
+              onChange={(e) => handleChange(e, "name")}
             />
             <TextField
               sx={{ m: 2 }}
@@ -58,6 +121,8 @@ const PerfilUsuario = () => {
               label="nueva password"
               type="password"
               variant="outlined"
+              value={userInfo.password}
+              onChange={(e) => handleChange(e, "password")}
             />
             <TextField
               sx={{ m: 2 }}
@@ -65,6 +130,8 @@ const PerfilUsuario = () => {
               label="Apellido"
               type="text"
               variant="outlined"
+              value={userInfo.lastname}
+              onChange={(e) => handleChange(e, "lastname")}
             />
             <TextField
               sx={{ m: 2 }}
@@ -72,11 +139,13 @@ const PerfilUsuario = () => {
               label="repetir password"
               type="password"
               variant="outlined"
+              value={rePassword}
+              onChange={(e) => setRePassword(e.value)}
             />
           </Box>
         </Box>
         {/* //Primer acordion de datos */}
-        <Accordion sx={{ mb: 3 }}>
+        <Accordion sx={{ mb: 3 }} defaultExpanded="true">
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1a-content"
@@ -87,7 +156,7 @@ const PerfilUsuario = () => {
           <AccordionDetails>
             <Box>
               <TextField
-                sx={{ m: 2, width: "200px" }}
+                sx={{ m: 2, width: "220px" }}
                 id="supervisor"
                 displayEmpty
                 select
@@ -105,7 +174,7 @@ const PerfilUsuario = () => {
                 </MenuItem>
               </TextField>
               <TextField
-                sx={{ m: 2 }}
+                sx={{ m: 2, width: "220px" }}
                 id="fechaNacimiento"
                 label="Fecha Nacimiento"
                 type="date"
@@ -113,17 +182,21 @@ const PerfilUsuario = () => {
               />
 
               <TextField
-                sx={{ m: 2 }}
+                sx={{ m: 2, width: "220px" }}
                 id="fechaingreso"
                 label="Fecha Ingreso"
                 type="date"
                 variant="outlined"
+                value={userInfo.date}
+                onChange={(e) => handleChange(e, "date")}
               />
               <TextField
                 sx={{ m: 2 }}
                 id="dni"
                 label="DNI"
                 variant="outlined"
+                value={userInfo.dni}
+                onChange={(e) => handleChange(e, "dni")}
               />
               <TextField
                 sx={{ m: 2 }}
@@ -131,12 +204,16 @@ const PerfilUsuario = () => {
                 label="CUIL"
                 type="text"
                 variant="outlined"
+                value={userInfo.ciul}
+                onChange={(e) => handleChange(e, "ciul")}
               />
               <TextField
                 sx={{ m: 2 }}
                 id="telefono"
                 label="Telefono"
                 variant="outlined"
+                value={userInfo.telephone}
+                onChange={(e) => handleChange(e, "telephone")}
               />
               <TextField
                 sx={{ m: 2 }}
@@ -144,6 +221,8 @@ const PerfilUsuario = () => {
                 label="Correo electronico"
                 type="email"
                 variant="outlined"
+                value={userInfo.email}
+                onChange={(e) => handleChange(e, "email")}
               />
             </Box>
           </AccordionDetails>
@@ -164,24 +243,32 @@ const PerfilUsuario = () => {
                 id="calle"
                 label="Calle"
                 variant="outlined"
+                value={userInfo.street}
+                onChange={(e) => handleChange(e, "street")}
               />
               <TextField
                 sx={{ m: 2 }}
                 id="altura"
                 label="Altura"
                 variant="outlined"
+                value={userInfo.streetNumber}
+                onChange={(e) => handleChange(e, "streetNumber")}
               />
               <TextField
                 sx={{ m: 2 }}
                 id="codig opostal"
                 label="Codigo postal"
                 variant="outlined"
+                value={userInfo.postalCode}
+                onChange={(e) => handleChange(e, "postalCode")}
               />
               <TextField
                 sx={{ m: 2 }}
                 id="torre"
                 label="Torre"
                 variant="outlined"
+                value={userInfo.tower}
+                onChange={(e) => handleChange(e, "tower")}
               />
               <TextField
                 sx={{ m: 2 }}
@@ -194,30 +281,40 @@ const PerfilUsuario = () => {
                 id="departamento"
                 label="Departamento"
                 variant="outlined"
+                value={userInfo.apartment}
+                onChange={(e) => handleChange(e, "apartment")}
               />
               <TextField
                 sx={{ m: 2 }}
                 id="localidad"
                 label="Localidad"
                 variant="outlined"
+                value={userInfo.location}
+                onChange={(e) => handleChange(e, "location")}
               />
               <TextField
                 sx={{ m: 2 }}
                 id="provincia"
                 label="Provincia"
                 variant="outlined"
+                value={userInfo.province}
+                onChange={(e) => handleChange(e, "province")}
               />
               <TextField
                 sx={{ m: 2 }}
                 id="pais"
                 label="Pais"
                 variant="outlined"
+                value={userInfo.country}
+                onChange={(e) => handleChange(e, "country")}
               />
               <TextField
                 sx={{ m: 2 }}
                 id="diasVacaciones"
                 label="Dias Vacaciones"
                 variant="outlined"
+                value={userInfo.holiday}
+                onChange={(e) => handleChange(e, "holiday")}
               />
             </Box>
           </AccordionDetails>
