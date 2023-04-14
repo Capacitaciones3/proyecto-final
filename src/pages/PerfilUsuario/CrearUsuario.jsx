@@ -41,11 +41,10 @@ const CrearUsuario = () => {
         marginTop: "30px",
         display: "flex",
         border: "0.9px solid #D8D8D8",
-      }}
-    >
-      <Box component="form">
+      }}>
+      <Box component='form'>
         <Box p={3}>
-          <Typography color="error.light" variant="h4">
+          <Typography color='error.light' variant='h4'>
             Nuevo Usuario
           </Typography>
           <Divider></Divider>
@@ -57,56 +56,54 @@ const CrearUsuario = () => {
             flexWrap: "nowrap",
             alignItems: "center",
             justifyContent: "space-between",
-          }}
-        >
+          }}>
           <input
             hidden
-            accept="image/*"
-            id="contained-button-file"
+            accept='image/*'
+            id='contained-button-file'
             multiple={false}
-            type="file"
+            type='file'
             onChange={handleImageChange}
           />
-          <label htmlFor="contained-button-file">
+          <label htmlFor='contained-button-file'>
             <Button
               sx={{ margin: "5px" }}
-              variant="contained"
-              color="primary"
-              component="span"
-            >
+              variant='contained'
+              color='primary'
+              component='span'>
               Subir Imagen
             </Button>
           </label>
-          {image && <img src={image} alt="Usuario" width={150} />}
+          {image && <img src={image} alt='Usuario' width={150} />}
 
           <Box sx={{ ml: 5 }}>
             <TextField
               sx={{ m: 2 }}
-              id="nombre"
-              label="Nombre"
-              type="text"
-              variant="outlined"
+              id='nombre'
+              label='Nombre'
+              type='text'
+              variant='outlined'
             />
             <TextField
               sx={{ m: 2 }}
-              id="password"
-              label="nueva password"
-              type="password"
-              variant="outlined"
+              id='password'
+              label='nueva password'
+              type='password'
+              variant='outlined'
             />
             <TextField
               sx={{ m: 2 }}
-              id="apellido"
-              label="Apellido"
-              type="text"
-              variant="outlined"
+              id='apellido'
+              label='Apellido'
+              type='text'
+              variant='outlined'
             />
             <TextField
               sx={{ m: 2 }}
-              id="passwordRepetida"
-              label="repetir password"
-              type="password"
-              variant="outlined"
+              id='passwordRepetida'
+              label='repetir password'
+              type='password'
+              variant='outlined'
             />
           </Box>
         </Box>
@@ -114,71 +111,69 @@ const CrearUsuario = () => {
         <Accordion sx={{ mb: 3 }}>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1a-content"
-            id="panel1a-header"
-          >
+            aria-controls='panel1a-content'
+            id='panel1a-header'>
             <Typography>Ver más datos</Typography>
           </AccordionSummary>
           <AccordionDetails>
             <Box>
               <TextField
                 sx={{ m: 2, width: "200px" }}
-                id="supervisor"
+                id='supervisor'
                 displayEmpty
                 select
-                label="Bajo supervision de:"
-                variant="filled"
-              >
-                <MenuItem key="1" value="Administrador">
+                label='Bajo supervision de:'
+                variant='filled'>
+                <MenuItem key='1' value='Administrador'>
                   Administrador
                 </MenuItem>
-                <MenuItem key="2" value="Tincho">
+                <MenuItem key='2' value='Tincho'>
                   Tincho
                 </MenuItem>
-                <MenuItem key="3" value="Laura">
+                <MenuItem key='3' value='Laura'>
                   Laura
                 </MenuItem>
               </TextField>
               <TextField
                 sx={{ m: 2 }}
-                id="fechaNacimiento"
-                label="Fecha Nacimiento"
-                type="date"
-                variant="outlined"
+                id='fechaNacimiento'
+                label='Fecha Nacimiento'
+                type='date'
+                variant='outlined'
               />
 
               <TextField
                 sx={{ m: 2 }}
-                id="fechaingreso"
-                label="Fecha Ingreso"
-                type="date"
-                variant="outlined"
+                id='fechaingreso'
+                label='Fecha Ingreso'
+                type='date'
+                variant='outlined'
               />
               <TextField
                 sx={{ m: 2 }}
-                id="dni"
-                label="DNI"
-                variant="outlined"
+                id='dni'
+                label='DNI'
+                variant='outlined'
               />
               <TextField
                 sx={{ m: 2 }}
-                id="cuil"
-                label="CUIL"
-                type="text"
-                variant="outlined"
+                id='cuil'
+                label='CUIL'
+                type='text'
+                variant='outlined'
               />
               <TextField
                 sx={{ m: 2 }}
-                id="telefono"
-                label="Telefono"
-                variant="outlined"
+                id='telefono'
+                label='Telefono'
+                variant='outlined'
               />
               <TextField
                 sx={{ m: 2 }}
-                id="correo"
-                label="Correo electronico"
-                type="email"
-                variant="outlined"
+                id='correo'
+                label='Correo electronico'
+                type='email'
+                variant='outlined'
               />
             </Box>
           </AccordionDetails>
@@ -187,72 +182,71 @@ const CrearUsuario = () => {
         <Accordion>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1a-content"
-            id="panel1a-header"
-          >
+            aria-controls='panel1a-content'
+            id='panel1a-header'>
             <Typography>Datos personales</Typography>
           </AccordionSummary>
           <AccordionDetails>
             <Box>
               <TextField
                 sx={{ m: 2 }}
-                id="calle"
-                label="Calle"
-                variant="outlined"
+                id='calle'
+                label='Calle'
+                variant='outlined'
               />
               <TextField
                 sx={{ m: 2 }}
-                id="altura"
-                label="Altura"
-                variant="outlined"
+                id='altura'
+                label='Altura'
+                variant='outlined'
               />
               <TextField
                 sx={{ m: 2 }}
-                id="codig opostal"
-                label="Codigo postal"
-                variant="outlined"
+                id='codig opostal'
+                label='Codigo postal'
+                variant='outlined'
               />
               <TextField
                 sx={{ m: 2 }}
-                id="torre"
-                label="Torre"
-                variant="outlined"
+                id='torre'
+                label='Torre'
+                variant='outlined'
               />
               <TextField
                 sx={{ m: 2 }}
-                id="piso"
-                label="Piso"
-                variant="outlined"
+                id='piso'
+                label='Piso'
+                variant='outlined'
               />
               <TextField
                 sx={{ m: 2 }}
-                id="departamento"
-                label="Departamento"
-                variant="outlined"
+                id='departamento'
+                label='Departamento'
+                variant='outlined'
               />
               <TextField
                 sx={{ m: 2 }}
-                id="localidad"
-                label="Localidad"
-                variant="outlined"
+                id='localidad'
+                label='Localidad'
+                variant='outlined'
               />
               <TextField
                 sx={{ m: 2 }}
-                id="provincia"
-                label="Provincia"
-                variant="outlined"
+                id='provincia'
+                label='Provincia'
+                variant='outlined'
               />
               <TextField
                 sx={{ m: 2 }}
-                id="pais"
-                label="Pais"
-                variant="outlined"
+                id='pais'
+                label='Pais'
+                variant='outlined'
               />
               <TextField
                 sx={{ m: 2 }}
-                id="diasVacaciones"
-                label="Dias Vacaciones"
-                variant="outlined"
+                id='diasVacaciones'
+                label='Dias Vacaciones'
+                variant='outlined'
               />
               <FormControlLabel
                 sx={{ margin: "20px" }}
@@ -263,8 +257,7 @@ const CrearUsuario = () => {
                     inputProps={{ "aria-label": "controlled" }}
                   />
                 }
-                label="Administrador"
-              ></FormControlLabel>
+                label='Administrador'></FormControlLabel>
             </Box>
           </AccordionDetails>
         </Accordion>
@@ -274,9 +267,8 @@ const CrearUsuario = () => {
             padding: "20px",
             margin: "10px",
             justifyContent: "end",
-          }}
-        >
-          <Button variant="contained" color="primary">
+          }}>
+          <Button variant='contained' color='primary'>
             Crear
             <ArrowForwardIcon></ArrowForwardIcon>
           </Button>
