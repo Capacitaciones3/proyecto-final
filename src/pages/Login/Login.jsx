@@ -5,6 +5,7 @@ import TextField from '@mui/material/TextField';
 import { Button } from '@mui/material';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { postLogin } from "../../services/loginServices"
+import { useNavigate } from 'react-router';
 
 const Login = () => {
 
@@ -12,30 +13,18 @@ const Login = () => {
 
   const { iniciarSesion } = useContext(AutenticacionContext);
 
-  async function postData(url = '', data = {}) {
-    const response = await fetch(url, {
-      method: 'POST',
-      mode: 'cors',
-      cache: 'no-cache',
-      credentials: 'same-origin',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      redirect: 'follow',
-      referrerPolicy: 'no-referrer',
-      body: JSON.stringify(data)
-    })
-    return response.json();
-  }
+  const navigate = useNavigate()
 
   const handleSubmit = () => {
     let username = document.getElementById("user").value;
     let password = document.getElementById("password").value;
 
     postLogin({ username: username, password: password })
-      .then(data => console.log(data))
-
-
+      .then(data => {
+        iniciarSesion(data.id, "123fsdf", "administrador")
+        navigate("/dashboard")
+      }
+      )
 
   }
 

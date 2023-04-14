@@ -13,25 +13,25 @@ import DashboardSecundario from "./pages/Dashboard/DashboardSecundario/Dashboard
 
 
 function App() {
-  const { usuario } = useContext(AutenticacionContext);
+  const { usuario, isLogged } = useContext(AutenticacionContext);
 
   return (
     <BrowserRouter>
-    <Routes>
-    { usuario.isLogged?
-    ( <Route path='/' element={<Layout />}>      
-        <Route index element={<DashboardSecundario />}/>
-        <Route path="dashboard" element={<DashboardSecundario />}>
-          <Route path=':idLicencia' element={<LicenciaCard/>}/>
-        </Route>
-        <Route path='licencias' element={<Licencias />} />
-        { usuario.rol.administrador &&
-        <Route path='usuarios' element={<AdminUsuarios />} />
-        }
-        <Route path='calendario' element={<Calendario />} />
-        <Route path='perfil' element={<PerfilUsuario />} />
-      </Route> )
-    : (<Route path="login" element={<Login/>} />)}
+      <Routes>
+        {isLogged ?
+          (<Route path='/' element={<Layout />}>
+            <Route index element={<DashboardSecundario />} />
+            <Route path="dashboard" element={<DashboardSecundario />}>
+              <Route path=':idLicencia' element={<LicenciaCard />} />
+            </Route>
+            <Route path='licencias' element={<Licencias />} />
+            {usuario.rol &&
+              <Route path='usuarios' element={<AdminUsuarios />} />
+            }
+            <Route path='calendario' element={<Calendario />} />
+            <Route path='perfil' element={<PerfilUsuario />} />
+          </Route>)
+          : (<Route path="login" element={<Login />} />)}
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
