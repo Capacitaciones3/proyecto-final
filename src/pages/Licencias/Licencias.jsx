@@ -1,112 +1,139 @@
-import React, {useEffect, useState } from 'react'
-import "./licencias.css"
-import SubirArchivo from './SubirArchivo/SubirArchivo'
-import TipodeLicencia from './TipodeLicencia/TipodeLicencia'
-import Descripcion from './Descripcion/Descripcion'
-import Usuario from '../../components/Usuario/Usuario'
-import UsuarioAdmin from "../../components/Usuario/Usuario Admin/UsuarioAdmin"
-import {Fab, Typography} from '@mui/material'
-import PostAddIcon from '@mui/icons-material/PostAdd';
-import NavigationIcon from '@mui/icons-material/Navigation';
-import {getLicencias } from '../../services/licenciaServices'
-import CalendarioLicencia from './Calendario/CalendarioLicencia'
-import Estado from './Estado/Estado'
+import React, { useEffect, useState } from "react";
+import "./licencias.css";
+import Usuario from "../../components/Usuario/Usuario";
+import Estado from "./Estado/Estado";
+import SubirArchivo from "./SubirArchivo/SubirArchivo";
+import CalendarioLicencia from "./Calendarios/CalendarioLicencia";
+import TipodeLicencia from "./TipodeLicencia/TipodeLicencia";
+import Descripcion from "./Descripcion/Descripcion";
+import UsuarioAdmin from "../../components/Usuario/Usuario Admin/UsuarioAdmin";
+import PostAddIcon from "@mui/icons-material/PostAdd";
+import NavigationIcon from "@mui/icons-material/Navigation";
+import { Fab, Typography } from "@mui/material";
+import { getLicencias } from "../../services/licenciaServices";
 import { Link } from "react-router-dom";
 
-
 const Licencias = (rol) => {
- 
+  // Esto es para el estado general de la licencia que se envia a BD
   const [licencias, setLicencias] = useState([]);
-  useEffect(() => {
-  getLicencias().then((data) => {console.log(data); setLicencias(data)})
-  }, [])
-
-  const datos = licencias.map((licencia) => <UsuarioAdmin avatar={licencia.avatar} name={licencia.name}/> )
-
-
+  // Esto es para obtener toda la data de cada uno de los inputs cuando se modifican
   const [data, setData] = useState({});
+
+  // Para obtener la data de la BD de las licencias ya existentes
+  useEffect(() => {
+    getLicencias().then((data) => {
+      console.log(data);
+      setLicencias(data);
+    });
+  }, []);
+
+  // Esto está momentáneo hasta renderizar al admin que viene con el usuario
+  const datos = licencias.map((licencia) => (
+    <UsuarioAdmin avatar={licencia.avatar} name={licencia.name} />
+  )); // !!
+
+  // Actualiza el estado de la data input por input
+  // menos el calendario porque no recibe un evento como parámetro!
   const handleData = (e) => {
-    setData((old)=>{
-      return ({
-        ...old, [e.target.name]:e.target.value
-      })
-    })
-  }
-  console.log(data)
+    setData((old) => {
+      return {
+        ...old,
+        [e.target.name]: e.target.value, // guardar el nombre del input y su valor
+      };
+    });
+  };
+  console.log(data);
 
-  // Crear logica dentro de la funcion para guardar el nombre y valor de los campos del componente
-
-
-
-  // Crear la funcion onSubmit para enviar la info del formulario
-
+  // ENVIO LA DATA DEL FORMULARIO ! conectar con el boton de enviar solicitud, crear axios post
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(data)
-  }
+    console.log(data);
+  };
 
   return (
     <>
-    <div style={{width:'100vw', maxWidth:'100%', minHeight: '100vh', display:'flex', gap:'25px', justifyContent:'center', padding:'50px 0', flexWrap:'wrap'}}>
-
-    <form style={{width:'70%', display:'flex', flexDirection:'column'}} onSubmit={handleSubmit} required>
-
-      <section className='contenedorUsuario'>
-        <div className='usuarioBalance'>
-          <div><Usuario handleData={handleData} /></div>
-          <div><Typography variant="subtitle1">BALANCE ACTUAL:</Typography></div>
-        </div>
-        <div className='estadoLicencia'>
-          <Estado/>
-        </div>
-      </section>
-
-      <section className='contenedorDescripcion'>
-
-        <div className='contenedorUno'>
-          <div className='licencia'> 
-            <TipodeLicencia handleData={handleData}/>
-          </div>
-          <div className='archivo' style={{width:'50%'}}>
-            <SubirArchivo handleData={handleData}/>
-          </div>
-        </div>
-
-        <div className='contenedorDos'>
-          <CalendarioLicencia setData={setData} data={data}/>
-        </div>
-
-        <div className='contenedorTres'>
-          <Descripcion handleData={handleData}/>
-        </div>
-      </section>
-
-        <section className='contenedorAprobacion'>
-
-        <div className='contenedorCuatro'>
-          <div className='administrador'>
-            <Typography variant="subtitle1"> APROBACION A CARGO DE: </Typography>
-            <div>
-             {datos[1]}
+      <div
+        style={{
+          width: "100vw",
+          maxWidth: "100%",
+          minHeight: "100vh",
+          display: "flex",
+          gap: "25px",
+          justifyContent: "center",
+          padding: "50px 0",
+          flexWrap: "wrap",
+        }}>
+        <form
+          style={{ width: "70%", display: "flex", flexDirection: "column" }}
+          onSubmit={handleSubmit}
+          required>
+          <section className='contenedorUsuario'>
+            <div className='usuarioBalance'>
+              <div>
+                <Usuario handleData={handleData} />
+              </div>
+              <div>
+                <Typography variant='subtitle1'>BALANCE ACTUAL:</Typography>
+              </div>
             </div>
-          </div>
-        </div>
+            <div className='estadoLicencia'>
+              <Estado />
+            </div>
+          </section>
 
-        <div className='contenedorCinco'>
-          <div className='botondeAprobacion'>
-          <Link to="/dashboard">
-            <Fab variant="extended" size="medium" color='success' aria-label="add">
-              <NavigationIcon sx={{ mr: 1 }} icon={<PostAddIcon />} handleData={handleData}/> Solicitar aprobacion
-            </Fab>
-            </Link>
-          </div>
-        </div>
-      </section>
-    </form>
-    </div>
+          <section className='contenedorDescripcion'>
+            <div className='contenedorUno'>
+              <div className='licencia'>
+                <TipodeLicencia handleData={handleData} />
+              </div>
+              <div className='archivo' style={{ width: "50%" }}>
+                <SubirArchivo handleData={handleData} />
+              </div>
+            </div>
+
+            <div className='contenedorDos'>
+              <CalendarioLicencia setData={setData} data={data} />
+            </div>
+
+            <div className='contenedorTres'>
+              <Descripcion handleData={handleData} />
+            </div>
+          </section>
+
+          <section className='contenedorAprobacion'>
+            <div className='contenedorCuatro'>
+              <div className='administrador'>
+                <Typography variant='subtitle1'>
+                  APROBACION A CARGO DE:
+                </Typography>
+                <div>{datos[1]}</div>
+              </div>
+            </div>
+
+            <div className='contenedorCinco'>
+              <div className='botondeAprobacion'>
+                <Link to='/dashboard'>
+                  <Fab
+                    variant='extended'
+                    size='medium'
+                    color='success'
+                    aria-label='add'>
+                    <NavigationIcon
+                      sx={{ mr: 1 }}
+                      icon={<PostAddIcon />}
+                      handleSubmit={handleSubmit}
+                    />
+                    Solicitar aprobacion
+                  </Fab>
+                </Link>
+              </div>
+            </div>
+          </section>
+        </form>
+      </div>
     </>
-  )
-}
+  );
+};
 
 export default Licencias;
 
@@ -118,3 +145,6 @@ export default Licencias;
     }
     </div>
   </aside>*/
+
+// FALTA ACTUALIZAR EL ESTADO
+// CALENDARIO

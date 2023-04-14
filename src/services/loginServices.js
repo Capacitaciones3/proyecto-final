@@ -1,6 +1,5 @@
 // ACTUALIZAR CUANDO TENGAMOS LA BASE DE DATOS!!!
 
-
 import { fetchContent } from "../utils/fetch";
 
 export const postLogin = async (body, setUsuario) => {
