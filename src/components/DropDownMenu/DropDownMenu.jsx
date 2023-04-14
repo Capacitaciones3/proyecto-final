@@ -56,6 +56,7 @@ const DropDownMenu = ({ name, botonIcono, listItems, children }) => {
           </MenuItem>
         ))}
         {children}
+        <div></div>
       </Menu>
     </>
   );
