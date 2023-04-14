@@ -3,17 +3,11 @@
 
 import { fetchContent } from "../utils/fetch";
 
-export const postLogin = async (body, setUsuario) => {
+export const postLogin = async (body) => {
   try {
-    const response = await fetchContent("/login", { body, method: "POST" });
-    setUsuario(`${response?.nombre} ${response?.apellido}`);
-    localStorage.setItem("user", JSON.stringify(response))
-    localStorage.setItem(
-      "Token",
-      response?.accessToken?.stsTokenManager?.accessToken
-    );
-    return window.location.replace("/dashboard");
-    
+    let response = await fetchContent("/users", { method: "POST", body: body })
+    console.log(response)
+    return response;
   } catch (error) {
     alert(
       error?.response.data?.message

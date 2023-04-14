@@ -2,7 +2,7 @@ import axios from "axios";
 // import camelcaseKeys from "camelcase-keys";
 
 const httpClient = axios.create({
-  baseURL: "https://642db4a9bf8cbecdb40d0cf1.mockapi.io/",
+  baseURL: "http://localhost:8080",
 });
 
 export const Method = {
@@ -21,14 +21,14 @@ export const fetchContent = async (url, config = {}) => {
     const token = false;
     const headers = token
       ? {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-          ...headersOptions,
-        }
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+        ...headersOptions,
+      }
       : {
-          "Content-Type": "application/json",
-          ...headersOptions,
-        };
+        "Content-Type": "application/json",
+        ...headersOptions,
+      };
 
     const { body, ...options } = config;
     const source = axios.CancelToken.source();
