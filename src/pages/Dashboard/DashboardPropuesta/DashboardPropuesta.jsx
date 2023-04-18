@@ -61,7 +61,7 @@ const Dashboard = () => {
             </div>
           </section>
 
-          {usuario.rol.usuario ? (
+          {usuario.rol === 'usuario' ? (
             <section className='contenidoSecundario'>
               <div className='botonEnviarLicencias'>
                 <Fab

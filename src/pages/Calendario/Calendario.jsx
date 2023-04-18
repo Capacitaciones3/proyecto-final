@@ -41,7 +41,7 @@ const Calendario = () => {
               <Typography variant='h4' sx={{ color: "#FF7B7B" }}>
                 Feriados
               </Typography>
-              {usuario.rol.administrador && (
+              {usuario.rol === 'administrador' && (
                 <BasicModal
                   titulo='Crear nuevo Feriado'
                   nombreBtn='Nuevo Feriado'>

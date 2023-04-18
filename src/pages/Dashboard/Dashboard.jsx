@@ -9,6 +9,8 @@ import { getLicencias } from "../../services/licenciaServices";
 import { getApiClima } from "../../services/dashboardServices";
 import Loading from '../../components/Loading/Loading'
 
+
+
 const Dashboard = () => {
   const [loading, setLoading] = useState(false)
   const [data, setData] = useState({});
@@ -72,7 +74,7 @@ const Dashboard = () => {
           <div className="licencias">
             {
             (licencias.lenght!==0)?licencias.map((licencia) => <CardUser name={licencia.name} avatar={licencia.avatar} 
-            fechaInicio={licencia.fechaInicio} fechaFinal={licencia.fechaFinal} tipodeLicencia={licencia.tipodeLicencia}  />):<p>No hay licencias</p>
+            fechaInicio={licencia.fechaInicio} fechaFinal={licencia.fechaFinal} tipodeLicencia={licencia.tipodeLicencia} />):<p>No hay licencias</p>
             }
           </div>
         </section>
@@ -85,7 +87,7 @@ const Dashboard = () => {
           <div className="licencias">
             {
             (licencias.lenght!==0)?licencias.map((licencia) => <CardUser name={licencia.name} avatar={licencia.avatar} 
-            fechaInicio={licencia.fechaInicio} fechaFinal={licencia.fechaFinal} tipodeLicencia={licencia.tipodeLicencia}  />):<p>No hay licencias</p>
+            fechaInicio={licencia.fechaInicio} fechaFinal={licencia.fechaFinal} tipodeLicencia={licencia.tipodeLicencia}/>):<p>No hay licencias</p>
             }
           </div>
         </section>

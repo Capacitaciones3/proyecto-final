@@ -43,7 +43,7 @@ const Header = () => {
       text: "Cargar Licencias",
       path: "/licencias",
     },
-    usuario.rol == "administrador" && {
+    usuario.rol === "administrador" && {
       icono: <GroupsRoundedIcon color="error" />,
       text: "Administrar Usuarios",
       path: "/usuarios",
@@ -51,7 +51,7 @@ const Header = () => {
     {
       icono: <CalendarTodayRoundedIcon />,
       text:
-        usuario.rol == "administrador"
+        usuario.rol === "administrador"
           ? "Mantenimiento de Calendario"
           : "Feriados",
       path: "/calendario",

@@ -16,8 +16,6 @@ const LicenciaCard = ({ userData }) => {
     "Licencia medica": "azul"
   }
 
-
-
   const dataFake = [{ name: "juan", startDate: "23234", dias: "30px", endDate: "23344", estado: "aprobado" }, { name: "juan", dias: "30px", startDate: "23234", endDate: "23344", estado: "aprobado" }]
 
   const handleData = () => {

@@ -77,7 +77,7 @@ const PerfilUsuario = () => {
     reader.readAsDataURL(file);
   };
 
-  const handleSubmit = () => {
+  /* const handleSubmit = () => {
     // si es nuevo llamamos a metodo saveUser en service POST()
     if (isNew) {
       // saveUser(userInfo);
@@ -86,7 +86,7 @@ const PerfilUsuario = () => {
     else {
       // updateUser();
     }
-  };
+  }; */
 
   return (
     <Container
@@ -264,7 +264,7 @@ const PerfilUsuario = () => {
                 value={userInfo.email}
                 onChange={(e) => handleChange(e, "email")}
               />
-              {usuario.rol.administrador && (
+               {usuario.rol === "administrador" && (
               <FormControlLabel
                 sx={{ margin: "20px" }}
                 control={

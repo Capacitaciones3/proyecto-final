@@ -56,7 +56,7 @@ const CardUser = ({
         </Stack>
       </Stack>
 
-      { usuario.rol.administrador &&
+      { usuario.rol === 'administrador' &&
       <Stack
         sx={{
           display: "flex",

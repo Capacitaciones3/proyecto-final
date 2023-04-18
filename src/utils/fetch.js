@@ -2,8 +2,8 @@ import axios from "axios";
 // import camelcaseKeys from "camelcase-keys";
 
 const httpClient = axios.create({
-  baseURL: "http://localhost:8080",
-  baseURLMOCK: "https://642db4a9bf8cbecdb40d0cf1.mockapi.io",
+  // baseURL: "http://localhost:8080",
+  baseURL: "https://642db4a9bf8cbecdb40d0cf1.mockapi.io",
 });
 
 export const Method = {
