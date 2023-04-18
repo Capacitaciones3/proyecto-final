@@ -23,6 +23,7 @@ const CardUser = ({
   return (
     <Stack
       sx={{
+        height: '90px',
         display: 'flex',
         flexDirection: "row",
         justifyContent: 'space-between',
@@ -36,7 +37,7 @@ const CardUser = ({
       <Stack sx={{  display: 'flex', flexDirection: "row", justifyContent: 'space-between', gap:'15px'}}>
         <Avatar alt="User" src={avatar} />
         <Stack>
-          <Typografy fontWeight="500" component="span">
+          <Typografy fontWeight="550" component="span">
             {name}
           </Typografy>
           <Typografy component="span" sx={{ color: "rgba(0,0,0,0.6)" }}>

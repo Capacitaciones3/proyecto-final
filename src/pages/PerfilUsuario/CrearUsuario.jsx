@@ -57,24 +57,22 @@ const CrearUsuario = () => {
             alignItems: "center",
             justifyContent: "space-between",
           }}>
+          {image && <img src={image} alt='Usuario' width={150} />}
           <input
-            hidden
             accept='image/*'
             id='contained-button-file'
             multiple={false}
             type='file'
             onChange={handleImageChange}
           />
-          <label htmlFor='contained-button-file'>
             <Button
+              hidden
               sx={{ margin: "5px" }}
               variant='contained'
               color='primary'
               component='span'>
               Subir Imagen
             </Button>
-          </label>
-          {image && <img src={image} alt='Usuario' width={150} />}
 
           <Box sx={{ ml: 5 }}>
             <TextField
@@ -248,16 +246,7 @@ const CrearUsuario = () => {
                 label='Dias Vacaciones'
                 variant='outlined'
               />
-              <FormControlLabel
-                sx={{ margin: "20px" }}
-                control={
-                  <Switch
-                    checked={checked}
-                    onChange={handleChange}
-                    inputProps={{ "aria-label": "controlled" }}
-                  />
-                }
-                label='Administrador'></FormControlLabel>
+              
             </Box>
           </AccordionDetails>
         </Accordion>

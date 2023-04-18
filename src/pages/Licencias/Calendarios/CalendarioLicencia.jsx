@@ -39,6 +39,7 @@ const CalendarioLicencia = ({ setData, data }) => {
               state={startDate}
               setter={setStartDate}
               filterDate={isWeekday}
+              minDate={new Date()}
               withPortal
               customInput={
                 <CardCalendario state={startDate} />

@@ -8,8 +8,8 @@ export const AutenticacionProvider = ({ children }) => {
   const [usuario, setUsuario] = useState({
     isLogged: true,
     rol: {
-      administrador: false,
-      usuario: true
+      administrador: true,
+      usuario: false
     }
   });
 
