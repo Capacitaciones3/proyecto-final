@@ -13,6 +13,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { useNavigate } from "react-router-dom";
 import { AutenticacionContext } from "../../../contexts/Autenticacion";
 import LogoutIcon from "@mui/icons-material/Logout";
+
 // css
 import "./Header.css";
 
@@ -24,7 +25,7 @@ const Header = () => {
   );
 
   const navigate = useNavigate();
-  const { cerrarSesion, usuario } = useContext(AutenticacionContext);
+  const { cerrarSesion, usuario, isLogged } = useContext(AutenticacionContext);
 
   const getTitle = () => {
     const query = new URLSearchParams(window.location.search);
@@ -42,23 +43,19 @@ const Header = () => {
       text: "Cargar Licencias",
       path: "/licencias",
     },
-    usuario.rol.administrador ? ({
+    usuario.rol == "administrador" && {
       icono: <GroupsRoundedIcon color="error" />,
       text: "Administrar Usuarios",
       path: "/usuarios",
-    }
-    )
-      :
-      (
-        {
-          icono: <CalendarTodayRoundedIcon />,
-          text: usuario.rol.administrador
-            ? "Mantenimiento de Calendario"
-            : "Feriados",
-          path: "/calendario",
-        }
-
-      )
+    },
+    {
+      icono: <CalendarTodayRoundedIcon />,
+      text:
+        usuario.rol == "administrador"
+          ? "Mantenimiento de Calendario"
+          : "Feriados",
+      path: "/calendario",
+    },
   ];
   const notificationList = [
     {
