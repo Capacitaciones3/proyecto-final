@@ -2,12 +2,16 @@ import React, { useState } from "react";
 import Menu from "@mui/material/Menu";
 import IconButton from "@mui/material/IconButton";
 import MenuItem from "@mui/material/MenuItem";
+import { useNavigate } from "react-router-dom";
 
 const DropDownMenu = ({ name, botonIcono, listItems, children }) => {
   const [anchorEl, setAnchorEl] = useState(null);
 
+  const navigate = useNavigate();
+
   const redirect = (path, title) => {
-    window.location.href = `${path}?title=${title.toUpperCase()}`;
+    navigate(`${path}?title=${title.toUpperCase()}`);
+    // window.location.href = `${path}?title=${title.toUpperCase()}`;
   };
 
   const open = Boolean(anchorEl);
@@ -42,19 +46,20 @@ const DropDownMenu = ({ name, botonIcono, listItems, children }) => {
           "aria-labelledby": "basic-button",
         }}
       >
-        {listItems && listItems.map((el, index) => (
-          <MenuItem
-            key={`${name}-${index}`}
-            onClick={() => redirect(el.path, el.text)}
-            sx={{
-              display: "flex",
-              gap: "20px",
-              minWidth: "200px",
-            }}
-          >
-            {el.icono} {el.text}
-          </MenuItem>
-        ))}
+        {listItems &&
+          listItems.map((el, index) => (
+            <MenuItem
+              key={`${name}-${index}`}
+              onClick={() => redirect(el.path, el.text)}
+              sx={{
+                display: "flex",
+                gap: "20px",
+                minWidth: "200px",
+              }}
+            >
+              {el.icono} {el.text}
+            </MenuItem>
+          ))}
         {children}
         <div></div>
       </Menu>
