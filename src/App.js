@@ -9,8 +9,7 @@ import Calendario from "./pages/Calendario/Calendario";
 import PerfilUsuario from "./pages/PerfilUsuario/PerfilUsuario";
 import { AutenticacionContext } from "./contexts/Autenticacion";
 import LicenciaCard from "./components/LicenciaCard/LicenciaCard";
-import DashboardSecundario from "./pages/Dashboard/DashboardSecundario/DashboardSecundario"
-
+import DashboardSecundario from "./pages/Dashboard/DashboardSecundario/DashboardSecundario";
 
 function App() {
   const { usuario, isLogged } = useContext(AutenticacionContext);
@@ -18,20 +17,22 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {isLogged ?
-          (<Route path='/' element={<Layout />}>
+        {isLogged ? (
+          <Route path="/" element={<Layout />}>
             <Route index element={<DashboardSecundario />} />
             <Route path="dashboard" element={<DashboardSecundario />}>
-              <Route path=':idLicencia' element={<LicenciaCard />} />
+              <Route path=":idLicencia" element={<LicenciaCard />} />
             </Route>
-            <Route path='licencias' element={<Licencias />} />
-            {usuario.rol &&
-              <Route path='usuarios' element={<AdminUsuarios />} />
-            }
-            <Route path='calendario' element={<Calendario />} />
-            <Route path='perfil' element={<PerfilUsuario />} />
-          </Route>)
-          : (<Route path="login" element={<Login />} />)}
+            <Route path="licencias" element={<Licencias />} />
+            {usuario.rol == "administrador" && (
+              <Route path="usuarios" element={<AdminUsuarios />} />
+            )}
+            <Route path="calendario" element={<Calendario />} />
+            <Route path="perfil" element={<PerfilUsuario />} />
+          </Route>
+        ) : (
+          <Route path="login" element={<Login />} />
+        )}
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
