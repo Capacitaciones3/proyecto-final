@@ -3,7 +3,9 @@ import {
   Button,
   Container,
   Divider,
+  FormControlLabel,
   MenuItem,
+  Switch,
   TextField,
   Typography,
 } from "@mui/material";
@@ -12,13 +14,16 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./PerfilUsuario.css";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import { AutenticacionContext } from "../../contexts/Autenticacion";
 
 const PerfilUsuario = () => {
+  
+  const { usuario } = useContext(AutenticacionContext);
   // El objeto va a estar vacio, ahora esta lleno porque es de prueba pero es para que tenga las keys
   const initData = {
     name: "joa",
@@ -47,7 +52,7 @@ const PerfilUsuario = () => {
   const [userInfo, setUserInfo] = useState({});
   const [rePassword, setRePassword] = useState(userInfo.password);
   const [image, setImage] = useState(null);
-  const [checked, setChecked] = React.useState(true);
+  const [checked, setChecked] = React.useState(false);
 
   useEffect(() => {
     // si es true traemos los datos del usuario desde llamando a una funcion en service
@@ -89,13 +94,14 @@ const PerfilUsuario = () => {
         marginTop: "30px",
         display: "flex",
         border: "0.9px solid #D8D8D8",
+        backgroundColor: 'rgb(251, 251, 251)'
       }}>
-      <Box component='form' width={"100%"}>
-        <Box p={3}>
+      <Box component='form' sx={{width:'100%', p:4}}>
+        <Box sx={{paddingTop:3, display:'flex', flexDirection:'column', gap:'30px'}}>
           <Typography color='error.light' variant='h4'>
             Mi perfil
           </Typography>
-          <Divider></Divider>
+          <Divider/>
         </Box>
         <Box
           sx={{
@@ -106,6 +112,7 @@ const PerfilUsuario = () => {
             alignItems: "center",
             justifyContent: "space-between",
           }}>
+            {image && <img src={'./shrek.jpg'} alt='Usuario' width={150} />}
           <input
             hidden
             accept='image/*'
@@ -113,6 +120,7 @@ const PerfilUsuario = () => {
             multiple={false}
             type='file'
             onChange={handleImageChange}
+            onClick={handleImageChange}
           />
           <label htmlFor='contained-button-file'>
             <Button
@@ -123,7 +131,7 @@ const PerfilUsuario = () => {
               Subir Imagen
             </Button>
           </label>
-          {image && <img src={image} alt='Usuario' width={150} />}
+          
           <Box
             sx={{
               ml: 5,
@@ -171,14 +179,7 @@ const PerfilUsuario = () => {
           </Box>
         </Box>
         {/* //Primer acordion de datos */}
-        <Accordion
-          sx={{
-            mb: 3,
-            display: "flex",
-            flexDirection: "row",
-            flexWrap: "wrap",
-          }}
-          defaultExpanded='true'>
+        <Accordion sx={{mb: 3}} defaultExpanded='true'>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls='panel1a-content'
@@ -208,14 +209,14 @@ const PerfilUsuario = () => {
               <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DemoContainer
                   components={["DatePicker"]}
-                  sx={{ m: 2, width: "220px" }}>
+                  sx={{ m: 1, width: "220px" }}>
                   <DatePicker label='Fecha de nacimiento' />
                 </DemoContainer>
               </LocalizationProvider>
               <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DemoContainer
                   components={["DatePicker"]}
-                  sx={{ m: 2, width: "220px" }}>
+                  sx={{ m: 1, width: "220px" }}>
                   <DatePicker
                     label='Fecha de ingreso'
                     id='fechaingreso'
@@ -260,6 +261,18 @@ const PerfilUsuario = () => {
                 value={userInfo.email}
                 onChange={(e) => handleChange(e, "email")}
               />
+              {usuario.rol.administrador && (
+              <FormControlLabel
+                sx={{ margin: "20px" }}
+                control={
+                  <Switch
+                    checked={checked}
+                    onChange={handleChange}
+                    inputProps={{ "aria-label": "controlled" }}
+                  />
+                }
+                label='Administrador'>
+                </FormControlLabel>)}
             </Box>
           </AccordionDetails>
         </Accordion>

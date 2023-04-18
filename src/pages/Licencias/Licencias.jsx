@@ -141,7 +141,8 @@ export default Licencias;
     <div className='titulo3'> <Typography variant="h6" color={'grey'}> Detalle de vacaciones: </Typography></div>
     <div className='listadeLicencias'>
     {
-      (licencias.lenght!==0)?licencias.map((licencia) => <CardUser name={licencia.name} avatar={licencia.avatar} fechaInicio={licencia.fechaInicio} fechaFinal={licencia.fechaFinal} tipodeLicencia={licencia.tipodeLicencia}  />):<p>No hay licencias</p>
+      (licencias.lenght!==0)?licencias.map((licencia) => <CardUser name={licencia.name} avatar={licencia.avatar} 
+      fechaInicio={licencia.fechaInicio} fechaFinal={licencia.fechaFinal} tipodeLicencia={licencia.tipodeLicencia}  />):<p>No hay licencias</p>
     }
     </div>
   </aside>*/

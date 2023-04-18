@@ -1,0 +1,26 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.imagenClima{
+    display: flex;
+    padding: 0;
+    gap: 60px;
+}
+
+.contenedorApi{
+    width: 400px;
+    height: 220px;
+    box-shadow: 5px 5px 15px #c5c4c4;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 30px;
+}
+
+.dataclima{
+    display: flex;
+    flex-direction: column;
+}

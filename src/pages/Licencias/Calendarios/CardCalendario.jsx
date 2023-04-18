@@ -1,9 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import dayjs from "dayjs";
 import React from "react";
-// import es from "date-fns/locale/es";
-
-const initData = { dia: "Día", mes: "Mes", numDia: "" };
 
 const CardCalendario = ({ state, onClick }) => {
   const dias = {

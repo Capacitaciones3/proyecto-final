@@ -1,47 +1,69 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.cardLicenciasPorAprobar{
-    width: 50%;
-    display:flex; 
-    flex-direction:column;
-    border:1px solid grey;
-    border-radius: 5px;
+.contenedor-dashboard{
+  width: 100vw;
+  max-height: 100vw;
+  display: flex;
+  flex-wrap:wrap;
+  flex-direction: column;
+  justify-content:space-between;
+  gap: 30px;
+  padding: 20px;
 }
 
-.titulo{
-    border-bottom: 1px solid grey;
-    padding: 10px;
+.buscador-dashboard{
+  width: 100%;
+  display: flex;
+  padding: 20px 40px 0px 40px;
+  justify-content: flex-start;
 }
 
-.cardLicenciasProximas{
-    width: 50%;
-    display:flex; 
-    flex-direction:column;
-    border:1px solid grey;
-    border-radius: 5px;
+.opciondeBusqueda{
+  width: 300px;
+  max-width: 100%;
 }
 
-.contenidoSecundario{
-    width: 35%;
-    display:flex; 
-    flex-direction:column;
-    justify-content: center;
-    align-content: center;
-    gap: 60px;
+.contenedorAPIs {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
 }
 
+.cardLicenciasPorAprobar2 {
+  width: 50%;
+  max-height: 470px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid grey;
+  border-radius: 5px;
+}
 
-.contenedorAPIsExternas{
-    width: 20%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction:column;
-    border-left:1px solid grey;
-    padding: 40px 10px 40px 10px;
-    gap: 60px;
+.titulo2 {
+  border-bottom: 1px solid grey;
+  padding: 10px;
+}
+
+.cardLicenciasProximas2 {
+  width: 50%;
+  max-height: 470px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid grey;
+  border-radius: 5px;
+}
+
+.licencias{
+  overflow-y: scroll;
+}
+
+.licencia-card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
