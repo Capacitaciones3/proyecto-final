@@ -2,8 +2,8 @@ import axios from "axios";
 // import camelcaseKeys from "camelcase-keys";
 
 const httpClient = axios.create({
-  // baseURL: "http://localhost:8080",
-  baseURL: "https://642db4a9bf8cbecdb40d0cf1.mockapi.io",
+  baseURL: "http://localhost:8080",
+  // baseURL: "https://642db4a9bf8cbecdb40d0cf1.mockapi.io",
 });
 
 export const Method = {
@@ -47,7 +47,7 @@ export const fetchContent = async (url, config = {}) => {
     if (body) {
       request.data = body;
     }
-    
+
     const promise = httpClient.request(request);
     promise.cancel = () => source.cancel("cancelled");
     const { data } = await promise;
