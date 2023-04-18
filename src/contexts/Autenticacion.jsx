@@ -3,7 +3,7 @@ import React, { useState } from "react";
 export const AutenticacionContext = React.createContext();
 
 export const AutenticacionProvider = ({ children }) => {
-  const [usuario, setUsuario] = useState({id:null, token:null, rol:null});
+  const [usuario, setUsuario] = useState({id:null, token:null, rol:'administrador'});
   const [isLogged, setisLogged] = useState(true);
 
   const iniciarSesion = (id, token, rol) => {
