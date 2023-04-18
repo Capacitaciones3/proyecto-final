@@ -1,5 +1,3 @@
-
-
 export const getApiClima = async () => {
     try {
       const res = await fetch('http://api.weatherapi.com/v1/current.json?key=27b0dc2fbf7841aa903234159231704&q=Buenos%Aires&aqi=no&lang=es', {
@@ -14,4 +12,3 @@ export const getApiClima = async () => {
       console.error(error);
     }
   }
-  

@@ -1,5 +1,5 @@
 .calendar-page {
-  padding: 64px;
+  padding: 64px 64px 0px 64px;
   display: flex;
   justify-content: center;
   /* align-items: center; */
@@ -17,10 +17,14 @@
   border-radius: 5px;
 }
 
-.list-calendar {
-  width: 560px;
-  max-height: 500px;
+.contenedorListaFeriados{
+  width: 450px;
   overflow-y: scroll;
+}
+
+.list-calendar {
+  width: 500px;
+  max-height: 480px;
 }
 
 .calendar-section-title-container {
@@ -50,6 +54,6 @@
   }
 
   .list-calendar {
-    width: 90%;
+    width: 80%;
   }
 }

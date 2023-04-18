@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useContext } from "react";
-import HolidayCalendar from "../../components/HolidayCalendar/HolidayCalendar";
 import Typography from "@mui/material/Typography";
 import HolidayList from "../../components/HolidayList/HolidayList";
 import ListItem from "@mui/material/ListItem";
@@ -10,17 +9,21 @@ import BasicModal from "../../components/BasicModal/BasicModal";
 import Loading from "../../components/Loading/Loading";
 import { AutenticacionContext } from "../../contexts/Autenticacion";
 import { getFeriados } from "../../services/feriadosServices";
+import CalendarioFeriados from "./CalendarioFeriados/CalendarioFeriados";
+import "react-datepicker/dist/react-datepicker.css";
 
 const Calendario = () => {
   const [feriados, setFeriados] = useState(null);
   const { usuario } = useContext(AutenticacionContext);
 
   useEffect(() => {
-    getFeriados().then((data) => {
-      console.log(data);
-      setFeriados(data);
-    });
+    getFeriados().then((data) =>
+      setFeriados(data));
   }, []);
+
+  /* feriados.map((elemento, indice) => {
+    return console.log(elemento, indice);
+  }) */
 
   return (
     <>
@@ -34,7 +37,7 @@ const Calendario = () => {
               sx={{ color: "#FF7B7B", textAlign: "center" }}>
               Calendario
             </Typography>
-            <HolidayCalendar feriados={feriados} />
+            <CalendarioFeriados/>
           </div>
           <div className='calendar-page-section-container list-calendar'>
             <div className='calendar-section-title-container'>
@@ -76,6 +79,7 @@ const Calendario = () => {
                 </BasicModal>
               )}
             </div>
+            <div className="contenedorListaFeriados">
             <HolidayList>
               {feriados.map((feriado, index) => (
                 <ListItem key={`feriado-${index}`} divider={true}>
@@ -94,6 +98,7 @@ const Calendario = () => {
                 </ListItem>
               ))}
             </HolidayList>
+            </div>
           </div>
         </section>
       )}

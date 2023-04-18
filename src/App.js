@@ -11,6 +11,7 @@ import { AutenticacionContext } from "./contexts/Autenticacion";
 import LicenciaCard from "./components/LicenciaCard/LicenciaCard";
 import Dashboard from "./pages/Dashboard/Dashboard";
 
+
 function App() {
   const { usuario, isLogged } = useContext(AutenticacionContext);
 

@@ -8,7 +8,7 @@
   width: 100%;
   background-image: url(./Imagenes/Group\ 22.png);
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
   background-position: bottom;
 }
 

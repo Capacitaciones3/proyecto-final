@@ -3,7 +3,6 @@
 import { fetchContent } from "../utils/fetch";
 
 export const postLogin = async (body, setUsuario) => {
-  
   try {
     let response = await fetchContent("/users", { method: "POST", body: body })
     return response;
