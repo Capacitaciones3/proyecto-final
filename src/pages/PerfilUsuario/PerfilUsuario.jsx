@@ -112,6 +112,9 @@ const PerfilUsuario = () => {
             alignItems: "center",
             justifyContent: "space-between",
           }}>
+
+          <img src='https://indiehoy.com/wp-content/uploads/2020/12/shrek.jpg' alt='Usuario' width={150} />
+
             {image && <img src={'./shrek.jpg'} alt='Usuario' width={150} />}
           <input
             hidden

@@ -2,7 +2,7 @@
 
 import { fetchContent } from "../utils/fetch";
 
-const postLogin = async (body, setUsuario) => {
+export const postLogin = async (body, setUsuario) => {
   
   try {
     let response = await fetchContent("/users", { method: "POST", body: body })
@@ -16,5 +16,3 @@ const postLogin = async (body, setUsuario) => {
     throw new Error("[Loginservice error]: " + error);
   }
 };
-
-export default postLogin;

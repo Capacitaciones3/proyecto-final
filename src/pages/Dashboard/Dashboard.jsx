@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import CardUser from "../../components/Cards/CardUser/CardUser";
 import CardApi from "./CardApi.jsx/CardApi";
-import { Skeleton, Typography } from "@mui/material";
+import {Typography } from "@mui/material";
 import Busqueda from "./Busqueda/Busqueda";
 import "./dashboard.css";
 import LicenciaCard from "../../components/LicenciaCard/LicenciaCard";
