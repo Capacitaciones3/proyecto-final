@@ -13,12 +13,21 @@ import CalendarioFeriados from "./CalendarioFeriados/CalendarioFeriados";
 import "react-datepicker/dist/react-datepicker.css";
 
 const Calendario = () => {
+  const initNuevoFeridado = { fecha: "", motivo: "Hola" }
+
+
   const [feriados, setFeriados] = useState(null);
   const { usuario } = useContext(AutenticacionContext);
+  const [nuevoFeriado, setNuevoFeriado] = useState(initNuevoFeridado)
 
   useEffect(() => {
     getFeriados().then((data) => setFeriados(data));
   }, []);
+
+  const handleChange = (e) => {
+    console.log("falopa")
+
+  }
 
   return (
     <>
@@ -42,7 +51,9 @@ const Calendario = () => {
               {usuario.rol === "administrador" && (
                 <BasicModal
                   titulo='Crear nuevo Feriado'
-                  nombreBtn='Nuevo Feriado'>
+                  nombreBtn='Nuevo Feriado'
+
+                >
                   <>
                     <div className='modal-input-container'>
                       <TextField
@@ -50,16 +61,18 @@ const Calendario = () => {
                         label='Fecha'
                         defaultValue='2023-02-18'
                         type='date'
-                        // value={}
-                        // onChange={}
+                        InputLabelProps={{ shrink: true }}
+
                       />
-                      <TextField
+
+
+                      <input
                         id='motivo'
-                        defaultValue='motivo'
+
                         label='Motivo'
-                        type='text'
-                        // value={}
-                        // onChange={}
+                        InputLabelProps={{ shrink: true }}
+                        onChange={() => handleChange()}
+
                       />
                     </div>
                     <div className='calendar-modal-btn-container'>
@@ -85,7 +98,7 @@ const Calendario = () => {
                             component='span'
                             variant='subtitle1'
                             color='text.primary'>
-                            {feriado.feriados} - {feriado.id}
+                            {feriado.fecha} - {feriado.motivo}
                           </Typography>
                         </React.Fragment>
                       }

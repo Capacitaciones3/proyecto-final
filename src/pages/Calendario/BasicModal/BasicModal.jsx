@@ -3,6 +3,8 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
+import { postFeriados } from "../../../services/feriadosServices";
+
 
 const style = {
   position: "absolute",
@@ -35,7 +37,9 @@ export default function BasicModal({ titulo, nombreBtn, children }) {
         open={open}
         onClose={handleClose}
         aria-labelledby='modal-modal-title'
-        aria-describedby='modal-modal-description'>
+        aria-describedby='modal-modal-description'
+
+      >
         <Box sx={style}>
           <Typography id='modal-modal-title' variant='h6' component='h2'>
             {titulo}

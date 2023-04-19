@@ -2,7 +2,8 @@ import { fetchContent } from "../utils/fetch";
 
 export const getFeriados = async () => {
   try {
-    const respuesta = await fetchContent("/api/feriados", { method: "GET" });
+    const respuesta = await fetchContent("/api/feriados", { method: "GET", });
+    console.log(respuesta)
     return respuesta;
   } catch (error) {
     throw new Error("[getLicencias service error]: " + error);
