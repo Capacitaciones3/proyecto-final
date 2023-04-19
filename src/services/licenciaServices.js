@@ -1,4 +1,5 @@
 import { fetchContent } from "../utils/fetch";
+import { fetchContent } from "../utils/fetch";
 
 // CORREGIR !!!!!!!!!!!!!!!!!!!!!!!!!
 

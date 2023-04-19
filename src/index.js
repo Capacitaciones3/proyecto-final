@@ -4,6 +4,10 @@ import "./index.css";
 import App from "./App";
 import { AutenticacionProvider } from "./contexts/Autenticacion";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { registerLocale } from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import es from "date-fns/locale/es";
+registerLocale("es", es);
 
 const queryClient = new QueryClient({
   defaultOptions: {
