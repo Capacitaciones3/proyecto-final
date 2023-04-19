@@ -20,35 +20,33 @@ import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { AutenticacionContext } from "../../contexts/Autenticacion";
+import { perfilService } from "../../services/perfilService";
 
 const PerfilUsuario = () => {
-  
   const { usuario } = useContext(AutenticacionContext);
   // El objeto va a estar vacio, ahora esta lleno porque es de prueba pero es para que tenga las keys
   const initData = {
-    name: "joa",
-    lastname: "par",
-    dni: "39054656",
-    date: new Date(),
-    ciul: "339999999",
-    password: "password",
-    admissionDate: "1996-02-18",
-    email: "joa@par",
-    telephone: "1132328090",
-    street: "calle joa",
-    streetNumber: "123",
-    postalCode: "1223",
-    tower: "1",
-    floor: "3",
-    apartment: "12",
-    location: "Capital",
-    province: "Buenos aires",
-    country: "Argentina",
-    holiday: 12,
-    idAdmin: false,
-    supervisorId: 3,
+    username: "",
+    apellido: "",
+    password: "",
+    rol: "",
+    id_supervisor: 0,
+    fecha_de_nacimiento: "",
+    fecha_de_ingreso: "",
+    dni: "",
+    cuil: "",
+    dias_de_vacaciones: "",
+    foto: "",
+    calle: "",
+    altura: 0,
+    torre: "",
+    piso: 0,
+    departamento: "",
+    localidad: "",
+    provincia: "",
+    pais: "",
   };
-  const [isNew, setIsNew] = useState(true);
+  const [isNew, setIsNew] = useState(false);
   const [userInfo, setUserInfo] = useState({});
   const [rePassword, setRePassword] = useState(userInfo.password);
   const [image, setImage] = useState(null);
@@ -56,7 +54,9 @@ const PerfilUsuario = () => {
 
   useEffect(() => {
     // si es true traemos los datos del usuario desde llamando a una funcion en service
-    isNew && setUserInfo({ ...initData });
+    isNew
+      ? setUserInfo({ ...initData })
+      : perfilService(1).then((data) => setUserInfo(...data));
   }, []);
 
   const handleChange = (e, inputName) => {
@@ -94,14 +94,22 @@ const PerfilUsuario = () => {
         marginTop: "30px",
         display: "flex",
         border: "0.9px solid #D8D8D8",
-        backgroundColor: 'rgb(251, 251, 251)'
-      }}>
-      <Box component='form' sx={{width:'100%', p:4}}>
-        <Box sx={{paddingTop:3, display:'flex', flexDirection:'column', gap:'30px'}}>
-          <Typography color='error.light' variant='h4'>
+        backgroundColor: "rgb(251, 251, 251)",
+      }}
+    >
+      <Box component="form" sx={{ width: "100%", p: 4 }}>
+        <Box
+          sx={{
+            paddingTop: 3,
+            display: "flex",
+            flexDirection: "column",
+            gap: "30px",
+          }}
+        >
+          <Typography color="error.light" variant="h4">
             Mi perfil
           </Typography>
-          <Divider/>
+          <Divider />
         </Box>
         <Box
           sx={{
@@ -111,30 +119,35 @@ const PerfilUsuario = () => {
             flexWrap: "nowrap",
             alignItems: "center",
             justifyContent: "space-between",
-          }}>
+          }}
+        >
+          <img
+            src="https://indiehoy.com/wp-content/uploads/2020/12/shrek.jpg"
+            alt="Usuario"
+            width={150}
+          />
 
-          <img src='https://indiehoy.com/wp-content/uploads/2020/12/shrek.jpg' alt='Usuario' width={150} />
-
-            {image && <img src={'./shrek.jpg'} alt='Usuario' width={150} />}
+          {image && <img src={"./shrek.jpg"} alt="Usuario" width={150} />}
           <input
             hidden
-            accept='image/*'
-            id='contained-button-file'
+            accept="image/*"
+            id="contained-button-file"
             multiple={false}
-            type='file'
+            type="file"
             onChange={handleImageChange}
             onClick={handleImageChange}
           />
-          <label htmlFor='contained-button-file'>
+          <label htmlFor="contained-button-file">
             <Button
               sx={{ margin: "5px" }}
-              variant='contained'
-              color='primary'
-              component='span'>
+              variant="contained"
+              color="primary"
+              component="span"
+            >
               Subir Imagen
             </Button>
           </label>
-          
+
           <Box
             sx={{
               ml: 5,
@@ -142,140 +155,147 @@ const PerfilUsuario = () => {
               flexWrap: "wrap",
               width: "100%",
               flexDirection: "row",
-            }}>
+            }}
+          >
             <TextField
               sx={{ m: 2 }}
-              id='nombre'
-              label='Nombre'
-              type='text'
-              variant='outlined'
-              value={userInfo.name}
-              onChange={(e) => handleChange(e, "name")}
+              id="nombre"
+              label="Nombre"
+              type="text"
+              variant="outlined"
+              value={userInfo.username}
+              onChange={(e) => handleChange(e, "username")}
             />
             <TextField
               sx={{ m: 2 }}
-              id='password'
-              label='nueva password'
-              type='password'
-              variant='outlined'
+              id="password"
+              label="nueva password"
+              type="password"
+              variant="outlined"
               value={userInfo.password}
               onChange={(e) => handleChange(e, "password")}
             />
             <TextField
               sx={{ m: 2 }}
-              id='apellido'
-              label='Apellido'
-              type='text'
-              variant='outlined'
+              id="apellido"
+              label="Apellido"
+              type="text"
+              variant="outlined"
               value={userInfo.lastname}
-              onChange={(e) => handleChange(e, "lastname")}
+              onChange={(e) => handleChange(e, "apellido")}
             />
             <TextField
               sx={{ m: 2 }}
-              id='passwordRepetida'
-              label='repetir password'
-              type='password'
-              variant='outlined'
+              id="passwordRepetida"
+              label="repetir password"
+              type="password"
+              variant="outlined"
               value={rePassword}
               onChange={(e) => setRePassword(e.value)}
             />
           </Box>
         </Box>
         {/* //Primer acordion de datos */}
-        <Accordion sx={{mb: 3}} defaultExpanded='true'>
+        <Accordion sx={{ mb: 3 }} defaultExpanded="true">
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
-            aria-controls='panel1a-content'
-            id='panel1a-header'>
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+          >
             <Typography>Ver más datos</Typography>
           </AccordionSummary>
           <AccordionDetails>
             <Box
-              sx={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}>
+              sx={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}
+            >
               <TextField
                 sx={{ m: 2, width: "220px" }}
-                id='supervisor'
+                id="supervisor"
                 displayEmpty
                 select
-                label='Bajo supervision de:'
-                variant='filled'>
-                <MenuItem key='1' value='Administrador'>
+                label="Bajo supervision de:"
+                variant="filled"
+              >
+                <MenuItem key="1" value="Administrador">
                   Administrador
                 </MenuItem>
-                <MenuItem key='2' value='Tincho'>
+                <MenuItem key="2" value="Tincho">
                   Tincho
                 </MenuItem>
-                <MenuItem key='3' value='Laura'>
+                <MenuItem key="3" value="Laura">
                   Laura
                 </MenuItem>
               </TextField>
               <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DemoContainer
                   components={["DatePicker"]}
-                  sx={{ m: 1, width: "220px" }}>
-                  <DatePicker label='Fecha de nacimiento' />
+                  sx={{ m: 1, width: "220px" }}
+                >
+                  <DatePicker label="Fecha de nacimiento" />
                 </DemoContainer>
               </LocalizationProvider>
               <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DemoContainer
                   components={["DatePicker"]}
-                  sx={{ m: 1, width: "220px" }}>
+                  sx={{ m: 1, width: "220px" }}
+                >
                   <DatePicker
-                    label='Fecha de ingreso'
-                    id='fechaingreso'
-                    type='date'
-                    variant='outlined'
+                    label="Fecha de ingreso"
+                    id="fechaingreso"
+                    type="date"
+                    variant="outlined"
                     // value={userInfo.date}
-                    onChange={(e) => handleChange(e, "date")}
+                    onChange={(e) => handleChange(e, "fecha_de_nacimiento")}
                   />
                 </DemoContainer>
               </LocalizationProvider>
               <TextField
                 sx={{ m: 2 }}
-                id='dni'
-                label='DNI'
-                variant='outlined'
+                id="dni"
+                label="DNI"
+                variant="outlined"
                 value={userInfo.dni}
                 onChange={(e) => handleChange(e, "dni")}
               />
               <TextField
                 sx={{ m: 2 }}
-                id='cuil'
-                label='CUIL'
-                type='text'
-                variant='outlined'
-                value={userInfo.ciul}
-                onChange={(e) => handleChange(e, "ciul")}
+                id="cuil"
+                label="CUIL"
+                type="text"
+                variant="outlined"
+                value={userInfo.cuil}
+                onChange={(e) => handleChange(e, "cuil")}
               />
               <TextField
                 sx={{ m: 2 }}
-                id='telefono'
-                label='Telefono'
-                variant='outlined'
-                value={userInfo.telephone}
-                onChange={(e) => handleChange(e, "telephone")}
+                id="telefono"
+                label="Telefono"
+                variant="outlined"
+                value={userInfo.telefono}
+                onChange={(e) => handleChange(e, "telefono")}
               />
               <TextField
                 sx={{ m: 2 }}
-                id='correo'
-                label='Correo electronico'
-                type='email'
-                variant='outlined'
+                id="correo"
+                label="Correo electronico"
+                type="email"
+                variant="outlined"
                 value={userInfo.email}
                 onChange={(e) => handleChange(e, "email")}
               />
-               {usuario.rol === "administrador" && (
-              <FormControlLabel
-                sx={{ margin: "20px" }}
-                control={
-                  <Switch
-                    checked={checked}
-                    onChange={handleChange}
-                    inputProps={{ "aria-label": "controlled" }}
-                  />
-                }
-                label='Administrador'>
-                </FormControlLabel>)}
+              {usuario.rol === "administrador" && (
+                <FormControlLabel
+                  sx={{ margin: "20px" }}
+                  control={
+                    <Switch
+                      checked={checked}
+                      onChange={handleChange}
+                      inputProps={{ "aria-label": "controlled" }}
+                    />
+                  }
+                  label="Administrador"
+                ></FormControlLabel>
+              )}
             </Box>
           </AccordionDetails>
         </Accordion>
@@ -283,89 +303,90 @@ const PerfilUsuario = () => {
         <Accordion>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
-            aria-controls='panel1a-content'
-            id='panel1a-header'>
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+          >
             <Typography>Datos personales</Typography>
           </AccordionSummary>
           <AccordionDetails>
             <Box>
               <TextField
                 sx={{ m: 2 }}
-                id='calle'
-                label='Calle'
-                variant='outlined'
-                value={userInfo.street}
-                onChange={(e) => handleChange(e, "street")}
+                id="calle"
+                label="Calle"
+                variant="outlined"
+                value={userInfo.calle}
+                onChange={(e) => handleChange(e, "calle")}
               />
               <TextField
                 sx={{ m: 2 }}
-                id='altura'
-                label='Altura'
-                variant='outlined'
-                value={userInfo.streetNumber}
-                onChange={(e) => handleChange(e, "streetNumber")}
+                id="altura"
+                label="Altura"
+                variant="outlined"
+                value={userInfo.altura}
+                onChange={(e) => handleChange(e, "altura")}
               />
               <TextField
                 sx={{ m: 2 }}
-                id='codig opostal'
-                label='Codigo postal'
-                variant='outlined'
-                value={userInfo.postalCode}
-                onChange={(e) => handleChange(e, "postalCode")}
+                id="codig opostal"
+                label="Codigo postal"
+                variant="outlined"
+                value={userInfo.codigo_postal}
+                onChange={(e) => handleChange(e, "codigo_postal")}
               />
               <TextField
                 sx={{ m: 2 }}
-                id='torre'
-                label='Torre'
-                variant='outlined'
-                value={userInfo.tower}
-                onChange={(e) => handleChange(e, "tower")}
+                id="torre"
+                label="Torre"
+                variant="outlined"
+                value={userInfo.torre}
+                onChange={(e) => handleChange(e, "torre")}
               />
               <TextField
                 sx={{ m: 2 }}
-                id='piso'
-                label='Piso'
-                variant='outlined'
+                id="piso"
+                label="Piso"
+                variant="outlined"
               />
               <TextField
                 sx={{ m: 2 }}
-                id='departamento'
-                label='Departamento'
-                variant='outlined'
-                value={userInfo.apartment}
-                onChange={(e) => handleChange(e, "apartment")}
+                id="departamento"
+                label="Departamento"
+                variant="outlined"
+                value={userInfo.departamento}
+                onChange={(e) => handleChange(e, "departamento")}
               />
               <TextField
                 sx={{ m: 2 }}
-                id='localidad'
-                label='Localidad'
-                variant='outlined'
-                value={userInfo.location}
-                onChange={(e) => handleChange(e, "location")}
+                id="localidad"
+                label="Localidad"
+                variant="outlined"
+                value={userInfo.localidad}
+                onChange={(e) => handleChange(e, "localidad")}
               />
               <TextField
                 sx={{ m: 2 }}
-                id='provincia'
-                label='Provincia'
-                variant='outlined'
-                value={userInfo.province}
-                onChange={(e) => handleChange(e, "province")}
+                id="provincia"
+                label="Provincia"
+                variant="outlined"
+                value={userInfo.provincia}
+                onChange={(e) => handleChange(e, "provincia")}
               />
               <TextField
                 sx={{ m: 2 }}
-                id='pais'
-                label='Pais'
-                variant='outlined'
-                value={userInfo.country}
-                onChange={(e) => handleChange(e, "country")}
+                id="pais"
+                label="Pais"
+                variant="outlined"
+                value={userInfo.pais}
+                onChange={(e) => handleChange(e, "pais")}
               />
               <TextField
                 sx={{ m: 2 }}
-                id='diasVacaciones'
-                label='Dias Vacaciones'
-                variant='outlined'
-                value={userInfo.holiday}
-                onChange={(e) => handleChange(e, "holiday")}
+                id="diasVacaciones"
+                label="Dias Vacaciones"
+                variant="outlined"
+                value={userInfo.dias_de_vacaciones}
+                onChange={(e) => handleChange(e, "dias_de_vacaciones")}
               />
             </Box>
           </AccordionDetails>
@@ -376,8 +397,9 @@ const PerfilUsuario = () => {
             padding: "20px",
             margin: "10px",
             justifyContent: "end",
-          }}>
-          <Button variant='contained' color='primary'>
+          }}
+        >
+          <Button variant="contained" color="primary">
             Guardar
             <ArrowForwardIcon></ArrowForwardIcon>
           </Button>
