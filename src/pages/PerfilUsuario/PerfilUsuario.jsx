@@ -21,6 +21,10 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { AutenticacionContext } from "../../contexts/Autenticacion";
 import { perfilService } from "../../services/perfilService";
+import dayjs from "dayjs";
+import dayjsPluginUTC from 'dayjs-plugin-utc'
+
+dayjs.extend(dayjsPluginUTC)
 
 const PerfilUsuario = () => {
   const { usuario } = useContext(AutenticacionContext);
@@ -35,6 +39,9 @@ const PerfilUsuario = () => {
     fecha_de_ingreso: "",
     dni: "",
     cuil: "",
+    telefono: "",
+    email: "",
+    codigo_postal: "",
     dias_de_vacaciones: "",
     foto: "",
     calle: "",
@@ -52,12 +59,20 @@ const PerfilUsuario = () => {
   const [image, setImage] = useState(null);
   const [checked, setChecked] = React.useState(false);
 
+  let fecha;
+
   useEffect(() => {
     // si es true traemos los datos del usuario desde llamando a una funcion en service
     isNew
       ? setUserInfo({ ...initData })
-      : perfilService(1).then((data) => setUserInfo(...data));
+      : perfilService(1).then((data) => {
+        fecha = data.fecha_de_nacimiento;
+        setUserInfo({ ...data })
+        console.log(fecha)
+      });
   }, []);
+
+  // const defaultValue = dayjs.utc().toDate();
 
   const handleChange = (e, inputName) => {
     const info = userInfo;
@@ -69,11 +84,9 @@ const PerfilUsuario = () => {
     e.preventDefault();
     let file = e.target.files[0];
     let reader = new FileReader();
-
     reader.onloadend = () => {
       setImage(reader.result);
     };
-
     reader.readAsDataURL(file);
   };
 
@@ -161,15 +174,18 @@ const PerfilUsuario = () => {
               sx={{ m: 2 }}
               id="nombre"
               label="Nombre"
+              InputLabelProps={{ shrink: true }}
               type="text"
               variant="outlined"
               value={userInfo.username}
               onChange={(e) => handleChange(e, "username")}
             />
+
             <TextField
               sx={{ m: 2 }}
               id="password"
               label="nueva password"
+              InputLabelProps={{ shrink: true }}
               type="password"
               variant="outlined"
               value={userInfo.password}
@@ -179,9 +195,10 @@ const PerfilUsuario = () => {
               sx={{ m: 2 }}
               id="apellido"
               label="Apellido"
+              InputLabelProps={{ shrink: true }}
               type="text"
               variant="outlined"
-              value={userInfo.lastname}
+              value={userInfo.apellido}
               onChange={(e) => handleChange(e, "apellido")}
             />
             <TextField
@@ -189,6 +206,7 @@ const PerfilUsuario = () => {
               id="passwordRepetida"
               label="repetir password"
               type="password"
+              InputLabelProps={{ shrink: true }}
               variant="outlined"
               value={rePassword}
               onChange={(e) => setRePassword(e.value)}
@@ -213,6 +231,7 @@ const PerfilUsuario = () => {
                 id="supervisor"
                 displayEmpty
                 select
+                InputLabelProps={{ shrink: true }}
                 label="Bajo supervision de:"
                 variant="filled"
               >
@@ -231,7 +250,14 @@ const PerfilUsuario = () => {
                   components={["DatePicker"]}
                   sx={{ m: 1, width: "220px" }}
                 >
-                  <DatePicker label="Fecha de nacimiento" />
+                  <DatePicker
+                    label="Fecha de nacimiento"
+                    type="date"
+                    format="YYYY-MM-DD"
+                    defaultValue={dayjs.utc(usuario.fecha_de_nacimiento)}
+
+
+                  />
                 </DemoContainer>
               </LocalizationProvider>
               <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -244,8 +270,10 @@ const PerfilUsuario = () => {
                     id="fechaingreso"
                     type="date"
                     variant="outlined"
-                    // value={userInfo.date}
-                    onChange={(e) => handleChange(e, "fecha_de_nacimiento")}
+                    format="DD-MM-YYYY"
+                    defaultValue={new Date(userInfo.fecha_de_ingreso)}
+                  // value={new Date(userInfo.fecha_de_ingreso)}
+                  // onChange={(e) => handleChange(e, "fecha_de_ingreso")}
                   />
                 </DemoContainer>
               </LocalizationProvider>
@@ -253,6 +281,7 @@ const PerfilUsuario = () => {
                 sx={{ m: 2 }}
                 id="dni"
                 label="DNI"
+                InputLabelProps={{ shrink: true }}
                 variant="outlined"
                 value={userInfo.dni}
                 onChange={(e) => handleChange(e, "dni")}
@@ -261,6 +290,7 @@ const PerfilUsuario = () => {
                 sx={{ m: 2 }}
                 id="cuil"
                 label="CUIL"
+                InputLabelProps={{ shrink: true }}
                 type="text"
                 variant="outlined"
                 value={userInfo.cuil}
@@ -270,6 +300,7 @@ const PerfilUsuario = () => {
                 sx={{ m: 2 }}
                 id="telefono"
                 label="Telefono"
+                InputLabelProps={{ shrink: true }}
                 variant="outlined"
                 value={userInfo.telefono}
                 onChange={(e) => handleChange(e, "telefono")}
@@ -279,6 +310,7 @@ const PerfilUsuario = () => {
                 id="correo"
                 label="Correo electronico"
                 type="email"
+                InputLabelProps={{ shrink: true }}
                 variant="outlined"
                 value={userInfo.email}
                 onChange={(e) => handleChange(e, "email")}
@@ -314,6 +346,7 @@ const PerfilUsuario = () => {
                 sx={{ m: 2 }}
                 id="calle"
                 label="Calle"
+                InputLabelProps={{ shrink: true }}
                 variant="outlined"
                 value={userInfo.calle}
                 onChange={(e) => handleChange(e, "calle")}
@@ -322,6 +355,7 @@ const PerfilUsuario = () => {
                 sx={{ m: 2 }}
                 id="altura"
                 label="Altura"
+                InputLabelProps={{ shrink: true }}
                 variant="outlined"
                 value={userInfo.altura}
                 onChange={(e) => handleChange(e, "altura")}
@@ -330,6 +364,7 @@ const PerfilUsuario = () => {
                 sx={{ m: 2 }}
                 id="codig opostal"
                 label="Codigo postal"
+                InputLabelProps={{ shrink: true }}
                 variant="outlined"
                 value={userInfo.codigo_postal}
                 onChange={(e) => handleChange(e, "codigo_postal")}
@@ -339,6 +374,7 @@ const PerfilUsuario = () => {
                 id="torre"
                 label="Torre"
                 variant="outlined"
+                InputLabelProps={{ shrink: true }}
                 value={userInfo.torre}
                 onChange={(e) => handleChange(e, "torre")}
               />
@@ -346,12 +382,16 @@ const PerfilUsuario = () => {
                 sx={{ m: 2 }}
                 id="piso"
                 label="Piso"
+                InputLabelProps={{ shrink: true }}
                 variant="outlined"
+                value={userInfo.piso}
+                onChange={(e) => handleChange(e, "piso")}
               />
               <TextField
                 sx={{ m: 2 }}
                 id="departamento"
                 label="Departamento"
+                InputLabelProps={{ shrink: true }}
                 variant="outlined"
                 value={userInfo.departamento}
                 onChange={(e) => handleChange(e, "departamento")}
@@ -360,6 +400,7 @@ const PerfilUsuario = () => {
                 sx={{ m: 2 }}
                 id="localidad"
                 label="Localidad"
+                InputLabelProps={{ shrink: true }}
                 variant="outlined"
                 value={userInfo.localidad}
                 onChange={(e) => handleChange(e, "localidad")}
@@ -368,6 +409,7 @@ const PerfilUsuario = () => {
                 sx={{ m: 2 }}
                 id="provincia"
                 label="Provincia"
+                InputLabelProps={{ shrink: true }}
                 variant="outlined"
                 value={userInfo.provincia}
                 onChange={(e) => handleChange(e, "provincia")}
@@ -376,6 +418,7 @@ const PerfilUsuario = () => {
                 sx={{ m: 2 }}
                 id="pais"
                 label="Pais"
+                InputLabelProps={{ shrink: true }}
                 variant="outlined"
                 value={userInfo.pais}
                 onChange={(e) => handleChange(e, "pais")}
@@ -384,6 +427,7 @@ const PerfilUsuario = () => {
                 sx={{ m: 2 }}
                 id="diasVacaciones"
                 label="Dias Vacaciones"
+                InputLabelProps={{ shrink: true }}
                 variant="outlined"
                 value={userInfo.dias_de_vacaciones}
                 onChange={(e) => handleChange(e, "dias_de_vacaciones")}
