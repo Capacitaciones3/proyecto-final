@@ -15,16 +15,16 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import React, { useContext, useEffect, useState } from "react";
+import ReactDatePicker, { registerLocale } from "react-datepicker";
 import "./PerfilUsuario.css";
-import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+
+
 import { AutenticacionContext } from "../../contexts/Autenticacion";
 import { perfilService } from "../../services/perfilService";
+import "react-datepicker/dist/react-datepicker.css";
 import dayjs from "dayjs";
-import dayjsPluginUTC from 'dayjs-plugin-utc'
-
-dayjs.extend(dayjsPluginUTC)
+import es from 'date-fns/locale/es';
+registerLocale('es', es);
 
 const PerfilUsuario = () => {
   const { usuario } = useContext(AutenticacionContext);
@@ -59,16 +59,12 @@ const PerfilUsuario = () => {
   const [image, setImage] = useState(null);
   const [checked, setChecked] = React.useState(false);
 
-  let fecha;
-
   useEffect(() => {
     // si es true traemos los datos del usuario desde llamando a una funcion en service
     isNew
       ? setUserInfo({ ...initData })
       : perfilService(1).then((data) => {
-        fecha = data.fecha_de_nacimiento;
         setUserInfo({ ...data })
-        console.log(fecha)
       });
   }, []);
 
@@ -89,6 +85,12 @@ const PerfilUsuario = () => {
     };
     reader.readAsDataURL(file);
   };
+
+  const handleDateInput = (date, inputName) => {
+    const info = userInfo;
+    info[inputName] = date;
+    setUserInfo({ ...info });
+  }
 
   /* const handleSubmit = () => {
     // si es nuevo llamamos a metodo saveUser en service POST()
@@ -245,38 +247,57 @@ const PerfilUsuario = () => {
                   Laura
                 </MenuItem>
               </TextField>
-              <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <DemoContainer
-                  components={["DatePicker"]}
-                  sx={{ m: 1, width: "220px" }}
-                >
-                  <DatePicker
+
+              <ReactDatePicker
+                onChange={(date) => {
+                  const info = userInfo;
+                  console.log(date.toISOString())
+                  let fecha = date.toISOString();
+                  fecha = fecha.split("T");
+                  info["fecha_de_nacimiento"] = fecha[0];
+                  setUserInfo({ ...info });
+
+                }}
+                withPortal
+                locale="es"
+                value={userInfo.fecha_de_nacimiento}
+                customInput={
+                  <TextField
                     label="Fecha de nacimiento"
-                    type="date"
-                    format="YYYY-MM-DD"
-                    defaultValue={dayjs.utc(usuario.fecha_de_nacimiento)}
+                    type="text"
+                    InputLabelProps={{ shrink: true }}
+                    disabled={true}
+                  />
+
+                }></ReactDatePicker>
+
+              <ReactDatePicker
+                onChange={(date) => {
+                  const info = userInfo;
+                  console.log(date.toISOString())
+                  let fecha = date.toISOString();
+                  fecha = fecha.split("T");
+                  info["fecha_de_ingreso"] = fecha[0];
+                  setUserInfo({ ...info });
+
+                }}
+                withPortal
+                locale="es"
+                value={userInfo.fecha_de_ingreso}
+                customInput={
+                  <TextField
+                    label="Fecha de Ingreso"
+                    type="text"
+                    InputLabelProps={{ shrink: true }}
+                    disabled={true}
+                  />
+
+                }></ReactDatePicker>
 
 
-                  />
-                </DemoContainer>
-              </LocalizationProvider>
-              <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <DemoContainer
-                  components={["DatePicker"]}
-                  sx={{ m: 1, width: "220px" }}
-                >
-                  <DatePicker
-                    label="Fecha de ingreso"
-                    id="fechaingreso"
-                    type="date"
-                    variant="outlined"
-                    format="DD-MM-YYYY"
-                    defaultValue={new Date(userInfo.fecha_de_ingreso)}
-                  // value={new Date(userInfo.fecha_de_ingreso)}
-                  // onChange={(e) => handleChange(e, "fecha_de_ingreso")}
-                  />
-                </DemoContainer>
-              </LocalizationProvider>
+
+
+
               <TextField
                 sx={{ m: 2 }}
                 id="dni"
@@ -330,9 +351,9 @@ const PerfilUsuario = () => {
               )}
             </Box>
           </AccordionDetails>
-        </Accordion>
+        </Accordion >
         {/* //Segundo acordion de datos */}
-        <Accordion>
+        <Accordion Accordion >
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1a-content"
@@ -434,7 +455,7 @@ const PerfilUsuario = () => {
               />
             </Box>
           </AccordionDetails>
-        </Accordion>
+        </Accordion >
         <Box
           sx={{
             display: "flex",
@@ -448,8 +469,8 @@ const PerfilUsuario = () => {
             <ArrowForwardIcon></ArrowForwardIcon>
           </Button>
         </Box>
-      </Box>
-    </Container>
+      </Box >
+    </Container >
   );
 };
 
