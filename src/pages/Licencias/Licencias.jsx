@@ -10,7 +10,7 @@ import UsuarioAdmin from "../../components/Usuario/Usuario Admin/UsuarioAdmin";
 import PostAddIcon from "@mui/icons-material/PostAdd";
 import NavigationIcon from "@mui/icons-material/Navigation";
 import { Fab, Typography } from "@mui/material";
-import { getLicencias } from "../../services/licenciaServices";
+import { getLicencias, postLicencias } from "../../services/licenciaServices";
 import { Link } from "react-router-dom";
 
 const Licencias = (rol) => {
@@ -44,10 +44,11 @@ const Licencias = (rol) => {
   };
   console.log(data);
 
-  // ENVIO LA DATA DEL FORMULARIO ! conectar con el boton de enviar solicitud, crear axios post
+  // ENVIO LA DATA DEL FORMULARIO !
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(data);
+    postLicencias(data);
   };
 
   return (
@@ -64,7 +65,12 @@ const Licencias = (rol) => {
           flexWrap: "wrap",
         }}>
         <form
-          style={{ width: "70%", display: "flex", flexDirection: "column" }}
+          style={{
+            width: "70%",
+            display: "flex",
+            flexDirection: "column",
+            backgroundColor: "white",
+          }}
           onSubmit={handleSubmit}
           required>
           <section className='contenedorUsuario'>
@@ -112,17 +118,13 @@ const Licencias = (rol) => {
 
             <div className='contenedorCinco'>
               <div className='botondeAprobacion'>
-                <Link to='/dashboard'>
+                <Link onClick={(e) => handleSubmit(e)}>
                   <Fab
                     variant='extended'
                     size='medium'
                     color='success'
                     aria-label='add'>
-                    <NavigationIcon
-                      sx={{ mr: 1 }}
-                      icon={<PostAddIcon />}
-                      handleSubmit={handleSubmit}
-                    />
+                    <NavigationIcon sx={{ mr: 1 }} icon={<PostAddIcon />} />
                     Solicitar aprobacion
                   </Fab>
                 </Link>
@@ -146,6 +148,3 @@ export default Licencias;
     }
     </div>
   </aside>*/
-
-// FALTA ACTUALIZAR EL ESTADO
-// CALENDARIO

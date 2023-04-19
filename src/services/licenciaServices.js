@@ -11,8 +11,13 @@ export const getLicencias = async () => {
   }
 };
 
-// CORREGIR !!!!!!!!!!!!!!!!!!!!!!!!!
-
-// DESARROLLARRRRRR !!!!!!
-
-export const actualizarDatosLicencias = async () => { };
+export const postLicencias = async (body) => {
+  try {
+    await fetchContent("/api/licencias", {
+      method: "POST",
+      body: body,
+    });
+  } catch (error) {
+    throw new Error("[postLicencias service error]: " + error);
+  }
+};

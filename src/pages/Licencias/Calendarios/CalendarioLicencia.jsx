@@ -5,8 +5,8 @@ import { Typography } from "@mui/material";
 import CardCalendario from "./CardCalendario";
 import "react-datepicker/dist/react-datepicker.css";
 import dayjs from "dayjs";
-import es from 'date-fns/locale/es';
-registerLocale('es', es);
+import es from "date-fns/locale/es";
+registerLocale("es", es);
 
 // pasar a la carpeta de constantes
 const initData = { diasLabo: "Días laborales", diasDispo: "Días disponibles" };
@@ -43,7 +43,7 @@ const CalendarioLicencia = ({ setData, data }) => {
               filterDate={isWeekday}
               minDate={new Date()}
               withPortal
-              locale="es"
+              locale='es'
               customInput={
                 <CardCalendario state={startDate} />
               }></ReactDatePicker>
@@ -60,7 +60,7 @@ const CalendarioLicencia = ({ setData, data }) => {
               minDate={startDate}
               filterDate={(date) => isWeekday(date)}
               withPortal
-              locale="es"
+              locale='es'
               customInput={
                 <CardCalendario state={endDate} />
               }></ReactDatePicker>

@@ -125,6 +125,7 @@ const PerfilUsuario = () => {
             Mi perfil
           </Typography>
           <Divider />
+          <Divider />
         </Box>
         <Box
           sx={{
@@ -162,6 +163,7 @@ const PerfilUsuario = () => {
               Subir Imagen
             </Button>
           </label>
+
 
           <Box
             sx={{
