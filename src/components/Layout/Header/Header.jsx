@@ -4,7 +4,7 @@ import Toolbar from "@mui/material/Toolbar";
 import BarChartIcon from "@mui/icons-material/BarChart";
 import CalendarTodayRoundedIcon from "@mui/icons-material/CalendarTodayRounded";
 import GroupsRoundedIcon from "@mui/icons-material/GroupsRounded";
-import DropDownMenu from "../../DropDownMenu/DropDownMenu";
+import DropDownMenu from "./DropDownMenu/DropDownMenu";
 import MenuItem from "@mui/material/MenuItem";
 import MenuIcon from "@mui/icons-material/Menu";
 import NotificationsIcon from "@mui/icons-material/Notifications";
@@ -13,6 +13,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { useNavigate } from "react-router-dom";
 import { AutenticacionContext } from "../../../contexts/Autenticacion";
 import LogoutIcon from "@mui/icons-material/Logout";
+import imagen from "./shrek.jpg";
 
 // css
 import "./Header.css";
@@ -20,9 +21,11 @@ import "./Header.css";
 const Header = () => {
   const avatar = (
     <Avatar>
-      <AccountCircleIcon />
+      <img src={imagen} alt='' width={"70px"} />
     </Avatar>
   );
+
+  //foto?(<img src={foto} alt='' width={"70px"}/>):(<div style={{backgroundColor: "blue", width: "50px", height: "50px",}}></div>)
 
   const navigate = useNavigate();
   const { cerrarSesion, usuario, isLogged } = useContext(AutenticacionContext);
@@ -32,9 +35,9 @@ const Header = () => {
     return query.get("title");
   };
 
-  const itemListHam = [
+  const listItemHamAdmin = [
     {
-      icono: <BarChartIcon color="primary" />,
+      icono: <BarChartIcon color='primary' />,
       text: "Dashboard",
       path: "/dashboard",
     },
@@ -43,20 +46,36 @@ const Header = () => {
       text: "Cargar Licencias",
       path: "/licencias",
     },
-    (usuario.rol === "administrador")?({
-      icono: <GroupsRoundedIcon color="error" />,
+    {
+      icono: <GroupsRoundedIcon color='error' />,
       text: "Administrar Usuarios",
       path: "/usuarios",
-    }):
-      {
-        icono: <CalendarTodayRoundedIcon />,
-        text:
-          usuario.rol === "administrador"
-            ? "Mantenimiento de Calendario"
-            : "Feriados",
-        path: "/calendario",
-      },
+    },
+    {
+      icono: <CalendarTodayRoundedIcon />,
+      text: "Mantenimiento de Calendario",
+      path: "/calendario",
+    },
   ];
+
+  const listItemHamUser = [
+    {
+      icono: <BarChartIcon color='primary' />,
+      text: "Dashboard",
+      path: "/dashboard",
+    },
+    {
+      icono: <CalendarTodayRoundedIcon />,
+      text: "Cargar Licencias",
+      path: "/licencias",
+    },
+    {
+      icono: <CalendarTodayRoundedIcon />,
+      text: "Feriados",
+      path: "/calendario",
+    },
+  ];
+
   const notificationList = [
     {
       icono: <BarChartIcon />,
@@ -76,8 +95,12 @@ const Header = () => {
   // Hay que tener por params el id o algo asi
   const userList = [
     {
-      icono: <AccountCircleIcon />,
-      text: "Perfil",
+      icono: (
+        <Avatar>
+          <img src={imagen} alt='' width={"70px"} />
+        </Avatar>
+      ),
+      text: "Mi perfil",
       path: "/perfil",
     },
   ];
@@ -89,30 +112,37 @@ const Header = () => {
 
   return (
     <>
-      <AppBar position="fixed" color="transparent">
+      <AppBar position='fixed' color='transparent'>
         <Toolbar sx={{ backgroundColor: "white" }}>
           <DropDownMenu
-            name="ham"
+            name='ham'
             botonIcono={<MenuIcon />}
-            listItems={itemListHam}
+            listItems={
+              usuario.rol === "administrador"
+                ? listItemHamAdmin
+                : listItemHamUser
+            }
           />
-          <h2 style={{ width: "100%", textAlign: "center" }}>{getTitle()}</h2>
-          <nav className="nav-header">
+          <h2 style={{ width: "100%", textAlign: "center", color: "#616161" }}>
+            {getTitle()}
+          </h2>
+          <nav className='nav-header'>
             <DropDownMenu
-              name="notification"
+              name='notification'
               botonIcono={<NotificationsIcon />}
               listItems={notificationList}
             />
-            {/* aca tenemos que poner un item personalizado para cerrar sesion ya que se comporta distinto al resto de items que solo redirije */}
-            <DropDownMenu name="user" botonIcono={avatar} listItems={userList}>
+            {/* aca tenemos que poner un item personalizado para cerrar sesion ya que se comporta 
+            distinto al resto de items que solo redirije */}
+            <DropDownMenu name='user' botonIcono={avatar} listItems={userList}>
               <MenuItem
                 onClick={() => handleSession()}
                 sx={{
                   display: "flex",
-                  gap: "20px",
-                }}
-              >
-                <LogoutIcon /> cerrar sesión
+                  gap: "30px",
+                  justifyContent: "center",
+                }}>
+                <LogoutIcon /> Cerrar sesión
               </MenuItem>
             </DropDownMenu>
           </nav>

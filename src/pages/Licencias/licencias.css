@@ -1,186 +1,191 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.contenedorUsuario{
-    width: 100%;
-    display:flex; 
-    justify-content:space-between;
-    align-items:center;
-    padding: 10px;
-    border:1px solid grey;
-    border-radius: 5px 5px 0px 0px;
+.contenedorUsuario {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: white;
+  border: 0.1px solid rgb(192, 191, 191);
+  box-shadow: rgba(189, 189, 189, 0.2) 0px 7px 29px 0px;
+  border-radius: 5px 5px 0px 0px;
 }
 
-.usuarioBalance{
-    width:50%;
-    gap: 20px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center 
+.usuarioBalance {
+  width: 50%;
+  gap: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.estadoLicencia{
-    width:30%;
-    display:flex;
-    justify-content:space-between;
-    flex-direction:column;
-    align-items:center
+.estadoLicencia {
+  width: 30%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
 }
 
-.contenedorDescripcion{
-    width: 100%;
-    height: 100%;
-    flex-direction:column;
-    border:1px solid grey;
-    border-top: hidden;
-    padding: 40px;
+.contenedorDescripcion {
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  background-color: white;
+  border: 0.1px solid rgb(192, 191, 191);
+  box-shadow: rgba(189, 189, 189, 0.2) 0px 8px 24px;
+  border-top: hidden;
+  padding: 40px;
 }
 
-.contenedorUno{
-    width:100%;
-    display:flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: space-around;
+.contenedorUno {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-around;
 }
 
-.licencia{
-    width:40%;
-    display:flex;
-    flex-direction:column;
-    gap: 30px;
-    align-items: flex-start;
-    align-content: space-between;
+.licencia {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: flex-start;
+  align-content: space-between;
 }
 
-.contenedorDos{
-    width:50%;
-    display:flex;
-    flex-direction: column;
-    align-content: center;
-    padding: 30px;
+.contenedorDos {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  padding: 30px;
 }
 
-.contenedorCalendario{
-    width:100%;
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 30px;
+.contenedorCalendario {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
 }
 
-.imagenesCalendario{
-    width:50%;
-    display:flex;
-    justify-content: center;
-    gap:120px;
-    padding-right: 60px;
+.imagenesCalendario {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  gap: 60px;
 }
 
-.imagenCalendario{
-    width: 300%;
-    height: 100px;
+.imagenCalendario {
+  width: 300%;
+  height: 100px;
 }
 
-.imgRoja{
-    height: 40px;
-    background-color: rgb(231, 60, 60);
-    border-radius: 10px 10px 0 0;
-    border: 1px solid grey;
-    border-bottom: 0;
+.imgRoja {
+  height: 40px;
+  background-color: rgb(231, 60, 60);
+  border-radius: 10px 10px 0 0;
+  border: 1px solid grey;
+  border-bottom: 0;
 }
 
-.imgBlanca{
-    height: 60px;
-    border: 1px solid grey;
-    border-radius: 0 0 10px 10px;
+.imgBlanca {
+  height: 60px;
+  border: 1px solid grey;
+  border-radius: 0 0 10px 10px;
 }
 
-.fecha{
-    width: 100%;
-    height: 30px;
-    display: flex;
+.fecha {
+  width: 100%;
+  height: 30px;
+  display: flex;
 }
 
-.diasLaborales{
-    width: 100%;
-    display: flex;
-    padding: 5px;
-    justify-content: center;
-    border: 1px solid grey;
-    border-radius: 10px 0 0 10px;
+.diasLaborales {
+  width: 100%;
+  display: flex;
+  padding: 5px;
+  justify-content: center;
+  border: 1px solid grey;
+  border-radius: 10px 0 0 10px;
 }
 
-.diasDispo{
-    width: 100%;
-    display: flex;
-    padding: 5px;
-    border: 1px solid grey;
-    border-radius: 0px 10px 10px 0px;
-    justify-content: center;
+.diasDispo {
+  width: 100%;
+  display: flex;
+  padding: 5px;
+  border: 1px solid grey;
+  border-radius: 0px 10px 10px 0px;
+  justify-content: center;
 }
 
-.contenedorTres{
-    width:100%;
-    display:flex;
-    justify-content:flex-start;
-    flex-direction:column;
-    padding: 30px;
-    gap: 30px;
+.contenedorTres {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  padding: 30px;
+  gap: 30px;
 }
 
-.contenedorAprobacion{
-    width: 100%;
-    height: 100%;
-    flex-direction:column;
-    border:1px solid grey;
-    border-top: hidden;
-    border-radius: 0px 0px 5px 5px;
-    padding: 40px;
+.contenedorAprobacion {
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  background-color: white;
+  border: 0.1px solid rgb(192, 191, 191);
+  box-shadow: rgba(189, 189, 189, 0.2) 0px 8px 24px;
+  border-top: hidden;
+  border-radius: 0px 0px 5px 5px;
+  padding: 40px;
 }
 
-.contenedorCuatro{
-    width:100%;
-    display:flex;
-    justify-content:flex-start;
-    flex-direction:column;
-    padding: 30px;
+.contenedorCuatro {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  padding: 30px;
 }
 
-.administrador{
-    width:50%;
-    display:flex;
-    justify-content: flex-start;
-    flex-direction:column;
+.administrador {
+  width: 50%;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
 }
 
-.contenedorCinco{
-    width:100%;
-    display:flex;
-    justify-content: flex-end;
-    padding: 30px;
+.contenedorCinco {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding: 30px;
 }
 
-.botondeAprobacion{
-    width:50%;
-    display:flex;
-    align-items:center;
-    justify-content: flex-end;
+.botondeAprobacion {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 
-.contenedorLista{
-    width: 25%;
-    max-height: 100%;
-    display:flex; 
-    flex-direction:column;
-    border:1px solid grey;
-    border-radius: 5px;
+.contenedorLista {
+  width: 25%;
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid grey;
+  border-radius: 5px;
 }
 
-.titulo3{
-    border-bottom: 1px solid grey;
-    padding: 10px;
+.titulo3 {
+  border-bottom: 1px solid grey;
+  padding: 10px;
 }

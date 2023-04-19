@@ -2,32 +2,17 @@ import { fetchContent } from "../utils/fetch";
 
 export const getFeriados = async () => {
   try {
-    const respuesta = await fetchContent("/feriados", {method: 'GET'});
+    const respuesta = await fetchContent("/api/feriados", { method: "GET" });
     return respuesta;
   } catch (error) {
     throw new Error("[getLicencias service error]: " + error);
   }
 };
 
-/* export const getFeriados = async () => {
-    try {
-      const res = await fetch('http://nolaborables.com.ar/api/v2/feriados/2023?formato=mensual', {
-        method: 'GET',
-        headers: {    
-          "Content-Type": "application/json",
-        },
-      });
-      const data = await res.json();
-      return data;
-    } catch(error) {
-      throw new Error("[getFeriados service error]: " + error);
-    }
-  } */
-
-/* export const postFeriados = async (body) => {
+export const postFeriados = async (body) => {
   try {
-      const res = await fetchContent("/feriados", { body, method: "POST" });
-      
+    const res = await fetchContent("/api/feriados", { body, method: "POST" });
+    return res;
   } catch (error) {
     alert(
       error?.res.data?.message
@@ -36,4 +21,4 @@ export const getFeriados = async () => {
     );
     throw new Error("[postFeriados service error]: " + error);
   }
-}; */
+};
