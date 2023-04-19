@@ -22,7 +22,6 @@ import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { AutenticacionContext } from "../../contexts/Autenticacion";
 
 const PerfilUsuario = () => {
-  
   const { usuario } = useContext(AutenticacionContext);
   // El objeto va a estar vacio, ahora esta lleno porque es de prueba pero es para que tenga las keys
   const initData = {
@@ -94,14 +93,20 @@ const PerfilUsuario = () => {
         marginTop: "30px",
         display: "flex",
         border: "0.9px solid #D8D8D8",
-        backgroundColor: 'rgb(251, 251, 251)'
+        backgroundColor: "rgb(251, 251, 251)",
       }}>
-      <Box component='form' sx={{width:'100%', p:4}}>
-        <Box sx={{paddingTop:3, display:'flex', flexDirection:'column', gap:'30px'}}>
+      <Box component='form' sx={{ width: "100%", p: 4 }}>
+        <Box
+          sx={{
+            paddingTop: 3,
+            display: "flex",
+            flexDirection: "column",
+            gap: "30px",
+          }}>
           <Typography color='error.light' variant='h4'>
             Mi perfil
           </Typography>
-          <Divider/>
+          <Divider />
         </Box>
         <Box
           sx={{
@@ -112,10 +117,13 @@ const PerfilUsuario = () => {
             alignItems: "center",
             justifyContent: "space-between",
           }}>
+          <img
+            src='https://indiehoy.com/wp-content/uploads/2020/12/shrek.jpg'
+            alt='Usuario'
+            width={150}
+          />
 
-          <img src='https://indiehoy.com/wp-content/uploads/2020/12/shrek.jpg' alt='Usuario' width={150} />
-
-            {image && <img src={'./shrek.jpg'} alt='Usuario' width={150} />}
+          {image && <img src={"./shrek.jpg"} alt='Usuario' width={150} />}
           <input
             hidden
             accept='image/*'
@@ -134,7 +142,7 @@ const PerfilUsuario = () => {
               Subir Imagen
             </Button>
           </label>
-          
+
           <Box
             sx={{
               ml: 5,
@@ -182,7 +190,7 @@ const PerfilUsuario = () => {
           </Box>
         </Box>
         {/* //Primer acordion de datos */}
-        <Accordion sx={{mb: 3}} defaultExpanded='true'>
+        <Accordion sx={{ mb: 3 }} defaultExpanded='true'>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls='panel1a-content'
@@ -264,18 +272,18 @@ const PerfilUsuario = () => {
                 value={userInfo.email}
                 onChange={(e) => handleChange(e, "email")}
               />
-               {usuario.rol === "administrador" && (
-              <FormControlLabel
-                sx={{ margin: "20px" }}
-                control={
-                  <Switch
-                    checked={checked}
-                    onChange={handleChange}
-                    inputProps={{ "aria-label": "controlled" }}
-                  />
-                }
-                label='Administrador'>
-                </FormControlLabel>)}
+              {usuario.rol === "administrador" && (
+                <FormControlLabel
+                  sx={{ margin: "20px" }}
+                  control={
+                    <Switch
+                      checked={checked}
+                      onChange={handleChange}
+                      inputProps={{ "aria-label": "controlled" }}
+                    />
+                  }
+                  label='Administrador'></FormControlLabel>
+              )}
             </Box>
           </AccordionDetails>
         </Accordion>

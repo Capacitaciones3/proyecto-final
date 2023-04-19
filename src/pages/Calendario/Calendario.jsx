@@ -1,11 +1,11 @@
 import React, { useEffect, useState, useContext } from "react";
 import Typography from "@mui/material/Typography";
-import HolidayList from "../../components/HolidayList/HolidayList";
+import HolidayList from "./HolidayList/HolidayList";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import "./Calendario.css";
 import { Button, TextField } from "@mui/material";
-import BasicModal from "../../components/BasicModal/BasicModal";
+import BasicModal from "./BasicModal/BasicModal";
 import Loading from "../../components/Loading/Loading";
 import { AutenticacionContext } from "../../contexts/Autenticacion";
 import { getFeriados } from "../../services/feriadosServices";
@@ -17,13 +17,8 @@ const Calendario = () => {
   const { usuario } = useContext(AutenticacionContext);
 
   useEffect(() => {
-    getFeriados().then((data) =>
-      setFeriados(data));
+    getFeriados().then((data) => setFeriados(data));
   }, []);
-
-  /* feriados.map((elemento, indice) => {
-    return console.log(elemento, indice);
-  }) */
 
   return (
     <>
@@ -37,14 +32,14 @@ const Calendario = () => {
               sx={{ color: "#FF7B7B", textAlign: "center" }}>
               Calendario
             </Typography>
-            <CalendarioFeriados/>
+            <CalendarioFeriados />
           </div>
           <div className='calendar-page-section-container list-calendar'>
             <div className='calendar-section-title-container'>
               <Typography variant='h4' sx={{ color: "#FF7B7B" }}>
                 Feriados
               </Typography>
-              {usuario.rol === 'administrador' && (
+              {usuario.rol === "administrador" && (
                 <BasicModal
                   titulo='Crear nuevo Feriado'
                   nombreBtn='Nuevo Feriado'>
@@ -79,25 +74,25 @@ const Calendario = () => {
                 </BasicModal>
               )}
             </div>
-            <div className="contenedorListaFeriados">
-            <HolidayList>
-              {feriados.map((feriado, index) => (
-                <ListItem key={`feriado-${index}`} divider={true}>
-                  <ListItemText
-                    primary={
-                      <React.Fragment>
-                        <Typography
-                          component='span'
-                          variant='subtitle1'
-                          color='text.primary'>
-                          {feriado.feriados} - {feriado.id}
-                        </Typography>
-                      </React.Fragment>
-                    }
-                  />
-                </ListItem>
-              ))}
-            </HolidayList>
+            <div className='contenedorListaFeriados'>
+              <HolidayList>
+                {feriados.map((feriado, index) => (
+                  <ListItem key={`feriado-${index}`} divider={true}>
+                    <ListItemText
+                      primary={
+                        <React.Fragment>
+                          <Typography
+                            component='span'
+                            variant='subtitle1'
+                            color='text.primary'>
+                            {feriado.feriados} - {feriado.id}
+                          </Typography>
+                        </React.Fragment>
+                      }
+                    />
+                  </ListItem>
+                ))}
+              </HolidayList>
             </div>
           </div>
         </section>

@@ -19,9 +19,7 @@ const Usuario = ({ handleData, avatar, name, id, rol }) => {
   };
 
   const datos = licencias.map((licencia) => (
-    <MenuItem
-      value={licencia.id}
-      sx={{ display: "flex", flexDirection: "row" }}>
+    <MenuItem value={licencia.id}>
       <Box sx={{ display: "flex", flexDirection: "row" }}>
         <Avatar
           alt='User'
@@ -37,7 +35,12 @@ const Usuario = ({ handleData, avatar, name, id, rol }) => {
 
   return (
     <Select
-      sx={{ display: "flex", flexDirection: "row", maxWidth: "300px" }}
+      sx={{
+        display: "flex",
+        flexDirection: "row",
+        maxWidth: "300px",
+        height: "70px",
+      }}
       id='usuario'
       value={value}
       name='usuario'

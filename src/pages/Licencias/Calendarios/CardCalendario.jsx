@@ -64,12 +64,3 @@ const CardCalendario = ({ state, onClick }) => {
 };
 
 export default CardCalendario;
-
-/* const [value, setValue] = useState(new Date());
-    const handleDate = (newValue, name) => {
-    const dia = 
-    const mes = 
-    const diaNum = 
-    setValue({ dia: dia, mes: mes, diaNum: diaNum });
-    console.log(dia, mes, diaNum);
-    handleFecha({ dia: dia, mes: mes, diaNum: diaNum }, name); */

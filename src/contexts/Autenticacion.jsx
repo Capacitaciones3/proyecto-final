@@ -3,7 +3,11 @@ import React, { useState } from "react";
 export const AutenticacionContext = React.createContext();
 
 export const AutenticacionProvider = ({ children }) => {
-  const [usuario, setUsuario] = useState({id:null, token:null, rol:'administrador'});
+  const [usuario, setUsuario] = useState({
+    id: null,
+    token: null,
+    rol: "administrador",
+  });
   const [isLogged, setisLogged] = useState(true);
 
   const iniciarSesion = (id, token, rol) => {
@@ -22,8 +26,7 @@ export const AutenticacionProvider = ({ children }) => {
 
   return (
     <AutenticacionContext.Provider
-      value={{ usuario, iniciarSesion, cerrarSesion, isLogged }}
-    >
+      value={{ usuario, iniciarSesion, cerrarSesion, isLogged }}>
       {children}
     </AutenticacionContext.Provider>
   );
