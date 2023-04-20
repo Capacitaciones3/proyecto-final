@@ -8,7 +8,7 @@ import LicenciaCard from "../../components/LicenciaCard/LicenciaCard";
 import { getLicencias } from "../../services/licenciaServices";
 import { getApiClima } from "../../services/dashboardServices";
 import Loading from "../../components/Loading/Loading";
-import UsuarioAdmin from "../../components/Usuario/Usuario Admin/UsuarioAdmin";
+import UsuarioAdmin from "../../components/Usuario Admin/UsuarioAdmin";
 import { AutenticacionContext } from "../../contexts/Autenticacion";
 import CheckIcon from "@mui/icons-material/Check";
 import ClearIcon from "@mui/icons-material/Clear";

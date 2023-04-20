@@ -9,7 +9,7 @@ import MenuItem from "@mui/material/MenuItem";
 import MenuIcon from "@mui/icons-material/Menu";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import { Avatar } from "@mui/material";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import MarkChatReadIcon from "@mui/icons-material/MarkChatRead";
 import { useNavigate } from "react-router-dom";
 import { AutenticacionContext } from "../../../contexts/Autenticacion";
 import LogoutIcon from "@mui/icons-material/Logout";
@@ -78,16 +78,12 @@ const Header = () => {
 
   const notificationList = [
     {
-      icono: <BarChartIcon />,
-      text: "Dashboard",
+      icono: <MarkChatReadIcon color='success' />,
+      text: "Esto es una notificación",
     },
     {
-      icono: <CalendarTodayRoundedIcon />,
-      text: "Cargar licencias",
-    },
-    {
-      icono: <CalendarTodayRoundedIcon />,
-      text: "Administrar usuarios",
+      icono: <MarkChatReadIcon color='success' />,
+      text: "Esto también",
     },
   ];
 
