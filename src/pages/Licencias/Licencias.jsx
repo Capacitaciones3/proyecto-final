@@ -6,7 +6,7 @@ import SubirArchivo from "./SubirArchivo/SubirArchivo";
 import CalendarioLicencia from "./Calendarios/CalendarioLicencia";
 import TipodeLicencia from "./TipodeLicencia/TipodeLicencia";
 import Descripcion from "./Descripcion/Descripcion";
-import UsuarioAdmin from "../../components/Usuario/Usuario Admin/UsuarioAdmin";
+import UsuarioAdmin from "../../components/UsuarioAdmin/UsuarioAdmin";
 import PostAddIcon from "@mui/icons-material/PostAdd";
 import NavigationIcon from "@mui/icons-material/Navigation";
 import { Fab, Typography } from "@mui/material";

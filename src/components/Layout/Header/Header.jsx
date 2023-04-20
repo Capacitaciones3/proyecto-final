@@ -39,7 +39,7 @@ const Header = () => {
     {
       icono: <BarChartIcon color='primary' />,
       text: "Dashboard",
-      path: "/dashboard",
+      path: "/",
     },
     {
       icono: <CalendarTodayRoundedIcon />,

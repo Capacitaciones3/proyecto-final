@@ -4,7 +4,7 @@ import "./AdminUsuarios.css";
 import { getLicencias } from "../../services/licenciaServices";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
-import UsuarioAdmin from "../../components/Usuario Admin/UsuarioAdmin";
+import UsuarioAdmin from "../../components/UsuarioAdmin/UsuarioAdmin";
 import { red } from "@mui/material/colors";
 import Loading from "../../components/Loading/Loading";
 

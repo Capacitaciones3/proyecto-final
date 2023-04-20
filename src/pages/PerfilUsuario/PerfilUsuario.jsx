@@ -20,6 +20,7 @@ import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { AutenticacionContext } from "../../contexts/Autenticacion";
+import imagen from "./fotoPerfil.jpg";
 
 const PerfilUsuario = () => {
   const { usuario } = useContext(AutenticacionContext);
@@ -118,31 +119,15 @@ const PerfilUsuario = () => {
             justifyContent: "space-between",
           }}>
           <img
-            src='https://indiehoy.com/wp-content/uploads/2020/12/shrek.jpg'
+            src={imagen}
             alt='Usuario'
-            width={150}
+            style={{
+              borderRadius: "50%",
+              height: "130px",
+              width: "130px",
+              objectFit: "cover",
+            }}
           />
-
-          {image && <img src={"./shrek.jpg"} alt='Usuario' width={150} />}
-          <input
-            hidden
-            accept='image/*'
-            id='contained-button-file'
-            multiple={false}
-            type='file'
-            onChange={handleImageChange}
-            onClick={handleImageChange}
-          />
-          <label htmlFor='contained-button-file'>
-            <Button
-              sx={{ margin: "5px" }}
-              variant='contained'
-              color='primary'
-              component='span'>
-              Subir Imagen
-            </Button>
-          </label>
-
           <Box
             sx={{
               ml: 5,
@@ -396,3 +381,26 @@ const PerfilUsuario = () => {
 };
 
 export default PerfilUsuario;
+
+/*           <Button
+            component='label'
+            sx={{
+              width: "40%",
+              "&:hover": {
+                backgroundColor: "green",
+              },
+            }}
+            color='success'
+            variant='contained'>
+            Subir Archivo
+            <input
+              hidden
+              accept='image/jpg, image/png'
+              type='file'
+              name='archivo'
+              onChange={(e) => {
+                
+              }}
+              onClick={() => setImage(null)}
+            />
+          </Button> */

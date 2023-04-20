@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./pages/Login/Login";
 import NotFound from "./pages/NotFound/NotFound";
@@ -11,7 +11,6 @@ import { AutenticacionContext } from "./contexts/Autenticacion";
 import LicenciaCard from "./components/LicenciaCard/LicenciaCard";
 import Dashboard from "./pages/Dashboard/Dashboard";
 
-
 function App() {
   const { usuario, isLogged } = useContext(AutenticacionContext);
 
@@ -19,22 +18,22 @@ function App() {
     <BrowserRouter>
       <Routes>
         {isLogged ? (
-          <Route path="/" element={<Layout />}>
-            <Route index element={<Dashboard/>} />
-            <Route path="dashboard" element={<Dashboard/>}>
-              <Route path=":idLicencia" element={<LicenciaCard />} />
+          <Route path='/' element={<Layout />}>
+            <Route index element={<Dashboard />} />
+            <Route path='dashboard' element={<Dashboard />}>
+              <Route path=':idLicencia' element={<LicenciaCard />} />
             </Route>
-            <Route path="licencias" element={<Licencias />} />
+            <Route path='licencias' element={<Licencias />} />
             {usuario.rol === "administrador" && (
-              <Route path="usuarios" element={<AdminUsuarios />} />
+              <Route path='usuarios' element={<AdminUsuarios />} />
             )}
-            <Route path="calendario" element={<Calendario />} />
-            <Route path="perfil" element={<PerfilUsuario />} />
+            <Route path='calendario' element={<Calendario />} />
+            <Route path='perfil' element={<PerfilUsuario />} />
           </Route>
         ) : (
-          <Route path="login" element={<Login />} />
+          <Route path='login' element={<Login />} />
         )}
-        <Route path="*" element={<NotFound />} />
+        <Route path='*' element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );
