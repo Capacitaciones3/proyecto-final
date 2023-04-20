@@ -73,8 +73,8 @@ const LicenciaCard = ({
           <div className='estado-licencia'>
             <div className='fecha-info'>
               <div className='fechasBox-container'>
-                <FechaBox />
-                <FechaBox />
+                <FechaBox fecha={fullData.fechaComienzo.split("-")} />
+                <FechaBox fecha={fullData.fechaFinalizacion.split("-")} />
               </div>
               <div className='fecha'>
                 <div className='diasLaborales'></div>

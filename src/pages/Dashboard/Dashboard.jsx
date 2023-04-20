@@ -88,9 +88,9 @@ const Dashboard = () => {
         progress: undefined,
         theme: "colored",
       })
-
     }
     )
+    setOpen(false)
   }
 
   return (
