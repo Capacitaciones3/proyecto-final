@@ -10,10 +10,11 @@ import { getApiClima } from "../../services/dashboardServices";
 import Loading from "../../components/Loading/Loading";
 import UsuarioAdmin from "../../components/Usuario/Usuario Admin/UsuarioAdmin";
 import { AutenticacionContext } from "../../contexts/Autenticacion";
+import CheckIcon from "@mui/icons-material/Check";
+import ClearIcon from "@mui/icons-material/Clear";
 
 const Dashboard = () => {
-  const { usuario, isLogged } = useContext(AutenticacionContext);
-  const [loading, setLoading] = useState(false);
+  const { usuario } = useContext(AutenticacionContext);
   const [data, setData] = useState({});
   const [licencias, setLicencias] = useState(null);
   const [clima, setClima] = useState(false);
@@ -80,6 +81,28 @@ const Dashboard = () => {
                         fechaInicio={licencia.fechaInicio}
                         fechaFinal={licencia.fechaFinal}
                         tipodeLicencia={licencia.tipodeLicencia}
+                        icono={
+                          <>
+                            <CheckIcon
+                              sx={{
+                                backgroundColor: "#86FF73",
+                                color: "#ffffff",
+                                borderRadius: "15px",
+                                marginRight: "10px",
+                                width: "20px",
+                                height: "20px",
+                              }}
+                            />
+                            <ClearIcon
+                              sx={{
+                                backgroundColor: "#FF8B8B",
+                                color: "#ffffff",
+                                borderRadius: "15px",
+                                width: "20px",
+                                height: "20px",
+                              }}></ClearIcon>
+                          </>
+                        }
                       />
                     ))
                   ) : (

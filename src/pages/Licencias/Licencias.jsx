@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./licencias.css";
-import Usuario from "../../components/Usuario/Usuario";
+import Usuario from "./SelectUsuarios/SelectUsuario";
 import Estado from "./Estado/Estado";
 import SubirArchivo from "./SubirArchivo/SubirArchivo";
 import CalendarioLicencia from "./Calendarios/CalendarioLicencia";
@@ -77,7 +77,7 @@ const Licencias = (rol) => {
           <section className='contenedorUsuario'>
             <div className='usuarioBalance'>
               <div>
-                <Usuario handleData={handleData} />
+                <Usuario handleData={handleData} rol={"usuarios"} />
               </div>
               <div>
                 <Typography variant='subtitle1'>BALANCE ACTUAL:</Typography>

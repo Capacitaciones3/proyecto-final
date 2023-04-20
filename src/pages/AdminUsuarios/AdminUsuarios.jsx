@@ -1,8 +1,22 @@
 import { Button, Typography } from "@mui/material";
-import React from "react";
+import React, { Children, useEffect, useState } from "react";
 import "./AdminUsuarios.css";
+import { getLicencias } from "../../services/licenciaServices";
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
+import UsuarioAdmin from "../../components/Usuario/Usuario Admin/UsuarioAdmin";
+import Usuario from "../Licencias/SelectUsuarios/SelectUsuario";
 
 const AdminUsuarios = () => {
+  const [usuarios, setUsuarios] = useState();
+
+  useEffect(() => {
+    getLicencias().then((data) => {
+      console.log(data);
+      setUsuarios(data);
+    });
+  }, []);
+
   return (
     <div className='containerAdminUsers'>
       <div className='containerDataAdminUsers'>
@@ -26,7 +40,25 @@ const AdminUsuarios = () => {
           </div>
         </div>
         <div className='containerUsers'>
-          <div></div>
+          <div>
+            {usuarios ? (
+              usuarios.map((usuario, index) => (
+                <UsuarioAdmin
+                  key={`usuarios-${index}`}
+                  avatar={usuario.avatar}
+                  name={usuario.name}
+                  icono={
+                    <>
+                      <DeleteIcon fontSize='5px'></DeleteIcon>
+                      <EditIcon fontSize='5px'></EditIcon>
+                    </>
+                  }
+                />
+              ))
+            ) : (
+              <p>No hay usuarios</p>
+            )}
+          </div>
         </div>
       </div>
     </div>

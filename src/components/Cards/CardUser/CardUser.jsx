@@ -14,10 +14,9 @@ const CardUser = ({
   fechaFinal,
   fechaInicio,
   rol,
+  icono,
 }) => {
   const { usuario } = useContext(AutenticacionContext);
-
-  // AGREGAR FUNCIONALIDAD A LOS BOTONES Y ROL SEGUN ADMIN O USUARIO
 
   return (
     <Stack
@@ -83,28 +82,7 @@ const CardUser = ({
             <button
               style={{ border: 0, backgroundColor: "#ffffff" }}
               onClick={{}}>
-              <CheckIcon
-                sx={{
-                  backgroundColor: "#86FF73",
-                  color: "#ffffff",
-                  borderRadius: "15px",
-                  marginRight: "10px",
-                  width: "20px",
-                  height: "20px",
-                }}></CheckIcon>
-            </button>
-
-            <button
-              style={{ border: 0, backgroundColor: "#ffffff" }}
-              onClick={{}}>
-              <ClearIcon
-                sx={{
-                  backgroundColor: "#FF8B8B",
-                  color: "#ffffff",
-                  borderRadius: "15px",
-                  width: "20px",
-                  height: "20px",
-                }}></ClearIcon>
+              {icono}
             </button>
           </div>
         </Stack>
@@ -114,3 +92,5 @@ const CardUser = ({
 };
 
 export default CardUser;
+
+/**/
