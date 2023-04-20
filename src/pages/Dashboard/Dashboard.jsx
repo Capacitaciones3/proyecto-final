@@ -153,13 +153,13 @@ const Dashboard = () => {
                         avatar={licencia.avatar}
                         name={licencia.name}
                       />
-                    ))}{" "}
+                    ))}
                   </div>
                 </section>
               )}
             </article>
           </div>
-          <div className='licencia-card-container' style={{ display: "none" }}>
+          <div className='licencia-card-container'>
             <LicenciaCard />
           </div>
         </>
