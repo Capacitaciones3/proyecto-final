@@ -14,23 +14,21 @@ export const Method = {
   DELETE: "DELETE",
 };
 
-
 export const fetchContent = async (url, config = {}) => {
-
   try {
     const { headers: headersOptions } = config;
     // const token = localStorage.getItem("Token");
     const token = false;
     const headers = token
       ? {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-        ...headersOptions,
-      }
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+          ...headersOptions,
+        }
       : {
-        "Content-Type": "application/json",
-        ...headersOptions,
-      };
+          "Content-Type": "application/json",
+          ...headersOptions,
+        };
 
     const { body, ...options } = config;
 
@@ -47,14 +45,14 @@ export const fetchContent = async (url, config = {}) => {
     if (body) {
       request.data = body;
     }
-    
+
     const promise = httpClient.request(request);
     promise.cancel = () => source.cancel("cancelled");
     const { data } = await promise;
     if (data?.error) {
       throw new Error(data.error);
     }
-    return data
+    return data;
     // camelcaseKeys(data, { deep: true });
   } catch (error) {
     console.info(error);

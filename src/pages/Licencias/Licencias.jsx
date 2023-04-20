@@ -27,6 +27,7 @@ const Licencias = (rol) => {
     });
   }, []);
 
+  // ESTO FALTA CAMBIAR
   // Esto está momentáneo hasta renderizar al admin que viene con el usuario
   const datos = licencias.map((licencia) => (
     <UsuarioAdmin avatar={licencia.avatar} name={licencia.name} />
