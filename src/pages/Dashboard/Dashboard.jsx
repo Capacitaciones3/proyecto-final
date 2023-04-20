@@ -51,7 +51,11 @@ const Dashboard = () => {
   };
 
   const traerFullLicencia = (id) => {
-    getLicenciaFull(licenciaFull.id)
+    getLicenciaFull(id)
+      .then(data => {
+        console.log(data)
+        setLicenciaFull(data)
+      })
   }
 
   const handleRespuesta = () => {
@@ -200,7 +204,7 @@ const Dashboard = () => {
             </article>
           </div>
           <div className='licencia-card-container' style={{ display: "none" }}>
-            <LicenciaCard licenciaFull={licenciaFull} setLicenciaFull={setLicenciaFull} handleRespuesta={handleRespuesta} open={open} setOpen={setOpen} />
+            {/* <LicenciaCard fullData={licenciaFull} setLicenciaFull={setLicenciaFull} handleRespuesta={handleRespuesta} open={open} setOpen={setOpen} /> */}
           </div>
           <ToastContainer
             position="bottom-right"

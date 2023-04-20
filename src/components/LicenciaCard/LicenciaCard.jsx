@@ -5,6 +5,7 @@ import "./LicenciaCard.css";
 import DescargarArchivo from "./DescargarArchivo/DescargarArchivo";
 import FechaBox from "./FechaBox/FechaBox";
 import DenseTable from "./DenseTable/DenseTable";
+import img from "../../pages/PerfilUsuario/fotoPerfil.jpg"
 
 const LicenciaCard = ({
   userData,
@@ -42,7 +43,7 @@ const LicenciaCard = ({
           <Avatar
             alt='User'
             sx={{ width: 56, height: 56 }}
-            src={fullData.fotoSolicitante}
+            src={fullData.fotoSolicitante !== undefined ? fullData.fotoSolicitante : { img }}
           />
           <div>
             <Typography variant='h6' component='span'>

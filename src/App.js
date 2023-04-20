@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import React, { useContext } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./pages/Login/Login";
 import NotFound from "./pages/NotFound/NotFound";
