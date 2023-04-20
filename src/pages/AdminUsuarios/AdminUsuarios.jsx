@@ -19,7 +19,7 @@ const AdminUsuarios = () => {
   const [usuarios, setUsuarios] = useState();
 
   useEffect(() => {
-    getLicencias().then((data) => {
+    administrarUsuariosService().then((data) => {
       console.log(data);
       setUsuarios(data);
     });
@@ -72,8 +72,8 @@ const AdminUsuarios = () => {
                   usuarios.map((usuario, index) => (
                     <UsuarioAdmin
                       key={`usuarios-${index}`}
-                      avatar={usuario.avatar}
-                      name={usuario.name}
+                      avatar={usuario.foto}
+                      name={usuario.username}
                       icono={
                         <>
                           <Button

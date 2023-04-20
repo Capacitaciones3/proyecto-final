@@ -5,9 +5,10 @@
     gap: 50px;
     border: 1px solid rgb(206, 206, 206);
     padding: 20px;
-
-
+    position: relative;
 }
+
+
 
 .usuarioBalance .avatar-contenedor {
     display: flex;
