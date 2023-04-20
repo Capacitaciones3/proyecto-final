@@ -221,8 +221,7 @@ const Dashboard = () => {
               )}
             </article>
           </div>
-          <div className='licencia-card-container' style={{ display: "none" }}>
-            {open && <h1>Hola mundo</h1>}
+          <div className='licencia-card-container' style={{ display: "flex" }}>
             <LicenciaCard fullData={licenciaFull} setLicenciaFull={setLicenciaFull} handleRespuesta={handleRespuesta} open={open} setOpen={setOpen} />
             <ToastContainer
               position="bottom-right"

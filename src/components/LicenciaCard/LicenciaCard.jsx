@@ -37,89 +37,97 @@ const LicenciaCard = ({
 
   return (
     <>
-      <section className="contenedor-usuario">
-        <div className='usuarioBalance'>
-          <div className='avatar-contenedor'>
-            <Avatar
-              alt='User'
-              sx={{ width: 56, height: 56 }}
-              src={fullData.fotoSolicitante !== undefined ? fullData.fotoSolicitante : { img }}
-            />
-            <div>
-              <Typography variant='h6' component='span'>
-                {fullData.nombreSolicitante}
-              </Typography>
-              <Typography variant='body2' component='span'>
-                {fullData.fechaComienzo} - {fullData.fechaFinalizacion}
-              </Typography>
-              <Typography
-                sx={{ display: "flex", gap: "10px", alignItems: "center" }}
-                component='span'
-                variant='body2'
-                color='text.primary'>
-                <div className={`punto color-amarillo`}></div>
-                {fullData.tipo}
-              </Typography>
+      {
+        open &&
+        <section className="contenedor-usuario">
+          <Button variant="contained" color="error"
+            sx={{ width: "40px", position: "absolute", right: "20px", top: "20px" }}
+            onClick={() => setOpen(false)}
+          >X
+          </Button>
+          <div className='usuarioBalance'>
+            <div className='avatar-contenedor'>
+              <Avatar
+                alt='User'
+                sx={{ width: 56, height: 56 }}
+                src={fullData.fotoSolicitante !== undefined ? fullData.fotoSolicitante : { img }}
+              />
+              <div>
+                <Typography variant='h6' component='span'>
+                  {fullData.nombreSolicitante}
+                </Typography>
+                <Typography variant='body2' component='span'>
+                  {fullData.fechaComienzo} - {fullData.fechaFinalizacion}
+                </Typography>
+                <Typography
+                  sx={{ display: "flex", gap: "10px", alignItems: "center" }}
+                  component='span'
+                  variant='body2'
+                  color='text.primary'>
+                  <div className={`punto color-amarillo`}></div>
+                  {fullData.tipo}
+                </Typography>
+              </div>
             </div>
           </div>
-        </div>
-        <div className='estado-licencia'>
-          <div className='fecha-info'>
-            <div className='fechasBox-container'>
-              <FechaBox />
-              <FechaBox />
+          <div className='estado-licencia'>
+            <div className='fecha-info'>
+              <div className='fechasBox-container'>
+                <FechaBox />
+                <FechaBox />
+              </div>
+              <div className='fecha'>
+                <div className='diasLaborales'></div>
+              </div>
             </div>
-            <div className='fecha'>
-              <div className='diasLaborales'></div>
+            <div>
+              {/* fecha solicitada cuando se hizo el ticket */}
+              <h3>FECHA SOLICITADA</h3>
+              <p>{fullData.fechaPeticion}</p>
+              <DescargarArchivo file={fullData.adjunto} />
             </div>
+          </div>
+          <div className='contenedorTres'>
+            <Typography variant='subtitle1'>DESCRIPCION</Typography>
+            <Box noValidate>
+              <TextField
+                sx={{ width: "90%" }}
+                id='descripcionLicencia'
+                multiline
+                rows={5}
+                size='10'
+                disabled
+                value={fullData.descripcion}
+                name='descripcionLicencia'>
+              </TextField>
+            </Box>
           </div>
           <div>
-            {/* fecha solicitada cuando se hizo el ticket */}
-            <h3>FECHA SOLICITADA</h3>
-            <p>{fullData.fechaPeticion}</p>
-            <DescargarArchivo file={fullData.adjunto} />
+            <h3>Quien estará ausente</h3>
+            <DenseTable data={dataFake} />
           </div>
-        </div>
-        <div className='contenedorTres'>
-          <Typography variant='subtitle1'>DESCRIPCION</Typography>
-          <Box noValidate>
-            <TextField
-              sx={{ width: "90%" }}
-              id='descripcionLicencia'
-              multiline
-              rows={5}
-              size='10'
-              disabled
-              name='descripcionLicencia'>
-              {fullData.descripcion}
-            </TextField>
-          </Box>
-        </div>
-        <div>
-          <h3>Quien estará ausente</h3>
-          <DenseTable data={dataFake} />
-        </div>
-        <div style={{ display: "flex", gap: "20px", justifyContent: "flex-end" }}>
-          <Button
-            variant='contained'
-            color='error'
-            onClick={(e) => {
-              handleData();
-              handleRespuesta();
-            }}>
-            Rechazar
-          </Button>
-          <Button
-            variant='contained'
-            color='success'
-            onClick={(e) => {
-              handleData();
-              handleRespuesta();
-            }}>
-            Aprobar
-          </Button>
-        </div>
-      </section>
+          <div style={{ display: "flex", gap: "20px", justifyContent: "flex-end" }}>
+            <Button
+              variant='contained'
+              color='error'
+              onClick={(e) => {
+                handleData();
+                handleRespuesta();
+              }}>
+              Rechazar
+            </Button>
+            <Button
+              variant='contained'
+              color='success'
+              onClick={(e) => {
+                handleData();
+                handleRespuesta();
+              }}>
+              Aprobar
+            </Button>
+          </div>
+        </section>
+      }
     </>
   );
 };
