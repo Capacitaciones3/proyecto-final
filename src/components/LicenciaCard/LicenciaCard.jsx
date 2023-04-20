@@ -12,8 +12,7 @@ const LicenciaCard = ({
   setLicenciaFull,
   open,
   setOpen,
-  handleAprobar,
-  handleRechazar,
+  handleRespuesta,
 }) => {
   const dataFake = [
     {
@@ -104,8 +103,8 @@ const LicenciaCard = ({
           variant='contained'
           color='error'
           onClick={(e) => {
-            handleRechazar();
             handleData();
+            handleRespuesta();
           }}>
           Rechazar
         </Button>
@@ -113,8 +112,8 @@ const LicenciaCard = ({
           variant='contained'
           color='success'
           onClick={(e) => {
-            handleAprobar();
             handleData();
+            handleRespuesta();
           }}>
           Aprobar
         </Button>
