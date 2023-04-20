@@ -17,14 +17,19 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import React, { useContext, useEffect, useState } from "react";
 import ReactDatePicker, { registerLocale } from "react-datepicker";
 import "./PerfilUsuario.css";
-
+import "react-toastify/dist/ReactToastify.css";
 
 import { AutenticacionContext } from "../../contexts/Autenticacion";
-import { perfilService } from "../../services/perfilService";
+import {
+  crearUsuarioService,
+  modificarService,
+  perfilService,
+} from "../../services/perfilService";
 import "react-datepicker/dist/react-datepicker.css";
 import dayjs from "dayjs";
-import es from 'date-fns/locale/es';
-registerLocale('es', es);
+import es from "date-fns/locale/es";
+import { ToastContainer, toast } from "react-toastify";
+registerLocale("es", es);
 
 const PerfilUsuario = () => {
   const { usuario } = useContext(AutenticacionContext);
@@ -64,15 +69,15 @@ const PerfilUsuario = () => {
     isNew
       ? setUserInfo({ ...initData })
       : perfilService(1).then((data) => {
-        setUserInfo({ ...data })
-      });
+          setUserInfo({ ...data });
+        });
   }, []);
 
   // const defaultValue = dayjs.utc().toDate();
 
   const handleChange = (e, inputName) => {
     const info = userInfo;
-    info[inputName] = e.value;
+    info[inputName] = e.target.value;
     setUserInfo({ ...info });
   };
 
@@ -90,18 +95,55 @@ const PerfilUsuario = () => {
     const info = userInfo;
     info[inputName] = date;
     setUserInfo({ ...info });
-  }
+  };
 
-  /* const handleSubmit = () => {
-    // si es nuevo llamamos a metodo saveUser en service POST()
-    if (isNew) {
-      // saveUser(userInfo);
+  const handleSubmit = () => {
+    if (userInfo.password === rePassword) {
+      if (isNew) {
+        // si es nuevo llamamos a metodo saveUser en service POST()
+        crearUsuarioService(userInfo).then((res) =>
+          toast.info(res, {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          })
+        );
+      }
+      // Si no es nuevo tenemos que hacer un update (PUT)
+      else {
+        // console.log({ ...userInfo, id: 1 });
+        modificarService({ ...userInfo, id: 1 }).then((res) =>
+          toast.info(res, {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          })
+        );
+      }
+    } else {
+      console.log("error");
+      toast.error("Las constraseñas no coinciden", {
+        position: "bottom-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
     }
-    // Si no es nuevo tenemos que hacer un update (PUT)
-    else {
-      // updateUser();
-    }
-  }; */
+  };
 
   return (
     <Container
@@ -213,7 +255,7 @@ const PerfilUsuario = () => {
               InputLabelProps={{ shrink: true }}
               variant="outlined"
               value={rePassword}
-              onChange={(e) => setRePassword(e.value)}
+              onChange={(e) => setRePassword(e.target.value)}
             />
           </Box>
         </Box>
@@ -250,55 +292,60 @@ const PerfilUsuario = () => {
                 </MenuItem>
               </TextField>
 
-              <ReactDatePicker
-                onChange={(date) => {
-                  const info = userInfo;
-                  console.log(date.toISOString())
-                  let fecha = date.toISOString();
-                  fecha = fecha.split("T");
-                  info["fecha_de_nacimiento"] = fecha[0];
-                  setUserInfo({ ...info });
-
+              <div
+                style={{
+                  paddingLeft: "20px",
+                  display: "flex",
+                  gap: "30px",
+                  justifyContent: "center",
+                  alignItems: "center",
                 }}
-                withPortal
-                locale="es"
-                value={userInfo.fecha_de_nacimiento}
-                customInput={
-                  <TextField
-                    label="Fecha de nacimiento"
-                    type="text"
-                    InputLabelProps={{ shrink: true }}
-                    disabled={true}
-                  />
-
-                }></ReactDatePicker>
-
-              <ReactDatePicker
-                onChange={(date) => {
-                  const info = userInfo;
-                  console.log(date.toISOString())
-                  let fecha = date.toISOString();
-                  fecha = fecha.split("T");
-                  info["fecha_de_ingreso"] = fecha[0];
-                  setUserInfo({ ...info });
-
-                }}
-                withPortal
-                locale="es"
-                value={userInfo.fecha_de_ingreso}
-                customInput={
-                  <TextField
-                    label="Fecha de Ingreso"
-                    type="text"
-                    InputLabelProps={{ shrink: true }}
-                    disabled={true}
-                  />
-
-                }></ReactDatePicker>
-
-
-
-
+              >
+                <ReactDatePicker
+                  fixedHeight="400px"
+                  onChange={(date) => {
+                    const info = userInfo;
+                    console.log(date.toISOString());
+                    let fecha = date.toISOString();
+                    fecha = fecha.split("T");
+                    info["fecha_de_nacimiento"] = fecha[0];
+                    setUserInfo({ ...info });
+                  }}
+                  withPortal
+                  locale="es"
+                  value={userInfo.fecha_de_nacimiento}
+                  customInput={
+                    <TextField
+                      label="Fecha de nacimiento"
+                      type="text"
+                      InputLabelProps={{ shrink: true }}
+                      disabled={true}
+                    />
+                  }
+                ></ReactDatePicker>
+                <ReactDatePicker
+                  fixedHeight="400px"
+                  onChange={(date) => {
+                    const info = userInfo;
+                    console.log(date.toISOString());
+                    let fecha = date.toISOString();
+                    fecha = fecha.split("T");
+                    info["fecha_de_ingreso"] = fecha[0];
+                    setUserInfo({ ...info });
+                  }}
+                  withPortal
+                  locale="es"
+                  value={userInfo.fecha_de_ingreso}
+                  customInput={
+                    <TextField
+                      label="Fecha de Ingreso"
+                      type="text"
+                      InputLabelProps={{ shrink: true }}
+                      disabled={true}
+                    />
+                  }
+                ></ReactDatePicker>
+              </div>
 
               <TextField
                 sx={{ m: 2 }}
@@ -353,9 +400,9 @@ const PerfilUsuario = () => {
               )}
             </Box>
           </AccordionDetails>
-        </Accordion >
+        </Accordion>
         {/* //Segundo acordion de datos */}
-        <Accordion Accordion >
+        <Accordion Accordion>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1a-content"
@@ -457,7 +504,7 @@ const PerfilUsuario = () => {
               />
             </Box>
           </AccordionDetails>
-        </Accordion >
+        </Accordion>
         <Box
           sx={{
             display: "flex",
@@ -466,13 +513,29 @@ const PerfilUsuario = () => {
             justifyContent: "end",
           }}
         >
-          <Button variant="contained" color="primary">
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => handleSubmit()}
+          >
             Guardar
             <ArrowForwardIcon></ArrowForwardIcon>
           </Button>
         </Box>
-      </Box >
-    </Container >
+      </Box>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
+    </Container>
   );
 };
 

@@ -10,7 +10,7 @@ import UsuarioAdmin from "../../components/Usuario/Usuario Admin/UsuarioAdmin";
 import PostAddIcon from "@mui/icons-material/PostAdd";
 import NavigationIcon from "@mui/icons-material/Navigation";
 import { Fab, Typography } from "@mui/material";
-import { getLicencias, postLicencias } from "../../services/licenciaServices";
+import { getLicencias } from "../../services/licenciaServices";
 import { Link } from "react-router-dom";
 
 const Licencias = (rol) => {
@@ -48,7 +48,7 @@ const Licencias = (rol) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(data);
-    postLicencias(data);
+    // postLicencias(data);
   };
 
   return (
@@ -63,7 +63,8 @@ const Licencias = (rol) => {
           justifyContent: "center",
           padding: "50px 0",
           flexWrap: "wrap",
-        }}>
+        }}
+      >
         <form
           style={{
             width: "70%",
@@ -72,58 +73,60 @@ const Licencias = (rol) => {
             backgroundColor: "white",
           }}
           onSubmit={handleSubmit}
-          required>
-          <section className='contenedorUsuario'>
-            <div className='usuarioBalance'>
+          required
+        >
+          <section className="contenedorUsuario">
+            <div className="usuarioBalance">
               <div>
                 <Usuario handleData={handleData} />
               </div>
               <div>
-                <Typography variant='subtitle1'>BALANCE ACTUAL:</Typography>
+                <Typography variant="subtitle1">BALANCE ACTUAL:</Typography>
               </div>
             </div>
-            <div className='estadoLicencia'>
+            <div className="estadoLicencia">
               <Estado />
             </div>
           </section>
 
-          <section className='contenedorDescripcion'>
-            <div className='contenedorUno'>
-              <div className='licencia'>
+          <section className="contenedorDescripcion">
+            <div className="contenedorUno">
+              <div className="licencia">
                 <TipodeLicencia handleData={handleData} />
               </div>
-              <div className='archivo' style={{ width: "50%" }}>
+              <div className="archivo" style={{ width: "50%" }}>
                 <SubirArchivo handleData={handleData} />
               </div>
             </div>
 
-            <div className='contenedorDos'>
+            <div className="contenedorDos">
               <CalendarioLicencia setData={setData} data={data} />
             </div>
 
-            <div className='contenedorTres'>
+            <div className="contenedorTres">
               <Descripcion handleData={handleData} />
             </div>
           </section>
 
-          <section className='contenedorAprobacion'>
-            <div className='contenedorCuatro'>
-              <div className='administrador'>
-                <Typography variant='subtitle1'>
+          <section className="contenedorAprobacion">
+            <div className="contenedorCuatro">
+              <div className="administrador">
+                <Typography variant="subtitle1">
                   APROBACION A CARGO DE:
                 </Typography>
                 <div>{datos[1]}</div>
               </div>
             </div>
 
-            <div className='contenedorCinco'>
-              <div className='botondeAprobacion'>
+            <div className="contenedorCinco">
+              <div className="botondeAprobacion">
                 <Link onClick={(e) => handleSubmit(e)}>
                   <Fab
-                    variant='extended'
-                    size='medium'
-                    color='success'
-                    aria-label='add'>
+                    variant="extended"
+                    size="medium"
+                    color="success"
+                    aria-label="add"
+                  >
                     <NavigationIcon sx={{ mr: 1 }} icon={<PostAddIcon />} />
                     Solicitar aprobacion
                   </Fab>
