@@ -1,6 +1,6 @@
 // ESTA ES LA CARTA QUE APARECE DEBAJO DEL DASHBOARD
 import React from "react";
-import Usuario from "../Usuario/Usuario";
+import Usuario from "../../pages/Licencias/SelectUsuarios/SelectUsuario";
 import { Avatar, Button, Typography } from "@mui/material";
 import "./LicenciaCard.css";
 import Descripcion from "../../pages/Licencias/Descripcion/Descripcion";
