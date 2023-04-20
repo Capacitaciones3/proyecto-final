@@ -15,19 +15,34 @@ import ClearIcon from "@mui/icons-material/Clear";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+
 const Dashboard = () => {
-  const { usuario } = useContext(AutenticacionContext);
-  const [data, setData] = useState({});
+
   const [licenciasPendientes, setLicenciasPendientes] = useState(null);
   const [licenciasAprobadas, setLicenciasAprobadas] = useState(null);
   const [licenciaFull, setLicenciaFull] = useState(null);
   const [clima, setClima] = useState(false);
   const [open, setOpen] = useState(false)
 
+  const { usuario } = useContext(AutenticacionContext);
+  const initFullData = {
+    "id": null,
+    "tipo": "",
+    "estado": "",
+    "adjunto": "",
+    "fechaPeticion": "",
+    "fechaComienzo": "",
+    "fechaFinalizacion": "",
+    "descripcion": "",
+    "nombreSolicitante": "",
+    "fotoSolicitante": "",
+    "nombreSupervisor": "",
+    "fotoSupervisor": null
+  }
 
   useEffect(() => {
     getApiClima().then((datos) => {
-      console.log(datos);
+
       setClima(datos);
     });
   }, []);
@@ -40,21 +55,23 @@ const Dashboard = () => {
 
     getLicenciasAprobadas(usuario.id)
       .then(data => {
-        console.log(data)
         setLicenciasAprobadas(data)
       })
+    setLicenciaFull({ ...initFullData })
+
   }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(data);
   };
 
   const traerFullLicencia = (id) => {
     getLicenciaFull(id)
       .then(data => {
-        console.log(data)
         setLicenciaFull(data)
+        console.log(licenciaFull)
+        setOpen(true);
+        console.log(open)
       })
   }
 
@@ -114,12 +131,13 @@ const Dashboard = () => {
                   {licenciasPendientes.lenght !== 0 ? (
                     licenciasPendientes.map((licencia) => (
                       <CardUser
-
                         name={licencia.nombreSolicitante}
                         avatar={licencia.fotoSolicitante}
                         fechaInicio={licencia.fechaComienzo}
                         fechaFinal={licencia.fechaFinalizacion}
                         tipodeLicencia={licencia.tipo}
+                        id={licencia.id}
+                        handleClick={traerFullLicencia}
                         icono={
                           <>
                             <CheckIcon
@@ -131,7 +149,7 @@ const Dashboard = () => {
                                 width: "20px",
                                 height: "20px",
                               }}
-                              onClick={() => traerFullLicencia(licencia.id)}
+                            // onClick={() => traerFullLicencia(licencia.id)}
                             />
                             <ClearIcon
                               sx={{
@@ -141,7 +159,7 @@ const Dashboard = () => {
                                 width: "20px",
                                 height: "20px",
                               }}
-                              onClick={() => traerFullLicencia(licencia.id)}
+                            // onClick={() => traerFullLicencia(licencia.id)}
                             >
 
                             </ClearIcon>
@@ -204,20 +222,21 @@ const Dashboard = () => {
             </article>
           </div>
           <div className='licencia-card-container' style={{ display: "none" }}>
-            {/* <LicenciaCard fullData={licenciaFull} setLicenciaFull={setLicenciaFull} handleRespuesta={handleRespuesta} open={open} setOpen={setOpen} /> */}
+            {open && <h1>Hola mundo</h1>}
+            <LicenciaCard fullData={licenciaFull} setLicenciaFull={setLicenciaFull} handleRespuesta={handleRespuesta} open={open} setOpen={setOpen} />
+            <ToastContainer
+              position="bottom-right"
+              autoClose={5000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme="colored"
+            />
           </div>
-          <ToastContainer
-            position="bottom-right"
-            autoClose={5000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            theme="colored"
-          />
         </>
       )}
     </>

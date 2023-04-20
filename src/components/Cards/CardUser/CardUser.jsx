@@ -15,6 +15,7 @@ const CardUser = ({
   fechaInicio,
   rol,
   icono,
+  handleClick,
 }) => {
   const { usuario } = useContext(AutenticacionContext);
 
@@ -71,7 +72,7 @@ const CardUser = ({
         </Stack>
       </Stack>
 
-      {usuario.rol === "administrador" && (
+      {usuario.rol === "Supervisor" && (
         <Stack
           sx={{
             display: "flex",
@@ -81,7 +82,8 @@ const CardUser = ({
           <div style={{ alignSelf: "self-end" }}>
             <button
               style={{ border: 0, backgroundColor: "#ffffff" }}
-              onClick={{}}>
+              onClick={() => handleClick(id)}
+            >
               {icono}
             </button>
           </div>

@@ -18,7 +18,7 @@ import React, { useContext, useEffect, useState } from "react";
 import ReactDatePicker, { registerLocale } from "react-datepicker";
 import "./PerfilUsuario.css";
 import "react-toastify/dist/ReactToastify.css";
-
+import imagen from "../PerfilUsuario/fotoPerfil.jpg"
 import { AutenticacionContext } from "../../contexts/Autenticacion";
 import {
   crearUsuarioService,
