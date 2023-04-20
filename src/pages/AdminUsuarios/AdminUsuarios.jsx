@@ -9,7 +9,10 @@ import { red } from "@mui/material/colors";
 import Loading from "../../components/Loading/Loading";
 import { useNavigate } from "react-router-dom";
 import { AutenticacionContext } from "../../contexts/Autenticacion";
-import { eliminarUsuariosService } from "../../services/administrarUsuariosService";
+import {
+  administrarUsuariosService,
+  eliminarUsuariosService,
+} from "../../services/administrarUsuariosService";
 
 const AdminUsuarios = () => {
   const navigate = useNavigate();
