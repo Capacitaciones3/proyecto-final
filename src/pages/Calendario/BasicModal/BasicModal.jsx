@@ -41,14 +41,8 @@ export default function BasicModal({
       <Modal
         open={open}
         onClose={handleClose}
-<<<<<<< HEAD
         aria-labelledby='modal-modal-title'
         aria-describedby='modal-modal-description'
-
-=======
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
->>>>>>> 81fc042d2cfb2cf617c810ca48e7188e78807196
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
