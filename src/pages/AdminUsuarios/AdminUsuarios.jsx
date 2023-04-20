@@ -7,13 +7,13 @@ import EditIcon from "@mui/icons-material/Edit";
 import UsuarioAdmin from "../../components/UsuarioAdmin/UsuarioAdmin";
 import { red } from "@mui/material/colors";
 import Loading from "../../components/Loading/Loading";
+import { administrarUsuariosService } from "../../services/administrarUsuariosService";
 
 const AdminUsuarios = () => {
-
-  const [usuarios, setUsuarios] = useState();
+  const [usuarios, setUsuarios] = useState(null);
 
   useEffect(() => {
-    getLicencias().then((data) => {
+    administrarUsuariosService().then((data) => {
       console.log(data);
       setUsuarios(data);
     });
@@ -51,15 +51,20 @@ const AdminUsuarios = () => {
                   usuarios.map((usuario, index) => (
                     <UsuarioAdmin
                       key={`usuarios-${index}`}
-                      avatar={usuario.avatar}
-                      name={usuario.name}
+                      avatar={usuario.foto}
+                      name={usuario.username}
                       icono={
                         <>
-                          <DeleteIcon
-                            sx={{
-                              color: red[900],
-                            }}></DeleteIcon>
-                          <EditIcon color='success'></EditIcon>
+                          <Button>
+                            <DeleteIcon
+                              sx={{
+                                color: red[900],
+                              }}
+                            />
+                          </Button>
+                          <Button>
+                            <EditIcon color='success' />
+                          </Button>
                         </>
                       }
                     />
