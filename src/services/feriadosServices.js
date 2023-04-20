@@ -11,7 +11,10 @@ export const getFeriados = async () => {
 
 export const postFeriados = async (body) => {
   try {
-    const res = await fetchContent("/api/feriados", { body, method: "POST" });
+    const res = await fetchContent("/api/feriados", {
+      body: body,
+      method: "POST",
+    });
     return res;
   } catch (error) {
     alert(

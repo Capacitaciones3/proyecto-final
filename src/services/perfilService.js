@@ -15,3 +15,37 @@ export const perfilService = async (id) => {
     throw new Error("[perfilService error]: " + error);
   }
 };
+
+export const modificarService = async (body) => {
+  try {
+    let response = await fetchContent(`/api/usuarios/modificar`, {
+      body: body,
+      method: "POST",
+    });
+    return "Se ha modificado con exito";
+  } catch (error) {
+    alert(
+      error?.response.data?.message
+        ? error?.response.data?.message
+        : "Ha ocurrido un error inesperado"
+    );
+    throw new Error("[perfilService error]: " + error);
+  }
+};
+
+export const crearUsuarioService = async (body) => {
+  try {
+    let response = await fetchContent(`/api/usuarios`, {
+      body: body,
+      method: "POST",
+    });
+    return "Se ha creado usuario con exito";
+  } catch (error) {
+    alert(
+      error?.response.data?.message
+        ? error?.response.data?.message
+        : "Ha ocurrido un error inesperado"
+    );
+    throw new Error("[perfilService error]: " + error);
+  }
+};
