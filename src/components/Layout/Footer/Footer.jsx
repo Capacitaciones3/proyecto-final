@@ -12,7 +12,7 @@ const Footer = () => {
       }}>
       <Typography variant='body2' color='textSecondary' align='center'>
         Developed by{" "}
-        <Link color='inherit' href='/'>
+        <Link color='inherit' to='/'>
           Adviters
         </Link>{" "}
         {new Date().getFullYear()}

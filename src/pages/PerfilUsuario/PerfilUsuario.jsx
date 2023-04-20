@@ -69,8 +69,8 @@ const PerfilUsuario = () => {
     isNew
       ? setUserInfo({ ...initData })
       : perfilService(1).then((data) => {
-          setUserInfo({ ...data });
-        });
+        setUserInfo({ ...data });
+      });
   }, []);
 
   // const defaultValue = dayjs.utc().toDate();
@@ -180,33 +180,15 @@ const PerfilUsuario = () => {
           }}
         >
           <img
-            src="https://indiehoy.com/wp-content/uploads/2020/12/shrek.jpg"
-            alt="Usuario"
-            width={150}
+            src={imagen}
+            alt='Usuario'
+            style={{
+              borderRadius: "50%",
+              height: "130px",
+              width: "130px",
+              objectFit: "cover",
+            }}
           />
-
-          {image && <img src={"./shrek.jpg"} alt="Usuario" width={150} />}
-          <input
-            hidden
-            accept="image/*"
-            id="contained-button-file"
-            multiple={false}
-            type="file"
-            onChange={handleImageChange}
-            onClick={handleImageChange}
-          />
-          <label htmlFor="contained-button-file">
-            <Button
-              sx={{ margin: "5px" }}
-              variant="contained"
-              color="primary"
-              component="span"
-            >
-              Subir Imagen
-            </Button>
-          </label>
-
-
           <Box
             sx={{
               ml: 5,
@@ -540,3 +522,26 @@ const PerfilUsuario = () => {
 };
 
 export default PerfilUsuario;
+
+/*           <Button
+            component='label'
+            sx={{
+              width: "40%",
+              "&:hover": {
+                backgroundColor: "green",
+              },
+            }}
+            color='success'
+            variant='contained'>
+            Subir Archivo
+            <input
+              hidden
+              accept='image/jpg, image/png'
+              type='file'
+              name='archivo'
+              onChange={(e) => {
+                
+              }}
+              onClick={() => setImage(null)}
+            />
+          </Button> */

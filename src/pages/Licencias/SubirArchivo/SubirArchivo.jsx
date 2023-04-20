@@ -11,7 +11,11 @@ const SubirArchivo = ({ handleData }) => {
   };
 
   const handleMessage = (e) => {
-    setMessage(e.target.value);
+    setMessage(
+      file
+        ? `Arvhivo adjunto: ${file}`
+        : "Aún no se ha adjuntado ningún archivo"
+    );
   };
 
   return (
@@ -22,7 +26,7 @@ const SubirArchivo = ({ handleData }) => {
         onChange={(e) => {
           handleMessage(e);
         }}>
-        No hay archivos adjuntos todavia
+        {message}
       </Typography>
       <div>
         <Button
@@ -44,6 +48,7 @@ const SubirArchivo = ({ handleData }) => {
             onChange={(e) => {
               handleData(e);
               handleFile(e);
+              handleMessage(e);
             }}
           />
         </Button>
@@ -60,6 +65,7 @@ const SubirArchivo = ({ handleData }) => {
             onChange={(e) => {
               handleData(e);
               handleFile(e);
+              handleMessage(e);
             }}
           />
           <PhotoCamera />

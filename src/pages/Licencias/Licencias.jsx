@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "./licencias.css";
-import Usuario from "../../components/Usuario/Usuario";
+import Usuario from "./SelectUsuarios/SelectUsuario";
 import Estado from "./Estado/Estado";
 import SubirArchivo from "./SubirArchivo/SubirArchivo";
 import CalendarioLicencia from "./Calendarios/CalendarioLicencia";
 import TipodeLicencia from "./TipodeLicencia/TipodeLicencia";
 import Descripcion from "./Descripcion/Descripcion";
-import UsuarioAdmin from "../../components/Usuario/Usuario Admin/UsuarioAdmin";
+import UsuarioAdmin from "../../components/UsuarioAdmin/UsuarioAdmin";
 import PostAddIcon from "@mui/icons-material/PostAdd";
 import NavigationIcon from "@mui/icons-material/Navigation";
 import { Fab, Typography } from "@mui/material";
@@ -27,6 +27,7 @@ const Licencias = (rol) => {
     });
   }, []);
 
+  // ESTO FALTA CAMBIAR
   // Esto está momentáneo hasta renderizar al admin que viene con el usuario
   const datos = licencias.map((licencia) => (
     <UsuarioAdmin avatar={licencia.avatar} name={licencia.name} />
@@ -78,7 +79,7 @@ const Licencias = (rol) => {
           <section className="contenedorUsuario">
             <div className="usuarioBalance">
               <div>
-                <Usuario handleData={handleData} />
+                <Usuario handleData={handleData} rol={"usuarios"} />
               </div>
               <div>
                 <Typography variant="subtitle1">BALANCE ACTUAL:</Typography>
