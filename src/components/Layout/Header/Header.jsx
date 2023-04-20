@@ -114,7 +114,7 @@ const Header = () => {
             name='ham'
             botonIcono={<MenuIcon />}
             listItems={
-              usuario.rol === "administrador"
+              usuario.rol === "Supervisor"
                 ? listItemHamAdmin
                 : listItemHamUser
             }

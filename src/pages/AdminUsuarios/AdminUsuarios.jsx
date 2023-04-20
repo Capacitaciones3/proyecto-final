@@ -9,6 +9,7 @@ import { red } from "@mui/material/colors";
 import Loading from "../../components/Loading/Loading";
 
 const AdminUsuarios = () => {
+
   const [usuarios, setUsuarios] = useState();
 
   useEffect(() => {
