@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import BarChartIcon from "@mui/icons-material/BarChart";
@@ -19,6 +19,7 @@ import imagen from "./shrek.jpg";
 import "./Header.css";
 
 const Header = () => {
+  const [backdrop, setBackdrop] = useState(false);
   const avatar = (
     <Avatar>
       <img src={imagen} alt='' width={"70px"} />
@@ -106,6 +107,14 @@ const Header = () => {
     navigate("/login");
   };
 
+  const handleOpen = (e) => {
+    setBackdrop(true);
+  };
+
+  const handleClose = (e) => {
+    setBackdrop(false);
+  };
+
   return (
     <>
       <AppBar position='fixed' color='transparent'>
@@ -114,9 +123,7 @@ const Header = () => {
             name='ham'
             botonIcono={<MenuIcon />}
             listItems={
-              usuario.rol === "Supervisor"
-                ? listItemHamAdmin
-                : listItemHamUser
+              usuario.rol === "Supervisor" ? listItemHamAdmin : listItemHamUser
             }
           />
           <h2 style={{ width: "100%", textAlign: "center", color: "#616161" }}>

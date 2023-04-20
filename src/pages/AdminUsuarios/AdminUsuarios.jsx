@@ -1,5 +1,5 @@
 import { Button, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./AdminUsuarios.css";
 import { getLicencias } from "../../services/licenciaServices";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -7,8 +7,14 @@ import EditIcon from "@mui/icons-material/Edit";
 import UsuarioAdmin from "../../components/UsuarioAdmin/UsuarioAdmin";
 import { red } from "@mui/material/colors";
 import Loading from "../../components/Loading/Loading";
+import { useNavigate } from "react-router-dom";
+import { AutenticacionContext } from "../../contexts/Autenticacion";
+import { eliminarUsuariosService } from "../../services/administrarUsuariosService";
 
 const AdminUsuarios = () => {
+  const navigate = useNavigate();
+
+  const { usuario } = useContext(AutenticacionContext);
 
   const [usuarios, setUsuarios] = useState();
 
@@ -18,6 +24,18 @@ const AdminUsuarios = () => {
       setUsuarios(data);
     });
   }, []);
+
+  const handleEditarUsuario = (e) => {
+    navigate(`/perfil?id=${usuario.id}`);
+  };
+
+  const handleCrearUsuario = (e) => {
+    navigate(`/perfil?usuarioNuevo=${"isNew"}`);
+  };
+
+  const handleEliminarUsuario = (e) => {
+    setUsuarios(eliminarUsuariosService(usuario.id));
+  };
 
   return (
     <>
@@ -40,6 +58,9 @@ const AdminUsuarios = () => {
                     "&:hover": {
                       backgroundColor: "green",
                     },
+                  }}
+                  onClick={(e) => {
+                    handleCrearUsuario(e);
                   }}>
                   Crear usuario
                 </Button>
@@ -55,11 +76,22 @@ const AdminUsuarios = () => {
                       name={usuario.name}
                       icono={
                         <>
-                          <DeleteIcon
-                            sx={{
-                              color: red[900],
-                            }}></DeleteIcon>
-                          <EditIcon color='success'></EditIcon>
+                          <Button
+                            onClick={(e) => {
+                              handleEliminarUsuario(e);
+                            }}>
+                            <DeleteIcon
+                              sx={{
+                                color: red[900],
+                              }}
+                            />
+                          </Button>
+                          <Button
+                            onClick={(e) => {
+                              handleEditarUsuario(e);
+                            }}>
+                            <EditIcon color='success' />
+                          </Button>
                         </>
                       }
                     />

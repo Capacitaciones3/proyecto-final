@@ -24,28 +24,26 @@ const DropDownMenu = ({ name, botonIcono, listItems, children }) => {
   return (
     <>
       <IconButton
-        size="large"
-        edge="start"
-        color="inherit"
-        aria-label="menu"
+        size='large'
+        edge='start'
+        color='inherit'
+        aria-label='menu'
         sx={{ mr: 2 }}
-        id="basic-button"
+        id='basic-button'
         aria-controls={open ? "basic-menu" : undefined}
-        aria-haspopup="true"
+        aria-haspopup='true'
         aria-expanded={open ? "true" : undefined}
-        onClick={handleClick}
-      >
+        onClick={handleClick}>
         {botonIcono}
       </IconButton>
       <Menu
-        id="basic-menu"
+        id='basic-menu'
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
         MenuListProps={{
           "aria-labelledby": "basic-button",
-        }}
-      >
+        }}>
         {listItems &&
           listItems.map((el, index) => (
             <MenuItem
@@ -55,8 +53,7 @@ const DropDownMenu = ({ name, botonIcono, listItems, children }) => {
                 display: "flex",
                 gap: "20px",
                 minWidth: "200px",
-              }}
-            >
+              }}>
               {el.icono} {el.text}
             </MenuItem>
           ))}

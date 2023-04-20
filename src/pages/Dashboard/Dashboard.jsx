@@ -5,7 +5,12 @@ import { Typography } from "@mui/material";
 import Busqueda from "./Busqueda/Busqueda";
 import "./dashboard.css";
 import LicenciaCard from "../../components/LicenciaCard/LicenciaCard";
-import { actualizarDatosLicencias, getLicenciaFull, getLicenciasAprobadas, getLicenciasPendientes } from "../../services/licenciaServices";
+import {
+  actualizarDatosLicencias,
+  getLicenciaFull,
+  getLicenciasAprobadas,
+  getLicenciasPendientes,
+} from "../../services/licenciaServices";
 import { getApiClima } from "../../services/dashboardServices";
 import Loading from "../../components/Loading/Loading";
 import UsuarioAdmin from "../../components/UsuarioAdmin/UsuarioAdmin";
@@ -22,8 +27,7 @@ const Dashboard = () => {
   const [licenciasAprobadas, setLicenciasAprobadas] = useState(null);
   const [licenciaFull, setLicenciaFull] = useState(null);
   const [clima, setClima] = useState(false);
-  const [open, setOpen] = useState(false)
-
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     getApiClima().then((datos) => {
@@ -33,16 +37,14 @@ const Dashboard = () => {
   }, []);
 
   useEffect(() => {
-
     getLicenciasPendientes(usuario.id).then((data) => {
       setLicenciasPendientes(data);
     });
 
-    getLicenciasAprobadas(usuario.id)
-      .then(data => {
-        console.log(data)
-        setLicenciasAprobadas(data)
-      })
+    getLicenciasAprobadas(usuario.id).then((data) => {
+      console.log(data);
+      setLicenciasAprobadas(data);
+    });
   }, []);
 
   const handleSubmit = (e) => {
@@ -51,30 +53,28 @@ const Dashboard = () => {
   };
 
   const traerFullLicencia = (id) => {
-    getLicenciaFull(id)
-      .then(data => {
-        console.log(data)
-        setLicenciaFull(data)
-      })
-  }
+    getLicenciaFull(id).then((data) => {
+      console.log(data);
+      setLicenciaFull(data);
+    });
+  };
 
   const handleRespuesta = () => {
-
-    actualizarDatosLicencias(licenciaFull.id, licenciaFull.estado).then(res => {
-      toast.info(res, {
-        position: "bottom-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      })
-
-    }
-    )
-  }
+    actualizarDatosLicencias(licenciaFull.id, licenciaFull.estado).then(
+      (res) => {
+        toast.info(res, {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+      }
+    );
+  };
 
   return (
     <>
@@ -114,7 +114,6 @@ const Dashboard = () => {
                   {licenciasPendientes.lenght !== 0 ? (
                     licenciasPendientes.map((licencia) => (
                       <CardUser
-
                         name={licencia.nombreSolicitante}
                         avatar={licencia.fotoSolicitante}
                         fechaInicio={licencia.fechaComienzo}
@@ -141,10 +140,9 @@ const Dashboard = () => {
                                 width: "20px",
                                 height: "20px",
                               }}
-                              onClick={() => traerFullLicencia(licencia.id)}
-                            >
-
-                            </ClearIcon>
+                              onClick={() =>
+                                traerFullLicencia(licencia.id)
+                              }></ClearIcon>
                           </>
                         }
                       />
@@ -204,10 +202,16 @@ const Dashboard = () => {
             </article>
           </div>
           <div className='licencia-card-container' style={{ display: "none" }}>
-            {/* <LicenciaCard fullData={licenciaFull} setLicenciaFull={setLicenciaFull} handleRespuesta={handleRespuesta} open={open} setOpen={setOpen} /> */}
+            <LicenciaCard
+              fullData={licenciaFull}
+              setLicenciaFull={setLicenciaFull}
+              handleRespuesta={handleRespuesta}
+              open={open}
+              setOpen={setOpen}
+            />
           </div>
           <ToastContainer
-            position="bottom-right"
+            position='bottom-right'
             autoClose={5000}
             hideProgressBar={false}
             newestOnTop={false}
@@ -216,7 +220,7 @@ const Dashboard = () => {
             pauseOnFocusLoss
             draggable
             pauseOnHover
-            theme="colored"
+            theme='colored'
           />
         </>
       )}

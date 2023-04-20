@@ -17,6 +17,7 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import React, { useContext, useEffect, useState } from "react";
 import ReactDatePicker, { registerLocale } from "react-datepicker";
 import "./PerfilUsuario.css";
+import imagen from "./fotoPerfil.jpg";
 import "react-toastify/dist/ReactToastify.css";
 
 import { AutenticacionContext } from "../../contexts/Autenticacion";
@@ -64,13 +65,18 @@ const PerfilUsuario = () => {
   const [image, setImage] = useState(null);
   const [checked, setChecked] = React.useState(false);
 
+  const getIDUsuario = () => {
+    const query = new URLSearchParams(window.location.search);
+    return query.get("usuarioNuevo");
+  };
+
   useEffect(() => {
     // si es true traemos los datos del usuario desde llamando a una funcion en service
     isNew
       ? setUserInfo({ ...initData })
       : perfilService(1).then((data) => {
-        setUserInfo({ ...data });
-      });
+          setUserInfo({ ...data });
+        });
   }, []);
 
   // const defaultValue = dayjs.utc().toDate();
@@ -152,18 +158,16 @@ const PerfilUsuario = () => {
         display: "flex",
         border: "0.9px solid #D8D8D8",
         backgroundColor: "rgb(251, 251, 251)",
-      }}
-    >
-      <Box component="form" sx={{ width: "100%", p: 4 }}>
+      }}>
+      <Box component='form' sx={{ width: "100%", p: 4 }}>
         <Box
           sx={{
             paddingTop: 3,
             display: "flex",
             flexDirection: "column",
             gap: "30px",
-          }}
-        >
-          <Typography color="error.light" variant="h4">
+          }}>
+          <Typography color='error.light' variant='h4'>
             Mi perfil
           </Typography>
           <Divider />
@@ -177,8 +181,7 @@ const PerfilUsuario = () => {
             flexWrap: "nowrap",
             alignItems: "center",
             justifyContent: "space-between",
-          }}
-        >
+          }}>
           <img
             src={imagen}
             alt='Usuario'
@@ -196,80 +199,76 @@ const PerfilUsuario = () => {
               flexWrap: "wrap",
               width: "100%",
               flexDirection: "row",
-            }}
-          >
+            }}>
             <TextField
               sx={{ m: 2 }}
-              id="nombre"
-              label="Nombre"
+              id='nombre'
+              label='Nombre'
               InputLabelProps={{ shrink: true }}
-              type="text"
-              variant="outlined"
+              type='text'
+              variant='outlined'
               value={userInfo.username}
               onChange={(e) => handleChange(e, "username")}
             />
 
             <TextField
               sx={{ m: 2 }}
-              id="password"
-              label="nueva password"
+              id='password'
+              label='nueva password'
               InputLabelProps={{ shrink: true }}
-              type="password"
-              variant="outlined"
+              type='password'
+              variant='outlined'
               value={userInfo.password}
               onChange={(e) => handleChange(e, "password")}
             />
             <TextField
               sx={{ m: 2 }}
-              id="apellido"
-              label="Apellido"
+              id='apellido'
+              label='Apellido'
               InputLabelProps={{ shrink: true }}
-              type="text"
-              variant="outlined"
+              type='text'
+              variant='outlined'
               value={userInfo.apellido}
               onChange={(e) => handleChange(e, "apellido")}
             />
             <TextField
               sx={{ m: 2 }}
-              id="passwordRepetida"
-              label="repetir password"
-              type="password"
+              id='passwordRepetida'
+              label='repetir password'
+              type='password'
               InputLabelProps={{ shrink: true }}
-              variant="outlined"
+              variant='outlined'
               value={rePassword}
               onChange={(e) => setRePassword(e.target.value)}
             />
           </Box>
         </Box>
         {/* //Primer acordion de datos */}
-        <Accordion sx={{ mb: 3 }} defaultExpanded="true">
+        <Accordion sx={{ mb: 3 }} defaultExpanded='true'>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1a-content"
-            id="panel1a-header"
-          >
+            aria-controls='panel1a-content'
+            id='panel1a-header'>
             <Typography>Ver más datos</Typography>
           </AccordionSummary>
           <AccordionDetails>
             <Box
-              sx={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}
-            >
+              sx={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}>
               <TextField
                 sx={{ m: 2, width: "220px" }}
-                id="supervisor"
+                id='supervisor'
                 displayEmpty
                 select
                 InputLabelProps={{ shrink: true }}
-                label="Bajo supervision de:"
-                variant="filled"
-              >
-                <MenuItem key="1" value="Administrador">
+                label='Bajo supervision de:'
+                variant='filled'>
+                <MenuItem key='1' value='Administrador'>
                   Administrador
                 </MenuItem>
-                <MenuItem key="2" value="Tincho">
+                <MenuItem key='2' value='Tincho'>
                   Tincho
                 </MenuItem>
-                <MenuItem key="3" value="Laura">
+                <MenuItem key='3' value='Laura'>
                   Laura
                 </MenuItem>
               </TextField>
@@ -281,10 +280,9 @@ const PerfilUsuario = () => {
                   gap: "30px",
                   justifyContent: "center",
                   alignItems: "center",
-                }}
-              >
+                }}>
                 <ReactDatePicker
-                  fixedHeight="400px"
+                  fixedHeight='400px'
                   onChange={(date) => {
                     const info = userInfo;
                     console.log(date.toISOString());
@@ -294,19 +292,18 @@ const PerfilUsuario = () => {
                     setUserInfo({ ...info });
                   }}
                   withPortal
-                  locale="es"
+                  locale='es'
                   value={userInfo.fecha_de_nacimiento}
                   customInput={
                     <TextField
-                      label="Fecha de nacimiento"
-                      type="text"
+                      label='Fecha de nacimiento'
+                      type='text'
                       InputLabelProps={{ shrink: true }}
                       disabled={true}
                     />
-                  }
-                ></ReactDatePicker>
+                  }></ReactDatePicker>
                 <ReactDatePicker
-                  fixedHeight="400px"
+                  fixedHeight='400px'
                   onChange={(date) => {
                     const info = userInfo;
                     console.log(date.toISOString());
@@ -316,54 +313,53 @@ const PerfilUsuario = () => {
                     setUserInfo({ ...info });
                   }}
                   withPortal
-                  locale="es"
+                  locale='es'
                   value={userInfo.fecha_de_ingreso}
                   customInput={
                     <TextField
-                      label="Fecha de Ingreso"
-                      type="text"
+                      label='Fecha de Ingreso'
+                      type='text'
                       InputLabelProps={{ shrink: true }}
                       disabled={true}
                     />
-                  }
-                ></ReactDatePicker>
+                  }></ReactDatePicker>
               </div>
 
               <TextField
                 sx={{ m: 2 }}
-                id="dni"
-                label="DNI"
+                id='dni'
+                label='DNI'
                 InputLabelProps={{ shrink: true }}
-                variant="outlined"
+                variant='outlined'
                 value={userInfo.dni}
                 onChange={(e) => handleChange(e, "dni")}
               />
               <TextField
                 sx={{ m: 2 }}
-                id="cuil"
-                label="CUIL"
+                id='cuil'
+                label='CUIL'
                 InputLabelProps={{ shrink: true }}
-                type="text"
-                variant="outlined"
+                type='text'
+                variant='outlined'
                 value={userInfo.cuil}
                 onChange={(e) => handleChange(e, "cuil")}
               />
               <TextField
                 sx={{ m: 2 }}
-                id="telefono"
-                label="Telefono"
+                id='telefono'
+                label='Telefono'
                 InputLabelProps={{ shrink: true }}
-                variant="outlined"
+                variant='outlined'
                 value={userInfo.telefono}
                 onChange={(e) => handleChange(e, "telefono")}
               />
               <TextField
                 sx={{ m: 2 }}
-                id="correo"
-                label="Correo electronico"
-                type="email"
+                id='correo'
+                label='Correo electronico'
+                type='email'
                 InputLabelProps={{ shrink: true }}
-                variant="outlined"
+                variant='outlined'
                 value={userInfo.email}
                 onChange={(e) => handleChange(e, "email")}
               />
@@ -377,8 +373,7 @@ const PerfilUsuario = () => {
                       inputProps={{ "aria-label": "controlled" }}
                     />
                   }
-                  label="Administrador"
-                ></FormControlLabel>
+                  label='Administrador'></FormControlLabel>
               )}
             </Box>
           </AccordionDetails>
@@ -387,100 +382,99 @@ const PerfilUsuario = () => {
         <Accordion Accordion>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1a-content"
-            id="panel1a-header"
-          >
+            aria-controls='panel1a-content'
+            id='panel1a-header'>
             <Typography>Datos personales</Typography>
           </AccordionSummary>
           <AccordionDetails>
             <Box>
               <TextField
                 sx={{ m: 2 }}
-                id="calle"
-                label="Calle"
+                id='calle'
+                label='Calle'
                 InputLabelProps={{ shrink: true }}
-                variant="outlined"
+                variant='outlined'
                 value={userInfo.calle}
                 onChange={(e) => handleChange(e, "calle")}
               />
               <TextField
                 sx={{ m: 2 }}
-                id="altura"
-                label="Altura"
+                id='altura'
+                label='Altura'
                 InputLabelProps={{ shrink: true }}
-                variant="outlined"
+                variant='outlined'
                 value={userInfo.altura}
                 onChange={(e) => handleChange(e, "altura")}
               />
               <TextField
                 sx={{ m: 2 }}
-                id="codig opostal"
-                label="Codigo postal"
+                id='codig opostal'
+                label='Codigo postal'
                 InputLabelProps={{ shrink: true }}
-                variant="outlined"
+                variant='outlined'
                 value={userInfo.codigo_postal}
                 onChange={(e) => handleChange(e, "codigo_postal")}
               />
               <TextField
                 sx={{ m: 2 }}
-                id="torre"
-                label="Torre"
-                variant="outlined"
+                id='torre'
+                label='Torre'
+                variant='outlined'
                 InputLabelProps={{ shrink: true }}
                 value={userInfo.torre}
                 onChange={(e) => handleChange(e, "torre")}
               />
               <TextField
                 sx={{ m: 2 }}
-                id="piso"
-                label="Piso"
+                id='piso'
+                label='Piso'
                 InputLabelProps={{ shrink: true }}
-                variant="outlined"
+                variant='outlined'
                 value={userInfo.piso}
                 onChange={(e) => handleChange(e, "piso")}
               />
               <TextField
                 sx={{ m: 2 }}
-                id="departamento"
-                label="Departamento"
+                id='departamento'
+                label='Departamento'
                 InputLabelProps={{ shrink: true }}
-                variant="outlined"
+                variant='outlined'
                 value={userInfo.departamento}
                 onChange={(e) => handleChange(e, "departamento")}
               />
               <TextField
                 sx={{ m: 2 }}
-                id="localidad"
-                label="Localidad"
+                id='localidad'
+                label='Localidad'
                 InputLabelProps={{ shrink: true }}
-                variant="outlined"
+                variant='outlined'
                 value={userInfo.localidad}
                 onChange={(e) => handleChange(e, "localidad")}
               />
               <TextField
                 sx={{ m: 2 }}
-                id="provincia"
-                label="Provincia"
+                id='provincia'
+                label='Provincia'
                 InputLabelProps={{ shrink: true }}
-                variant="outlined"
+                variant='outlined'
                 value={userInfo.provincia}
                 onChange={(e) => handleChange(e, "provincia")}
               />
               <TextField
                 sx={{ m: 2 }}
-                id="pais"
-                label="Pais"
+                id='pais'
+                label='Pais'
                 InputLabelProps={{ shrink: true }}
-                variant="outlined"
+                variant='outlined'
                 value={userInfo.pais}
                 onChange={(e) => handleChange(e, "pais")}
               />
               <TextField
                 sx={{ m: 2 }}
-                id="diasVacaciones"
-                label="Dias Vacaciones"
+                id='diasVacaciones'
+                label='Dias Vacaciones'
                 InputLabelProps={{ shrink: true }}
-                variant="outlined"
+                variant='outlined'
                 value={userInfo.dias_de_vacaciones}
                 onChange={(e) => handleChange(e, "dias_de_vacaciones")}
               />
@@ -493,20 +487,20 @@ const PerfilUsuario = () => {
             padding: "20px",
             margin: "10px",
             justifyContent: "end",
-          }}
-        >
+          }}>
           <Button
-            variant="contained"
-            color="primary"
-            onClick={() => handleSubmit()}
-          >
+            variant='contained'
+            color='primary'
+            onClick={() => {
+              handleSubmit();
+            }}>
             Guardar
             <ArrowForwardIcon></ArrowForwardIcon>
           </Button>
         </Box>
       </Box>
       <ToastContainer
-        position="bottom-right"
+        position='bottom-right'
         autoClose={5000}
         hideProgressBar={false}
         newestOnTop={false}
@@ -515,33 +509,10 @@ const PerfilUsuario = () => {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        theme="colored"
+        theme='colored'
       />
     </Container>
   );
 };
 
 export default PerfilUsuario;
-
-/*           <Button
-            component='label'
-            sx={{
-              width: "40%",
-              "&:hover": {
-                backgroundColor: "green",
-              },
-            }}
-            color='success'
-            variant='contained'>
-            Subir Archivo
-            <input
-              hidden
-              accept='image/jpg, image/png'
-              type='file'
-              name='archivo'
-              onChange={(e) => {
-                
-              }}
-              onClick={() => setImage(null)}
-            />
-          </Button> */
