@@ -1,9 +1,6 @@
 import { Button, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import "./AdminUsuarios.css";
-import CardAdmUsers from "../../components/Cards/CardAdmUsers/CardAdmUsers";
-import { Link } from "react-router-dom";
-import { administrarUsuariosService } from "../../services/administrarUsuariosService";
 
 const AdminUsuarios = () => {
   const [usuarios, setUsuarios] = useState(null);
@@ -33,11 +30,11 @@ const AdminUsuarios = () => {
             </Button>
           </div>
         </div>
-        <div className="containerUsers">
+        <div className='containerUsers'>
           <div></div>
         </div>
       </div>
-    </div>
+    </div >
   );
 };
 

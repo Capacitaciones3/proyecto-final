@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import CardUser from "../../components/Cards/CardUser/CardUser";
 import CardApi from "./CardApi.jsx/CardApi";
 import { Typography } from "@mui/material";
@@ -8,8 +8,11 @@ import LicenciaCard from "../../components/LicenciaCard/LicenciaCard";
 import { getLicencias } from "../../services/licenciaServices";
 import { getApiClima } from "../../services/dashboardServices";
 import Loading from "../../components/Loading/Loading";
+import UsuarioAdmin from "../../components/Usuario/Usuario Admin/UsuarioAdmin";
+import { AutenticacionContext } from "../../contexts/Autenticacion";
 
 const Dashboard = () => {
+  const { usuario, isLogged } = useContext(AutenticacionContext);
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState({});
   const [licencias, setLicencias] = useState(null);
@@ -50,8 +53,8 @@ const Dashboard = () => {
               style={{
                 width: "100%",
                 display: "flex",
-                gap: "30px",
-                padding: "0px 100px 0px 40px",
+                gap: "15px",
+                padding: "0px 30px 0px 30px",
               }}>
               <section className='contenedorAPIs'>
                 <div>
@@ -109,6 +112,28 @@ const Dashboard = () => {
                   )}
                 </div>
               </section>
+              {usuario.rol === "usuario" && (
+                <section
+                  className='cardLicenciasProximas2'
+                  style={{ maxWidth: "230px", height: "200px" }}>
+                  <div className='titulo2'>
+                    <Typography
+                      variant='p'
+                      sx={{ fontWeight: "500" }}
+                      color={"grey"}>
+                      ¿Quién estará ausente?
+                    </Typography>
+                  </div>
+                  <div className='licencias'>
+                    {licencias.map((licencia) => (
+                      <UsuarioAdmin
+                        avatar={licencia.avatar}
+                        name={licencia.name}
+                      />
+                    ))}{" "}
+                  </div>
+                </section>
+              )}
             </article>
           </div>
           <div className='licencia-card-container' style={{ display: "none" }}>

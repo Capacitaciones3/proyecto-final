@@ -16,22 +16,22 @@
 .buscador-dashboard {
   display: flex;
   width: 100%;
-  padding: 20px 0px 0px 40px;
+  padding: 20px 0px 0px 30px;
 }
 
 .opciondeBusqueda {
-  width: 300px;
+  width: 270px;
 }
 
 .contenedorAPIs {
-  width: 40%;
+  width: 35%;
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
 .cardLicenciasPorAprobar2 {
-  width: 500px;
+  width: 400px;
   max-height: 340px;
   display: flex;
   flex-direction: column;
@@ -46,7 +46,7 @@
 }
 
 .cardLicenciasProximas2 {
-  width: 500px;
+  width: 400px;
   max-height: 340px;
   display: flex;
   flex-direction: column;
