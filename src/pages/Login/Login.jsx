@@ -15,9 +15,9 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleSubmit = () => {
+    
     postLogin(user).then((data) => {
-      console.log(data);
-      iniciarSesion(data.id, "123fsdf", "administrador");
+      iniciarSesion(data.id, "123fsdf", data.rol);
       navigate("/dashboard");
     });
   };

@@ -8,7 +8,7 @@ export const AutenticacionProvider = ({ children }) => {
     token: null,
     rol: "Supervisor",
   });
-  const [isLogged, setisLogged] = useState(true);
+  const [isLogged, setisLogged] = useState(false);
 
   const iniciarSesion = (id, token, rol) => {
     setisLogged(true);
