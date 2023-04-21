@@ -5,7 +5,12 @@ import { Typography } from "@mui/material";
 import Busqueda from "./Busqueda/Busqueda";
 import "./dashboard.css";
 import LicenciaCard from "../../components/LicenciaCard/LicenciaCard";
-import { actualizarDatosLicencias, getLicenciaFull, getLicenciasAprobadas, getLicenciasPendientes } from "../../services/licenciaServices";
+import {
+  actualizarDatosLicencias,
+  getLicenciaFull,
+  getLicenciasAprobadas,
+  getLicenciasPendientes,
+} from "../../services/licenciaServices";
 import { getApiClima } from "../../services/dashboardServices";
 import Loading from "../../components/Loading/Loading";
 import UsuarioAdmin from "../../components/UsuarioAdmin/UsuarioAdmin";
@@ -15,50 +20,48 @@ import ClearIcon from "@mui/icons-material/Clear";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-
 const Dashboard = () => {
-
-  const [licenciasPendientes, setLicenciasPendientes] = useState(null);
-  const [licenciasAprobadas, setLicenciasAprobadas] = useState(null);
+  const [licenciasPendientes, setLicenciasPendientes] = useState([]);
+  const [licenciasAprobadas, setLicenciasAprobadas] = useState([]);
   const [licenciaFull, setLicenciaFull] = useState(null);
   const [clima, setClima] = useState(false);
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
 
   const { usuario } = useContext(AutenticacionContext);
   const initFullData = {
-    "id": null,
-    "tipo": "",
-    "estado": "",
-    "adjunto": "",
-    "fechaPeticion": "",
-    "fechaComienzo": "",
-    "fechaFinalizacion": "",
-    "descripcion": "",
-    "nombreSolicitante": "",
-    "fotoSolicitante": "",
-    "nombreSupervisor": "",
-    "fotoSupervisor": null
-  }
+    id: null,
+    tipo: "",
+    estado: "",
+    adjunto: "",
+    fechaPeticion: "",
+    fechaComienzo: "",
+    fechaFinalizacion: "",
+    descripcion: "",
+    nombreSolicitante: "",
+    fotoSolicitante: "",
+    nombreSupervisor: "",
+    fotoSupervisor: null,
+  };
 
   useEffect(() => {
     getApiClima().then((datos) => {
-
       setClima(datos);
     });
   }, []);
 
   useEffect(() => {
-
     getLicenciasPendientes(usuario.id).then((data) => {
-      setLicenciasPendientes(data);
+      data.lenght !== 0
+        ? setLicenciasPendientes(data)
+        : setLicenciasPendientes(null);
     });
 
-    getLicenciasAprobadas(usuario.id)
-      .then(data => {
-        setLicenciasAprobadas(data)
-      })
-    setLicenciaFull({ ...initFullData })
-
+    getLicenciasAprobadas(usuario.id).then((data) => {
+      data.lenght !== 0
+        ? setLicenciasAprobadas(data)
+        : setLicenciasAprobadas(null);
+    });
+    setLicenciaFull({ ...initFullData });
   }, []);
 
   const handleSubmit = (e) => {
@@ -66,32 +69,25 @@ const Dashboard = () => {
   };
 
   const traerFullLicencia = (id) => {
-    getLicenciaFull(id)
-      .then(data => {
-        setLicenciaFull(data)
-        console.log(licenciaFull)
-        setOpen(true);
-        console.log(open)
-      })
-  }
+    getLicenciaFull(id).then((data) => {
+      setLicenciaFull(data);
+      setOpen(true);
+    });
+  };
 
-  const handleRespuesta = () => {
-
-    actualizarDatosLicencias(licenciaFull.id, licenciaFull.estado).then(res => {
-      toast.info(res, {
-        position: "bottom-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      })
-    }
-    )
-    setOpen(false)
-  }
+  const actualizarListaLicencias = () => {
+    let nuevaLista = licenciasPendientes.filter(
+      (el) => el.id != licenciaFull.id
+    );
+    setLicenciasPendientes(nuevaLista);
+    //   let item = licenciasPendientes.filter(
+    //     (el) => (el.id = licenciaFull.id && el.estado == "aprobada")
+    //   );
+    //   console.log(item);
+    //   licenciasAprobadas.lenght !== 0
+    //     ? setLicenciasAprobadas([...licenciasAprobadas, ...item])
+    //     : setLicenciasAprobadas(item);
+  };
 
   return (
     <>
@@ -99,9 +95,9 @@ const Dashboard = () => {
         <Loading />
       ) : (
         <>
-          <div className='contenedor-dashboard'>
-            <form className='buscador-dashboard' onSubmit={handleSubmit}>
-              <div className='opciondeBusqueda'>
+          <div className="contenedor-dashboard">
+            <form className="buscador-dashboard" onSubmit={handleSubmit}>
+              <div className="opciondeBusqueda">
                 <Busqueda />
               </div>
             </form>
@@ -111,23 +107,25 @@ const Dashboard = () => {
                 display: "flex",
                 gap: "15px",
                 padding: "0px 30px 0px 30px",
-              }}>
-              <section className='contenedorAPIs'>
+              }}
+            >
+              <section className="contenedorAPIs">
                 <div>
                   <CardApi data={clima} />
                 </div>
                 <div></div>
               </section>
-              <section className='cardLicenciasPorAprobar2'>
-                <div className='titulo2'>
+              <section className="cardLicenciasPorAprobar2">
+                <div className="titulo2">
                   <Typography
-                    variant='p'
+                    variant="p"
                     sx={{ fontWeight: "500" }}
-                    color={"grey"}>
+                    color={"grey"}
+                  >
                     Solicitudes pendientes:
                   </Typography>
                 </div>
-                <div className='licencias'>
+                <div className="licencias">
                   {licenciasPendientes.lenght !== 0 ? (
                     licenciasPendientes.map((licencia) => (
                       <CardUser
@@ -149,7 +147,7 @@ const Dashboard = () => {
                                 width: "20px",
                                 height: "20px",
                               }}
-                            // onClick={() => traerFullLicencia(licencia.id)}
+                              // onClick={() => traerFullLicencia(licencia.id)}
                             />
                             <ClearIcon
                               sx={{
@@ -159,10 +157,8 @@ const Dashboard = () => {
                                 width: "20px",
                                 height: "20px",
                               }}
-                            // onClick={() => traerFullLicencia(licencia.id)}
-                            >
-
-                            </ClearIcon>
+                              // onClick={() => traerFullLicencia(licencia.id)}
+                            ></ClearIcon>
                           </>
                         }
                       />
@@ -172,16 +168,17 @@ const Dashboard = () => {
                   )}
                 </div>
               </section>
-              <section className='cardLicenciasProximas2'>
-                <div className='titulo2'>
+              <section className="cardLicenciasProximas2">
+                <div className="titulo2">
                   <Typography
-                    variant='p'
+                    variant="p"
                     sx={{ fontWeight: "500" }}
-                    color={"grey"}>
+                    color={"grey"}
+                  >
                     Proximas licencias aprobadas:
                   </Typography>
                 </div>
-                <div className='licencias'>
+                <div className="licencias">
                   {licenciasAprobadas.lenght !== 0 ? (
                     licenciasAprobadas.map((licencia) => (
                       <CardUser
@@ -199,41 +196,38 @@ const Dashboard = () => {
               </section>
               {usuario.rol === "usuario" && (
                 <section
-                  className='cardLicenciasProximas2'
-                  style={{ maxWidth: "230px", height: "200px" }}>
-                  <div className='titulo2'>
+                  className="cardLicenciasProximas2"
+                  style={{ maxWidth: "230px", height: "200px" }}
+                >
+                  <div className="titulo2">
                     <Typography
-                      variant='p'
+                      variant="p"
                       sx={{ fontWeight: "500" }}
-                      color={"grey"}>
+                      color={"grey"}
+                    >
                       ¿Quién estará ausente?
                     </Typography>
                   </div>
-                  <div className='licencias'>
-                    {licenciasPendientes.map((licencia) => (
-                      <UsuarioAdmin
-                        avatar={licencia.avatar}
-                        name={licencia.name}
-                      />
-                    ))}
+                  <div className="licencias">
+                    {licenciasPendientes.lenght !== 0 &&
+                      licenciasPendientes.map((licencia) => (
+                        <UsuarioAdmin
+                          avatar={licencia.avatar}
+                          name={licencia.name}
+                        />
+                      ))}
                   </div>
                 </section>
               )}
             </article>
           </div>
-          <div className='licencia-card-container' style={{ display: "flex" }}>
-            <LicenciaCard fullData={licenciaFull} setLicenciaFull={setLicenciaFull} handleRespuesta={handleRespuesta} open={open} setOpen={setOpen} />
-            <ToastContainer
-              position="bottom-right"
-              autoClose={5000}
-              hideProgressBar={false}
-              newestOnTop={false}
-              closeOnClick
-              rtl={false}
-              pauseOnFocusLoss
-              draggable
-              pauseOnHover
-              theme="colored"
+          <div className="licencia-card-container" style={{ display: "flex" }}>
+            <LicenciaCard
+              fullData={licenciaFull}
+              setLicenciaFull={setLicenciaFull}
+              open={open}
+              setOpen={setOpen}
+              actualizarListaLicencias={actualizarListaLicencias}
             />
           </div>
         </>
