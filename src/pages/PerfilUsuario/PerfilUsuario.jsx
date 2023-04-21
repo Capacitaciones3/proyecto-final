@@ -83,8 +83,8 @@ const PerfilUsuario = () => {
     isNew
       ? setUserInfo({ ...initData })
       : perfilService(getIDUsuario()).then((data) => {
-          setUserInfo({ ...data });
-        });
+        setUserInfo({ ...data });
+      });
   }, []);
 
   // const defaultValue = dayjs.utc().toDate();
@@ -131,7 +131,7 @@ const PerfilUsuario = () => {
       // Si no es nuevo tenemos que hacer un update (PUT)
       else {
         // console.log({ ...userInfo, id: 1 });
-        modificarService({ ...userInfo, id: getIDUsuario() }).then((res) =>
+        modificarService({ ...userInfo, id: getIDUsuario() }, getIDUsuario()).then((res) =>
           toast.info(res, {
             position: "bottom-right",
             autoClose: 5000,

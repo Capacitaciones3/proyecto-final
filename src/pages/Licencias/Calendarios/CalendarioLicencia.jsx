@@ -21,7 +21,8 @@ const CalendarioLicencia = ({ setData, data }) => {
   };
 
   const handleFecha = (date, name) => {
-    setData(() => ({ ...data, [name]: date }));
+    const newDate = new Date(date).toISOString().split('T')
+    setData(() => ({ ...data, [name]: newDate[0] }));
     console.log(date, name);
   };
 
@@ -35,7 +36,7 @@ const CalendarioLicencia = ({ setData, data }) => {
             <ReactDatePicker
               onChange={(date) => {
                 setStartDate(date);
-                handleFecha(date, "startDate");
+                handleFecha(date, "fechaComienzo");
               }}
               selected={startDate}
               state={startDate}
@@ -52,7 +53,7 @@ const CalendarioLicencia = ({ setData, data }) => {
             <ReactDatePicker
               onChange={(date) => {
                 setEndDate(date);
-                handleFecha(date, "endDate");
+                handleFecha(date, "fechaFinalizacion");
               }}
               selected={endDate}
               state={endDate}

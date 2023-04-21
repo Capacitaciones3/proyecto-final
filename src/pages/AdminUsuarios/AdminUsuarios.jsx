@@ -28,8 +28,8 @@ const AdminUsuarios = () => {
     });
   }, []);
 
-  const handleEditarUsuario = () => {
-    navigate(`/perfil?id=${usuario.id}`);
+  const handleEditarUsuario = (id) => {
+    navigate(`/perfil?id=${id}`);
   };
 
   const handleCrearUsuario = () => {
@@ -91,7 +91,7 @@ const AdminUsuarios = () => {
                           </Button>
                           <Button
                             onClick={() => {
-                              handleEditarUsuario();
+                              handleEditarUsuario(usuario.id);
                             }}>
                             <EditIcon color='success' />
                           </Button>

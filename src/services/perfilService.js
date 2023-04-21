@@ -16,9 +16,9 @@ export const perfilService = async (id) => {
   }
 };
 
-export const modificarService = async (body) => {
+export const modificarService = async (body, id) => {
   try {
-    let response = await fetchContent(`/api/usuarios/modificar`, {
+    let response = await fetchContent(`/api/usuarios/update/${id}`, {
       body: body,
       method: "POST",
     });

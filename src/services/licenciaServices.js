@@ -68,3 +68,35 @@ export const getLicenciasAprobadasPorUsuario = async (id) => {
     throw new Error("[getLicencias service error]: " + error);
   }
 };
+
+export const getUsuariosSupervisor = async (id) => {
+  try {
+    const respuesta = await fetchContent(
+      `/api/usuarios/supervisor/${id}`,
+      {
+        method: "GET",
+      }
+    );
+    return respuesta;
+  } catch (error) {
+    throw new Error("[getLicencias service error]: " + error);
+  }
+};
+
+export const postLicencias = async (body) => {
+  try {
+    const respuesta = await fetchContent(
+      `/api/licencias`,
+      {
+        body: body,
+        method: "POST",
+      }
+    );
+    return respuesta;
+  } catch (error) {
+    throw new Error("[getLicencias service error]: " + error);
+  }
+};
+
+
+

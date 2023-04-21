@@ -1,11 +1,11 @@
-import {MenuItem, Select, Typography} from '@mui/material';
+import { MenuItem, Select, Typography } from '@mui/material';
 import React, { useState } from 'react'
 
-const TipodeLicencia =({handleData}) => {
+const TipodeLicencia = ({ handleData }) => {
 
   const [value, setValue] = useState('defecto')
 
-  const handleValue = (e) =>{
+  const handleValue = (e) => {
     setValue(e.target.value)
   }
 
@@ -16,8 +16,8 @@ const TipodeLicencia =({handleData}) => {
         labelId="tipodeLicencia"
         id="tipodeLicencia"
         value={value}
-        name='tipodeLicencia'
-        onChange={(e)=>{handleData(e); handleValue(e)}} 
+        name='tipo'
+        onChange={(e) => { handleData(e); handleValue(e) }}
       >
         <MenuItem value={'defecto'} disabled>Tipo de licencia</MenuItem>
         <MenuItem value={'vacaciones'}>Vacaciones</MenuItem>
@@ -26,7 +26,7 @@ const TipodeLicencia =({handleData}) => {
         <MenuItem value={'examen'}>Día de estudio</MenuItem>
         <MenuItem value={'tramites'}>Trámites</MenuItem>
       </Select>
-      </>
+    </>
   );
 }
 

@@ -7,7 +7,7 @@ const SubirArchivo = ({ handleData }) => {
   const [message, setMessage] = useState(true);
 
   const handleFile = (e) => {
-    setFile(e.target.value);
+    setFile(e.target.name);
   };
 
   const handleMessage = (e) => {
@@ -44,7 +44,7 @@ const SubirArchivo = ({ handleData }) => {
             hidden
             accept='image/jpg, image/png'
             type='file'
-            name='archivo'
+            name='adjunto'
             onChange={(e) => {
               handleData(e);
               handleFile(e);
@@ -61,7 +61,7 @@ const SubirArchivo = ({ handleData }) => {
             hidden
             accept='image/*'
             type='file'
-            name='archivo'
+            name='adjunto'
             onChange={(e) => {
               handleData(e);
               handleFile(e);

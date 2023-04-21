@@ -20,7 +20,7 @@ const Descripcion = ({ handleData }) => {
           rows={5}
           size='10'
           placeholder='Ingrese una descripcion de la licencia'
-          name='descripcionLicencia'
+          name='descripcion'
           onChange={(e) => {
             handleData(e);
             handleText(e);

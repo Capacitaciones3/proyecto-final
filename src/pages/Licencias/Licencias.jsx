@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./licencias.css";
-import Usuario from "./SelectUsuarios/SelectUsuario";
 import Estado from "./Estado/Estado";
 import SubirArchivo from "./SubirArchivo/SubirArchivo";
 import CalendarioLicencia from "./Calendarios/CalendarioLicencia";
@@ -10,48 +9,59 @@ import UsuarioAdmin from "../../components/UsuarioAdmin/UsuarioAdmin";
 import PostAddIcon from "@mui/icons-material/PostAdd";
 import NavigationIcon from "@mui/icons-material/Navigation";
 import { Fab, Typography } from "@mui/material";
-import { getLicencias } from "../../services/licenciaServices";
-import { Link } from "react-router-dom";
+import { getLicencias, getUsuariosSupervisor, postLicencias } from "../../services/licenciaServices";
+import { Link, useNavigate } from "react-router-dom";
 import { AutenticacionContext } from "../../contexts/Autenticacion";
+import SelectUsuario from "./SelectUsuarios/SelectUsuario";
 
-const Licencias = (rol) => {
+const Licencias = () => {
+  const mock = {
+
+  }
+
   const { usuario } = useContext(AutenticacionContext);
   // Esto es para el estado general de la licencia que se envia a BD
   const [licencias, setLicencias] = useState([]);
   // Esto es para obtener toda la data de cada uno de los inputs cuando se modifican
   const [data, setData] = useState({});
-
+  const [usuarios, setUsuarios] = useState(null)
+  const navigate = useNavigate();
   // Para obtener la data de la BD de las licencias ya existentes
   useEffect(() => {
-    getLicencias().then((data) => {
+    getUsuariosSupervisor(usuario.id).then((data) => {
       console.log(data);
-      setLicencias(data);
+      setUsuarios(data);
     });
   }, []);
-
-  // ESTO FALTA CAMBIAR
-  // Esto está momentáneo hasta renderizar al admin que viene con el usuario
-  const datos = licencias.map((licencia) => (
-    <UsuarioAdmin avatar={licencia.avatar} name={licencia.name} />
-  )); // !!
 
   // Actualiza el estado de la data input por input
   // menos el calendario porque no recibe un evento como parámetro!
   const handleData = (e) => {
-    setData((old) => {
-      return {
-        ...old,
-        [e.target.name]: e.target.value, // guardar el nombre del input y su valor
-      };
-    });
+    if (e.target.name == 'adjunto') {
+      setData((old) => {
+        return {
+          ...old,
+          [e.target.name]: 'filename',
+        };
+      });
+    } else {
+      setData((old) => {
+        return {
+          ...old,
+          [e.target.name]: e.target.value,
+        };
+      });
+    }
+
   };
-  console.log(data);
+
+  console.log(data)
 
   // ENVIO LA DATA DEL FORMULARIO !
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(data);
-    // postLicencias(data);
+  const handleSubmit = () => {
+    postLicencias({ ...data, supervisorId: usuario.id }).then(() => {
+      navigate('/dashboard')
+    }).catch((err) => alert(err))
   };
 
   return (
@@ -81,7 +91,7 @@ const Licencias = (rol) => {
           <section className="contenedorUsuario">
             <div className="usuarioBalance">
               <div>
-                <Usuario handleData={handleData} rol={"usuarios"} />
+                <SelectUsuario handleData={handleData} rol={"usuarios"} setUsuarios={setUsuarios} usuarios={usuarios} />
               </div>
               <div>
                 <Typography variant="subtitle1">BALANCE ACTUAL:</Typography>
@@ -117,13 +127,13 @@ const Licencias = (rol) => {
                 <Typography variant="subtitle1">
                   APROBACION A CARGO DE:
                 </Typography>
-                <div>{datos[1]}</div>
+                <div>{usuario.id}</div>
               </div>
             </div>
 
             <div className="contenedorCinco">
               <div className="botondeAprobacion">
-                <Link onClick={(e) => handleSubmit(e)}>
+                <div onClick={() => { handleSubmit() }} >
                   <Fab
                     variant="extended"
                     size="medium"
@@ -133,7 +143,7 @@ const Licencias = (rol) => {
                     <NavigationIcon sx={{ mr: 1 }} icon={<PostAddIcon />} />
                     Solicitar aprobacion
                   </Fab>
-                </Link>
+                </div>
               </div>
             </div>
           </section>

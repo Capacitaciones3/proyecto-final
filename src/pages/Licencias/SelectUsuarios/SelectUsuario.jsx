@@ -1,16 +1,16 @@
 import { Box, Typography, Avatar, Select, MenuItem } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
-import { getLicencias } from "../../../services/licenciaServices";
+import { getLicencias, getUsuariosSupervisor } from "../../../services/licenciaServices";
 import { AutenticacionContext } from "../../../contexts/Autenticacion";
 
-const SelectUsuario = ({ handleData, rol }) => {
+const SelectUsuario = ({ handleData, rol, setUsuarios, usuarios }) => {
   const { usuario } = useContext(AutenticacionContext);
-  const [licencias, setLicencias] = useState([]);
   const [value, setValue] = useState("defecto");
 
+
   useEffect(() => {
-    getLicencias().then((data) => {
-      setLicencias(data);
+    getUsuariosSupervisor().then((data) => {
+      setUsuarios(data);
     });
   }, []);
 
@@ -18,16 +18,16 @@ const SelectUsuario = ({ handleData, rol }) => {
     setValue(e.target.value);
   };
 
-  const datos = licencias.map((licencia) => (
-    <MenuItem value={licencia.id}>
+  const datos = usuarios && usuarios.map((usuario) => (
+    <MenuItem value={usuario.id}>
       <Box sx={{ display: "flex", flexDirection: "row" }}>
         <Avatar
           alt='User'
           sx={{ width: 56, height: 56 }}
-          src={licencia.avatar}
+          src={usuario.foto}
         />
         <Typography sx={{ m: 2 }} component='span'>
-          {licencia.name}
+          {usuario.username}
         </Typography>
       </Box>
     </MenuItem>
@@ -46,7 +46,7 @@ const SelectUsuario = ({ handleData, rol }) => {
             }}
             id='usuario'
             value={value}
-            name='usuario'
+            name='solicitanteId'
             onChange={(e) => {
               handleData(e);
               handleValue(e);
