@@ -26,7 +26,8 @@ export const AutenticacionProvider = ({ children }) => {
 
   return (
     <AutenticacionContext.Provider
-      value={{ usuario, iniciarSesion, cerrarSesion, isLogged }}>
+      value={{ usuario, iniciarSesion, cerrarSesion, isLogged }}
+    >
       {children}
     </AutenticacionContext.Provider>
   );

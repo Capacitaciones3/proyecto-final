@@ -1,5 +1,5 @@
 // ESTA ES LA CARTA QUE APARECE DEBAJO DEL DASHBOARD
-import React from "react";
+import React, { useContext } from "react";
 import { Avatar, Box, Button, TextField, Typography } from "@mui/material";
 import "./LicenciaCard.css";
 import DescargarArchivo from "./DescargarArchivo/DescargarArchivo";
@@ -9,6 +9,7 @@ import img from "../../pages/PerfilUsuario/fotoPerfil.jpg";
 import { actualizarDatosLicencias } from "../../services/licenciaServices";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { AutenticacionContext } from "../../contexts/Autenticacion";
 
 const LicenciaCard = ({
   fullData,
@@ -34,6 +35,7 @@ const LicenciaCard = ({
     },
   ];
 
+  const { usuario } = useContext(AutenticacionContext);
   const handleRechazar = () => {
     console.log(fullData);
     console.log(fullData.id);
@@ -157,20 +159,24 @@ const LicenciaCard = ({
           <div
             style={{ display: "flex", gap: "20px", justifyContent: "flex-end" }}
           >
-            <Button
-              variant="contained"
-              color="error"
-              onClick={() => handleRechazar()}
-            >
-              Rechazar
-            </Button>
-            <Button
-              variant="contained"
-              color="success"
-              onClick={() => handleAprobar()}
-            >
-              Aprobar
-            </Button>
+            {usuario.rol === "Supervisor" && (
+              <>
+                <Button
+                  variant="contained"
+                  color="error"
+                  onClick={() => handleRechazar()}
+                >
+                  Rechazar
+                </Button>
+                <Button
+                  variant="contained"
+                  color="success"
+                  onClick={() => handleAprobar()}
+                >
+                  Aprobar
+                </Button>
+              </>
+            )}
           </div>
         </section>
       )}

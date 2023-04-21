@@ -9,6 +9,7 @@ import {
   actualizarDatosLicencias,
   getLicenciaFull,
   getLicenciasAprobadas,
+  getLicenciasAprobadasPorUsuario,
   getLicenciasPendientes,
 } from "../../services/licenciaServices";
 import { getApiClima } from "../../services/dashboardServices";
@@ -50,18 +51,25 @@ const Dashboard = () => {
   }, []);
 
   useEffect(() => {
-    getLicenciasPendientes(usuario.id).then((data) => {
-      data.lenght !== 0
-        ? setLicenciasPendientes(data)
-        : setLicenciasPendientes(null);
-    });
+    if (usuario.rol === "Supervisor") {
+      getLicenciasPendientes(usuario.id).then((data) => {
+        data.lenght !== 0
+          ? setLicenciasPendientes(data)
+          : setLicenciasPendientes(null);
+      });
 
-    getLicenciasAprobadas(usuario.id).then((data) => {
-      data.lenght !== 0
-        ? setLicenciasAprobadas(data)
-        : setLicenciasAprobadas(null);
-    });
-    setLicenciaFull({ ...initFullData });
+      getLicenciasAprobadas(usuario.id).then((data) => {
+        data.lenght !== 0
+          ? setLicenciasAprobadas(data)
+          : setLicenciasAprobadas(null);
+      });
+      setLicenciaFull({ ...initFullData });
+    } else {
+      getLicenciasAprobadasPorUsuario(usuario.id).then((data) => {
+        setLicenciasPendientes(data);
+        setLicenciasAprobadas(data);
+      });
+    }
   }, []);
 
   const handleSubmit = (e) => {
@@ -122,7 +130,9 @@ const Dashboard = () => {
                     sx={{ fontWeight: "500" }}
                     color={"grey"}
                   >
-                    Solicitudes pendientes:
+                    {usuario.rol === "Supervisor"
+                      ? "Solicitudes pendientes"
+                      : "Mi Historial de Licencias"}
                   </Typography>
                 </div>
                 <div className="licencias">
@@ -175,7 +185,9 @@ const Dashboard = () => {
                     sx={{ fontWeight: "500" }}
                     color={"grey"}
                   >
-                    Proximas licencias aprobadas:
+                    {usuario.rol === "Supervisor"
+                      ? "Proximas licencias aprobadas"
+                      : "Mis Proximas Licencias"}
                   </Typography>
                 </div>
                 <div className="licencias">
@@ -194,7 +206,7 @@ const Dashboard = () => {
                   )}
                 </div>
               </section>
-              {usuario.rol === "usuario" && (
+              {usuario.rol === "Usuario" && (
                 <section
                   className="cardLicenciasProximas2"
                   style={{ maxWidth: "230px", height: "200px" }}

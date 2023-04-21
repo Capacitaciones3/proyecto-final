@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./licencias.css";
 import Usuario from "./SelectUsuarios/SelectUsuario";
 import Estado from "./Estado/Estado";
@@ -12,8 +12,10 @@ import NavigationIcon from "@mui/icons-material/Navigation";
 import { Fab, Typography } from "@mui/material";
 import { getLicencias } from "../../services/licenciaServices";
 import { Link } from "react-router-dom";
+import { AutenticacionContext } from "../../contexts/Autenticacion";
 
 const Licencias = (rol) => {
+  const { usuario } = useContext(AutenticacionContext);
   // Esto es para el estado general de la licencia que se envia a BD
   const [licencias, setLicencias] = useState([]);
   // Esto es para obtener toda la data de cada uno de los inputs cuando se modifican
