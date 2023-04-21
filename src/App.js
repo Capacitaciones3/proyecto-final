@@ -23,15 +23,15 @@ function App() {
             <Route path='dashboard' element={<Dashboard />}>
               <Route path=':idLicencia' element={<LicenciaCard />} />
             </Route>
-            <Route path="licencias" element={<Licencias />} />
+            <Route path='licencias' element={<Licencias />} />
             {usuario.rol === "Supervisor" && (
-              <Route path="usuarios" element={<AdminUsuarios />} />
+              <Route path='usuarios' element={<AdminUsuarios />} />
             )}
             <Route path='calendario' element={<Calendario />} />
             <Route path='perfil' element={<PerfilUsuario />} />
           </Route>
         ) : (
-          <Route path='login' element={<Login />} />
+          <Route index path='login' element={<Login />} />
         )}
         <Route path='*' element={<NotFound />} />
       </Routes>
