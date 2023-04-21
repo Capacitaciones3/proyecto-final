@@ -1,7 +1,7 @@
 import React from "react";
 import { Typography } from "@mui/material";
 
-const FechaBox = () => {
+const FechaBox = ({ fecha }) => {
   return (
     <div className='imagenCalendario' style={{ minWidth: "100px" }}>
       <div
@@ -12,7 +12,7 @@ const FechaBox = () => {
           alignItems: "center",
         }}>
         <Typography variant='subtitle2' sx={{ color: "white" }}>
-          Mes
+          {fecha[1]}
         </Typography>
       </div>
       <div
@@ -23,8 +23,7 @@ const FechaBox = () => {
           flexDirection: "column",
           alignItems: "center",
         }}>
-        <Typography variant='subtitle2'>Num</Typography>
-        <Typography variant='subtitle2'>Día</Typography>
+        <Typography variant='subtitle2'>{fecha[2]}</Typography>
       </div>
     </div>
   );

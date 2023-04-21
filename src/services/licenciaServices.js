@@ -15,6 +15,9 @@ export const getLicenciasPendientes = async (id) => {
     const respuesta = await fetchContent(`/api/licencias/pendientes/${id}`, {
       method: "GET",
     });
+    const respuesta = await fetchContent(`/api/licencias/pendientes/${id}`, {
+      method: "GET",
+    });
     return respuesta;
   } catch (error) {
     throw new Error("[getLicencias service error]: " + error);
@@ -23,6 +26,10 @@ export const getLicenciasPendientes = async (id) => {
 
 export const getLicenciasAprobadas = async (id) => {
   try {
+    const respuesta = await fetchContent(
+      `/api/licencias/aprobadas/supervisor/${id}`,
+      { method: "GET" }
+    );
     const respuesta = await fetchContent(
       `/api/licencias/aprobadas/supervisor/${id}`,
       { method: "GET" }
@@ -38,10 +45,15 @@ export const getLicenciaFull = async (id) => {
     const respuesta = await fetchContent(`/api/licencias/full/${id}`, {
       method: "GET",
     });
+    const respuesta = await fetchContent(`/api/licencias/full/${id}`, {
+      method: "GET",
+    });
     return respuesta;
+  } catch (error) {
   } catch (error) {
     throw new Error("[getLicencias service error]: " + error);
   }
+};
 };
 
 export const actualizarDatosLicencias = async (idLicencia, estado) => {
@@ -51,6 +63,25 @@ export const actualizarDatosLicencias = async (idLicencia, estado) => {
       { method: "PUT" }
     );
     return "La licencia a cambiado de estado";
+    const respuesta = await fetchContent(
+      `/api/licencias/update?idLicencia=${idLicencia}&estado=${estado}`,
+      { method: "PUT" }
+    );
+    return "La licencia a cambiado de estado";
+  } catch (error) {
+    throw new Error("[getLicencias service error]: " + error);
+  }
+};
+
+export const getLicenciasAprobadasPorUsuario = async (id) => {
+  try {
+    const respuesta = await fetchContent(
+      `/api/licencias/aprobadas/usuario/${id}`,
+      {
+        method: "GET",
+      }
+    );
+    return respuesta;
   } catch (error) {
     throw new Error("[getLicencias service error]: " + error);
   }

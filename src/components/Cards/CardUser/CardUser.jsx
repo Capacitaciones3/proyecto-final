@@ -32,32 +32,35 @@ const CardUser = ({
         padding: 2,
         flexGrow: 1,
         cursor: "pointer",
-      }}>
+      }}
+    >
       <Stack
         sx={{
           display: "flex",
           flexDirection: "row",
           gap: "15px",
-        }}>
+        }}
+      >
         <Avatar
-          alt='User'
+          alt="User"
           src={avatar}
           sx={{ alignSelf: "center", width: "50px", height: "50px" }}
         />
         <Stack>
-          <Typografy fontWeight='550' component='span' fontSize={"15px"}>
+          <Typografy fontWeight="550" component="span" fontSize={"15px"}>
             {name}
           </Typografy>
           <Typografy
-            component='span'
+            component="span"
             sx={{ color: "rgba(0,0,0,0.6)" }}
             fontSize={"15px"}
-            fontWeight={"500"}>
+            fontWeight={"500"}
+          >
             {fechaInicio} - {fechaFinal}
           </Typografy>
-          <Typografy display='flex' alignItems='center'>
+          <Typografy display="flex" alignItems="center">
             <Typografy
-              component='span'
+              component="span"
               sx={{
                 width: "10px",
                 height: "10px",
@@ -65,30 +68,29 @@ const CardUser = ({
                 borderRadius: "5px",
               }}
             />
-            <Typografy component='p' marginLeft={0.7} fontSize={"14px"}>
+            <Typografy component="p" marginLeft={0.7} fontSize={"14px"}>
               {tipodeLicencia}
             </Typografy>
           </Typografy>
         </Stack>
       </Stack>
 
-      {usuario.rol === "Supervisor" && (
-        <Stack
-          sx={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "flex-end",
-          }}>
-          <div style={{ alignSelf: "self-end" }}>
-            <button
-              style={{ border: 0, backgroundColor: "#ffffff" }}
-              onClick={() => handleClick(id)}
-            >
-              {icono}
-            </button>
-          </div>
-        </Stack>
-      )}
+      <Stack
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "flex-end",
+        }}
+      >
+        <div style={{ alignSelf: "self-end" }}>
+          <button
+            style={{ border: 0, backgroundColor: "#ffffff" }}
+            onClick={() => handleClick(id)}
+          >
+            {icono}
+          </button>
+        </div>
+      </Stack>
     </Stack>
   );
 };
