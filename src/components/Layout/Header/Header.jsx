@@ -13,7 +13,7 @@ import MarkChatReadIcon from "@mui/icons-material/MarkChatRead";
 import { useNavigate } from "react-router-dom";
 import { AutenticacionContext } from "../../../contexts/Autenticacion";
 import LogoutIcon from "@mui/icons-material/Logout";
-import imagen from "./shrek.jpg";
+import imagen from "./fotoPerfil.jpg";
 
 // css
 import "./Header.css";
@@ -22,7 +22,7 @@ const Header = () => {
   const [backdrop, setBackdrop] = useState(false);
   const avatar = (
     <Avatar>
-      <img src={imagen} alt='' width={"70px"} />
+      <img src={imagen} alt='' style={{ width: "40px", objectFit: "cover" }} />
     </Avatar>
   );
 
@@ -94,7 +94,11 @@ const Header = () => {
     {
       icono: (
         <Avatar>
-          <img src={imagen} alt='' width={"70px"} />
+          <img
+            src={imagen}
+            alt=''
+            style={{ width: "40px", objectFit: "cover" }}
+          />
         </Avatar>
       ),
       text: "Mi perfil",
