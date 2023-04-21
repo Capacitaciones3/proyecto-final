@@ -49,3 +49,19 @@ export const crearUsuarioService = async (body) => {
     throw new Error("[perfilService error]: " + error);
   }
 };
+
+export const supervisoresService = async (id) => {
+  try {
+    let res = await fetchContent(`/api/usuarios/supervisores/${id}`, {
+      method: "GET",
+    });
+    return res;
+  } catch (error) {
+    alert(
+      error?.response.data?.message
+        ? error?.response.data?.message
+        : "Ha ocurrido un error inesperado"
+    );
+    throw new Error("[perfilService error]: " + error);
+  }
+};

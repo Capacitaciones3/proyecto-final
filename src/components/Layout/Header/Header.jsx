@@ -98,7 +98,7 @@ const Header = () => {
         </Avatar>
       ),
       text: "Mi perfil",
-      path: "/perfil",
+      path: `/perfil?id=${usuario.id}`,
     },
   ];
 

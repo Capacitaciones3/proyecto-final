@@ -33,6 +33,7 @@ registerLocale("es", es);
 
 const PerfilUsuario = () => {
   const { usuario } = useContext(AutenticacionContext);
+
   // El objeto va a estar vacio, ahora esta lleno porque es de prueba pero es para que tenga las keys
   const initData = {
     username: "",
@@ -66,14 +67,22 @@ const PerfilUsuario = () => {
 
   const getIDUsuario = () => {
     const query = new URLSearchParams(window.location.search);
-    return query.get("usuarioNuevo");
+    return query.get("id");
   };
+
+  /* const getNewUsuario = () => {
+    const query = new URLSearchParams(window.location.search);
+    let res = query.get("usuarioNuevo");
+
+    setIsNew(true);
+  }; */
 
   useEffect(() => {
     // si es true traemos los datos del usuario desde llamando a una funcion en service
+
     isNew
       ? setUserInfo({ ...initData })
-      : perfilService(1).then((data) => {
+      : perfilService(getIDUsuario()).then((data) => {
           setUserInfo({ ...data });
         });
   }, []);
@@ -122,7 +131,7 @@ const PerfilUsuario = () => {
       // Si no es nuevo tenemos que hacer un update (PUT)
       else {
         // console.log({ ...userInfo, id: 1 });
-        modificarService({ ...userInfo, id: 1 }).then((res) =>
+        modificarService({ ...userInfo, id: getIDUsuario() }).then((res) =>
           toast.info(res, {
             position: "bottom-right",
             autoClose: 5000,
@@ -258,17 +267,21 @@ const PerfilUsuario = () => {
                 id='supervisor'
                 displayEmpty
                 select
+                defaultValue='Administrador'
                 InputLabelProps={{ shrink: true }}
                 label='Bajo supervision de:'
                 variant='filled'>
-                <MenuItem key='1' value='Administrador'>
+                <MenuItem key='1' value='Administrador' disabled>
                   Administrador
                 </MenuItem>
-                <MenuItem key='2' value='Tincho'>
-                  Tincho
+                <MenuItem key='2' value={2}>
+                  Gabriel
                 </MenuItem>
-                <MenuItem key='3' value='Laura'>
-                  Laura
+                <MenuItem key='3' value={1}>
+                  Joaquín
+                </MenuItem>
+                <MenuItem key='4' value={3}>
+                  Abril
                 </MenuItem>
               </TextField>
 

@@ -28,15 +28,15 @@ const AdminUsuarios = () => {
     });
   }, []);
 
-  const handleEditarUsuario = (e) => {
+  const handleEditarUsuario = () => {
     navigate(`/perfil?id=${usuario.id}`);
   };
 
-  const handleCrearUsuario = (e) => {
-    navigate(`/perfil?usuarioNuevo=${"isNew"}`);
+  const handleCrearUsuario = () => {
+    navigate(`/perfil?usuarioNuevo=true&id=0`);
   };
 
-  const handleEliminarUsuario = (e) => {
+  const handleEliminarUsuario = () => {
     setUsuarios(eliminarUsuariosService(usuario.id));
   };
 
@@ -80,8 +80,8 @@ const AdminUsuarios = () => {
                       icono={
                         <>
                           <Button
-                            onClick={(e) => {
-                              handleEliminarUsuario(e);
+                            onClick={() => {
+                              handleEliminarUsuario();
                             }}>
                             <DeleteIcon
                               sx={{
@@ -90,8 +90,8 @@ const AdminUsuarios = () => {
                             />
                           </Button>
                           <Button
-                            onClick={(e) => {
-                              handleEditarUsuario(e);
+                            onClick={() => {
+                              handleEditarUsuario();
                             }}>
                             <EditIcon color='success' />
                           </Button>
